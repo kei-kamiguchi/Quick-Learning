@@ -2,7 +2,9 @@ class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
 
   def index
-    @subject = Subject.all.order(created_at: :desc)
+    @project = Project.find(params[:project_id])
+    @subjects = admin_project.subjects.all.order(created_at: :desc)
+    @subject = Subject.new
   end
 
   def new
@@ -24,7 +26,8 @@ class SubjectsController < ApplicationController
     if @subject.save
       redirect_back(fallback_location: root_path)
     else
-      redirect_to @project, alert: "サブジェクトを作成できませんでした。"
+      flash[:alert] = "サブジェクトを作成できませんでした。"
+      redirect_back(fallback_location: root_path)
     end
   end
 

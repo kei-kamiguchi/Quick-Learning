@@ -1,0 +1,22 @@
+.admins-show{
+  .container {
+    max-width: 960px;
+  }
+  .main-wrap {
+    margin: 40px 15px 15px 15px;
+    background-color: #F0F8FF;
+    border: 1px solid #DDDDDD	;
+    border-radius: 5px;
+  }
+  .main {
+    height: 100%;
+    padding: 20px 15px;
+  }
+  .main-table {
+    margin-top: 30px;
+    table {
+      overflow-y:scroll;
+      background-color: #FFF;
+    }
+  }
+}

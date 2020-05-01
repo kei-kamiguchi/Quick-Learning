@@ -98,7 +98,7 @@
       <div class="navigation">
           <div class="row">
             <div class="col"><%= link_to "Project Index", projects_path, class: "nav-link" %></div>
-            <div class="col"><%= link_to "Subject Index", admin_project, class: "nav-link" %></div>
+            <div class="col"><%= link_to "Subject Index", project_subjects_path(admin_project.id), class: "nav-link" %></div>
             <div class="col"><%= link_to "Question Index", questions_path, class: "nav-link" %></div>
             <div class="col"><%= link_to "My Page", current_admin, class: "nav-link" %></div>
           </div>

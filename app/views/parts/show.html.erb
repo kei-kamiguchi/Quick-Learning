@@ -1,34 +1,36 @@
 <% if user_signed_in? %>
-  <%= stylesheet_link_tag "user", :media => "all" %>
+<%= stylesheet_link_tag "user", :media => "all" %>
 <% end %>
 <% if @part.status_i18n == "クリア！" %>
-  <%= stylesheet_link_tag "part_status", :media => "all" %>
+<%= stylesheet_link_tag "part_status", :media => "all" %>
 <% end %>
-<div class=container>
-<div class="main-wrap">
-  <div class="main">
-    <h3 class="title"><%= @subject.title %></h3>
-    <% if user_signed_in? %>
-    <h4 class="text-right"><%= link_to @part.status_i18n, project_subject_part_toggle_status_path(@project, @subject, @part), method: :patch, class: 'btn btn-outline-info btn-sm part-status mr-2' %><%= link_to "質問する", new_project_subject_part_question_path(@project, @subject, @part), class: 'btn btn-outline-info btn-sm part-question' %></h4>
-    <% end %>
-      <table class="table table-responsive">
-        <thead class="thead-default">
-          <tr>
-            <th><%= @part.title %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= @part.content.html_safe %></td>
-          </tr>
-        </tbody>
-      </table>
-    <% if admin_signed_in? %>
-      <%= link_to 'Edit', edit_project_subject_part_path(@project, @subject, @part), class: 'btn btn-outline-info btn-sm' %>
-    <% end %>
-    <% if user_signed_in? %>
-    <h4 class="text-right"><%= link_to @part.status_i18n, project_subject_part_toggle_status_path(@project, @subject, @part), method: :patch, class: 'btn btn-outline-info btn-sm part-status mr-2' %><%= link_to "質問する", new_project_subject_part_question_path(@project, @subject, @part), class: 'btn btn-outline-info btn-sm part-question' %></h4>
-    <% end %>
+<div class="parts-show">
+  <div class=container>
+    <div class="main-wrap">
+      <div class="main">
+        <h3 class="title"><%= @subject.title %></h3>
+        <% if user_signed_in? %>
+        <h4 class="text-right"><%= link_to @part.status_i18n, project_subject_part_toggle_status_path(@project, @subject, @part), method: :patch, class: 'btn btn-outline-info btn-sm part-status mr-2' %><%= link_to "質問する", new_project_subject_part_question_path(@project, @subject, @part), class: 'btn btn-outline-info btn-sm part-question' %></h4>
+        <% end %>
+        <table class="table table-responsive">
+          <thead class="thead-default">
+            <tr>
+              <th><%= @part.title %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @part.content.html_safe %></td>
+            </tr>
+          </tbody>
+        </table>
+        <% if admin_signed_in? %>
+        <%= link_to 'Edit', edit_project_subject_part_path(@project, @subject, @part), class: 'btn btn-outline-info btn-sm' %>
+        <% end %>
+        <% if user_signed_in? %>
+        <h4 class="text-right"><%= link_to @part.status_i18n, project_subject_part_toggle_status_path(@project, @subject, @part), method: :patch, class: 'btn btn-outline-info btn-sm part-status mr-2' %><%= link_to "質問する", new_project_subject_part_question_path(@project, @subject, @part), class: 'btn btn-outline-info btn-sm part-question' %></h4>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
 </div>
