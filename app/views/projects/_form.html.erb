@@ -1,6 +1,8 @@
 <%= form_with(model: project, local: true) do |form| %>
   <div class="form-group">
     <%= form.text_field :title, placeholder: "input title", class: "form-control" %>
-    <%= form.submit nil, class: "btn btn-outline-info btn-sm"  %>
+    <div class="text-right">
+      <%= form.submit nil, class: "btn btn-outline-info btn-sm"  %>
+    </div>
   </div>
 <% end %>

@@ -1,34 +1,36 @@
-<div class=container>
-<div class="main-wrap">
-  <div class="main">
-    <h3>Project Index</h3>
-    <div class="form">
-      <%= render 'form', project: @project %>
-    </div>
-    <div class="main-table">
-      <table class="table table-hover">
-        <thead class="thead-light">
-          <tr>
-            <th>Title</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @projects.each do |project| %>
-          <tr>
-            <td><%= link_to project.title, project_admins_path(project_id: project.id), method: :post %></td>
-            <td>
-              <% if admin_project==project %>active
-              <% end %>
-            </td>
-            <td class="text-right"><%= link_to 'Edit', edit_project_path(project), class: "btn btn-outline-info btn-sm" %>
-            <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+<div class="projects-index">
+  <div class=container>
+    <div class="main-wrap">
+      <div class="main">
+        <h3>Project Index</h3>
+        <div class="form">
+          <%= render 'form', project: @project %>
+        </div>
+        <div class="main-table">
+          <table class="table table-hover">
+            <thead class="thead-light">
+              <tr>
+                <th>Title</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @projects.each do |project| %>
+              <tr>
+                <td><%= link_to project.title, project_admins_path(project_id: project.id), method: :post, class: "project-title" %></td>
+                <td>
+                  <% if admin_project==project %>active
+                  <% end %>
+                </td>
+                <td class="text-right"><%= link_to 'Edit', edit_project_path(project), class: "btn btn-outline-info btn-sm" %>
+                  <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<div>
 </div>

@@ -28,7 +28,8 @@ class ProjectsController < ApplicationController
         redirect_to project_launch_project_path(@project), notice: "プロジェクトを作成しました！カリキュラムの作成に取り掛かりましょう！"
       end
     else
-      redirect_to projects_path, alert: "プロジェクトを作成できませんでした。"
+      flash[:alert] = "プロジェクトを作成できませんでした。"
+      redirect_back(fallback_location: root_path)
     end
   end
 

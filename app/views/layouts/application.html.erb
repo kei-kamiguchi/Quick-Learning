@@ -23,16 +23,6 @@
   </head>
 
   <body>
-    <% if notice %>
-      <div class="alert alert-info alert-dismissible animated flash" role="alert">
-        <%= notice %>
-      </div>
-    <% end %>
-    <% if alert %>
-      <div class="alert alert-danger alert-dismissible animated flash" role="alert">
-        <%= alert %>
-      </div>
-    <% end %>
     <div class="wrap">
     <% if admin_signed_in? && current_admin.project_admin_projects.present? || user_signed_in? && current_user.project_user_projects.present? %>
     <div class="header">
@@ -94,16 +84,24 @@
       </div>
     </div>
     <% end %>
+    <% if notice %>
+      <div class="alert alert-info alert-dismissible animated flash" role="alert">
+        <%= notice %>
+      </div>
+    <% end %>
+    <% if alert %>
+      <div class="alert alert-danger alert-dismissible animated flash" role="alert">
+        <%= alert %>
+      </div>
+    <% end %>
     <% if admin_signed_in? && current_admin.project_admin_projects.present? %>
       <div class="navigation">
-        <div class="container">
           <div class="row">
             <div class="col"><%= link_to "Project Index", projects_path, class: "nav-link" %></div>
             <div class="col"><%= link_to "Subject Index", admin_project, class: "nav-link" %></div>
             <div class="col"><%= link_to "Question Index", questions_path, class: "nav-link" %></div>
             <div class="col"><%= link_to "My Page", current_admin, class: "nav-link" %></div>
           </div>
-        </div>
       </div>
     <% end %>
     <%= yield %>
