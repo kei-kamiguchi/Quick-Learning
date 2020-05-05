@@ -26,11 +26,15 @@
       background-color: #FFF;
     }
     th {
-      background-color: #F0F8FF;
+      background-color: #e9ecef;
       padding: 0 10px;
       margin: 0;
       min-width: 140px;
       vertical-align: middle;
+    }
+    td {
+      padding: 0 10px;
+      margin: 0;
     }
     .question-title {
       font-size: 1rem;
@@ -38,6 +42,12 @@
       display: block;
       color: #777777;
       padding: 10px;
+    }
+    .sort-link {
+      background-color: #F0F8FF;
+      a {
+        color: #555555;
+      }
     }
     a:hover {
       text-decoration: none;

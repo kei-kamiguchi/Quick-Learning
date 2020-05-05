@@ -51,14 +51,15 @@
   }
   .admin-comment {
     margin: 0px 15px 15px 15px;
-    background-color: #FFD5EC;
+    background-color: #99CCCC;
     border: 1px solid #DDDDDD;
     border-radius: 5px;
     padding: 0 15px 15px 15px;
     .comment-admin-name {
       font-size: 1rem;
       font-weight: bold;
-      background-color: #FFD5EC;
+      background-color: #99CCCC;
+      color: #008080;
     }
   }
   #comments-form {

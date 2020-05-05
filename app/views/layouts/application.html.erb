@@ -23,85 +23,12 @@
 </head>
 
 <body>
-  <% if admin_signed_in? && current_admin.project_admin_projects.present? || user_signed_in? && current_user.project_user_projects.present? %>
-  <div class="header">
-    <% if user_signed_in? %>
-    <div class="header-brand">Quick Learning / <%= current_user.name %></div>
-    <% end %>
-    <% if admin_signed_in? %>
-    <div class="header-brand">Quick Learning/<%= current_admin.name %></div>
-    <% end %>
-    <div class="header-link">
-      <% if user_signed_in? %>
-      <%= link_to "プロフィール", current_user %>
-      <%= link_to "自分の質問", user_question_questions_path %>
-      <%= link_to "みんなの質問", questions_path %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      <% end %>
-      <% if admin_signed_in? %>
-      <%= link_to "社員を招待", new_admin_invitation_path %>
-      <%= link_to "生徒を招待", new_user_invitation_path %>
-      <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-      <% end %>
-    </div>
-    <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
-    <label for="openSidebarMenu" class="sidebarIconToggle">
-      <div class="spinner diagonal part-1"></div>
-      <div class="spinner horizontal"></div>
-      <div class="spinner diagonal part-2"></div>
-    </label>
-    <label id="header-close" for="openSidebarMenu"></label>
-    <div id="sidebarMenu">
-      <ul class="sidebarMenuInner dropdwn">
-        <% if user_signed_in? %>
-        <% user_project.subjects.each do |subject| %>
-        <li><%= subject.title %>
-          <% if subject.parts.present? %>
-          <ul class="dropdwn_menu">
-            <% subject.parts.each do |part| %>
-            <li><%= link_to part.title, project_subject_part_path(user_project.id, subject.id, part.id) %></li>
-            <% end %>
-          </ul>
-          <% end %>
-        </li>
-        <% end %>
-        <% end %>
-        <% if admin_signed_in? %>
-        <% admin_project.subjects.each do |subject| %>
-        <li><%= subject.title %>
-          <% if subject.parts.present? %>
-          <ul class="dropdwn_menu">
-            <% subject.parts.each do |part| %>
-            <li><%= link_to part.title, project_subject_part_path(admin_project.id, subject.id, part.id) %></li>
-            <% end %>
-          </ul>
-          <% end %>
-        </li>
-        <% end %>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-  <% end %>
-  <% if notice %>
-  <div class="alert alert-info alert-dismissible animated flash" role="alert">
-    <%= notice %>
-  </div>
-  <% end %>
-  <% if alert %>
-  <div class="alert alert-danger alert-dismissible animated flash" role="alert">
-    <%= alert %>
-  </div>
-  <% end %>
-  <% if admin_signed_in? && current_admin.project_admin_projects.present? %>
-  <div class="navigation">
-    <div class="row">
-      <div class="col"><%= link_to "Project Index", projects_path, class: "nav-link" %></div>
-      <div class="col"><%= link_to "Subject Index", project_subjects_path(admin_project.id), class: "nav-link" %></div>
-      <div class="col"><%= link_to "Question Index", questions_path, class: "nav-link" %></div>
-      <div class="col"><%= link_to "My Page", current_admin, class: "nav-link" %></div>
-    </div>
-  </div>
+  <% if admin_signed_in? && admin_project.present? %>
+    <%= render partial: 'layouts/headers/adminHeader' %>
+  <% elsif user_signed_in? && user_project.present? %>
+    <%= render partial: 'layouts/headers/userHeader' %>
+  <% else %>
+    <%= render partial: 'layouts/headers/header' %>
   <% end %>
   <%= yield %>
 </body>

@@ -1,0 +1,32 @@
+<div class="header">
+  <div class="header-brand">Quick Learning/<%= current_admin.name %></div>
+  <div class="header-link">
+    <%= link_to "社員を招待", new_admin_invitation_path %>
+    <%= link_to "生徒を招待", new_user_invitation_path %>
+    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+  </div>
+  <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+  <label for="openSidebarMenu" class="sidebarIconToggle">
+    <div class="spinner diagonal part-1"></div>
+    <div class="spinner horizontal"></div>
+    <div class="spinner diagonal part-2"></div>
+  </label>
+  <label id="header-close" for="openSidebarMenu"></label>
+  <div id="sidebarMenu">
+    <ul class="sidebarMenuInner dropdwn">
+      <% admin_project.subjects.each do |subject| %>
+      <li><%= subject.title %>
+        <% if subject.parts.present? %>
+        <ul class="dropdwn_menu">
+          <% subject.parts.each do |part| %>
+          <li><%= link_to part.title, project_subject_part_path(admin_project.id, subject.id, part.id) %></li>
+          <% end %>
+        </ul>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<%= render partial: 'layouts/errorMessage' %>
+<%= render partial: 'layouts/navigation' %>

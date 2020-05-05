@@ -3,7 +3,7 @@
 <div class="admin-comment">
   <div class="main-table">
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">回答者：<%= comment.admin.name %></li>
+      <li class="list-group-item comment-admin-name">回答者：<%= comment.admin.name %></li>
       <li class="list-group-item"><%= simple_format(h(comment.content), {}, sanitize: false, wrapper_tag: "div") %></li>
     </ul>
     <% if comment.admin == current_admin %>

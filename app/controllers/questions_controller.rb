@@ -53,7 +53,8 @@ class QuestionsController < ApplicationController
   end
 
   def user_question
-    @questions = Question.joins({:part => {:subject => :project}}).order(created_at: :desc)
+    @search = Question.joins({:part => {:subject => :project}}).ransack(params[:q])
+    @questions = @search.result.order(created_at: :desc)
   end
 
   private
