@@ -1,21 +1,20 @@
-<% if user_signed_in? %>
-<%= stylesheet_link_tag "user", :media => "all" %>
-<% end %>
-<div class=container>
-<div class="main-wrap">
-  <div class="main">
-    <h3>Comment Edit</h3>
-    <div class="form">
-<%= form_with(model: [@project, @subject, @part, @question, @comment], local: true) do |form| %>
-  <div class="form-group">
-    <%= form.label :content %>
-    <%= form.text_area :content, rows: 10, class: "form-control" %>
+<div class="comments-edit">
+  <div class=container>
+    <div class="main-wrap">
+      <div class="main">
+        <h3>Comment Edit</h3>
+        <div class="form">
+          <%= form_with(model: [@project, @subject, @part, @question, @comment], local: true) do |form| %>
+          <div class="form-group">
+            <%= form.label :content %>
+            <%= form.text_area :content, rows: 10, class: "form-control" %>
+          </div>
+          <div class="actions">
+            <%= form.submit nil, class: 'btn btn-outline-info btn-sm' %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="actions">
-    <%= form.submit nil, class: 'btn btn-outline-info btn-sm' %>
-  </div>
-<% end %>
-</div>
-</div>
-</div>
 </div>

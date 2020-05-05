@@ -1,46 +1,34 @@
 <% comments.each do |comment| %>
-  <% if comment.admin.present? %>
-    <div class="comment">
-      <div class="main-table">
-        <table class="table">
-          <tbody>
-            <tr>
-              <th>回答者：<%= comment.admin.name %></th>
-            </tr>
-            <tr>
-              <th><%= comment.content %></th>
-            </tr>
-          </tbody>
-        </table>
-        <div class="comment-reply">
-          <% if comment.admin == current_admin %>
-            <%= link_to 'Edit', edit_project_subject_part_question_comment_path(@project, @subject, @part, @question, comment), class: 'btn btn-outline-info btn-sm' %>
-            <%= link_to 'Destroy', project_subject_part_question_comment_path(comment, @question, @part, @subject, @project), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
-          <% end %>
-        </div>
-      </div>
+<% if comment.admin.present? %>
+<div class="admin-comment">
+  <div class="main-table">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">回答者：<%= comment.admin.name %></li>
+      <li class="list-group-item"><%= simple_format(h(comment.content), {}, sanitize: false, wrapper_tag: "div") %></li>
+    </ul>
+    <% if comment.admin == current_admin %>
+    <div class="text-right">
+    <%= link_to 'Edit', edit_project_subject_part_question_comment_path(@project, @subject, @part, @question, comment), class: 'btn btn-outline-info btn-sm' %>
+    <%= link_to 'Destroy', project_subject_part_question_comment_path(@project, @subject, @part, @question, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
     </div>
-  <% end %>
-  <% if comment.user.present? %>
-    <div class="user-comment">
-      <div class="main-table">
-        <table class="table">
-          <tbody>
-            <tr>
-              <th>質問者：<%= comment.user.name %></th>
-            </tr>
-            <tr>
-              <th><%= comment.content %></th>
-            </tr>
-          </tbody>
-        </table>
-        <% if comment.user == current_user %>
-          <div class="comment-reply">
-            <%= link_to 'Edit', edit_project_subject_part_question_comment_path(@project, @subject, @part, @question, comment), class: 'btn btn-outline-info btn-sm' %>
-            <%= link_to 'Destroy', project_subject_part_question_comment_path(@project, @subject, @part, @question, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
-          </div>
-        <% end %>
-      </div>
+    <% end %>
+  </div>
+</div>
+<% end %>
+<% if comment.user.present? %>
+<div class="user-comment">
+  <div class="main-table">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item comment-user-name">質問者：<%= comment.user.name %></li>
+      <li class="list-group-item"><%= simple_format(h(comment.content), {}, sanitize: false, wrapper_tag: "div") %></li>
+    </ul>
+    <% if comment.user == current_user %>
+    <div class="text-right">
+    <%= link_to 'Edit', edit_project_subject_part_question_comment_path(@project, @subject, @part, @question, comment), class: 'btn btn-outline-info btn-sm' %>
+    <%= link_to 'Destroy', project_subject_part_question_comment_path(@project, @subject, @part, @question, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
     </div>
-  <% end %>
+    <% end %>
+  </div>
+</div>
+<% end %>
 <% end %>

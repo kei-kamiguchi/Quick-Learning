@@ -1,9 +1,11 @@
-<div class=container>
-  <div class="main-wrap">
-    <div class="main">
-      <h3>Editing Part</h3>
-      <div class="form">
-        <%= render partial:'form', locals: { project: @project, subject: @subject, part: @part } %>
+<div class="parts-edit">
+  <div class=container>
+    <div class="main-wrap">
+      <div class="main">
+        <h3>Editing Part</h3>
+        <div class="form">
+          <%= render partial:'form', locals: { project: @project, subject: @subject, part: @part } %>
+        </div>
       </div>
     </div>
   </div>

@@ -1,135 +1,133 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>QuickLearning</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>QuickLearning</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <!-- Font Awesomeの導入 -->
-    <script src="https://kit.fontawesome.com/35325323f0.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.min.css">
-    <!-- Animate.cssの導入 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <!-- font-family -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Noto+Sans+JP:400,700" rel="stylesheet">
-    <!-- Summernoteの導入 -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <!-- Font Awesomeの導入 -->
+  <script src="https://kit.fontawesome.com/35325323f0.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.min.css">
+  <!-- Animate.cssの導入 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  <!-- font-family -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Noto+Sans+JP:400,700" rel="stylesheet">
+  <!-- Summernoteの導入 -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-bs4.min.js"></script>
+</head>
 
-  <body>
-    <div class="wrap">
-    <% if admin_signed_in? && current_admin.project_admin_projects.present? || user_signed_in? && current_user.project_user_projects.present? %>
-    <div class="header">
+<body>
+  <% if admin_signed_in? && current_admin.project_admin_projects.present? || user_signed_in? && current_user.project_user_projects.present? %>
+  <div class="header">
+    <% if user_signed_in? %>
+    <div class="header-brand">Quick Learning / <%= current_user.name %></div>
+    <% end %>
+    <% if admin_signed_in? %>
+    <div class="header-brand">Quick Learning/<%= current_admin.name %></div>
+    <% end %>
+    <div class="header-link">
       <% if user_signed_in? %>
-        <div class="header-brand">Quick Learning / <%= current_user.name %></div>
+      <%= link_to "プロフィール", current_user %>
+      <%= link_to "自分の質問", user_question_questions_path %>
+      <%= link_to "みんなの質問", questions_path %>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
       <% end %>
       <% if admin_signed_in? %>
-        <div class="header-brand">Quick Learning/<%= current_admin.name %></div>
+      <%= link_to "社員を招待", new_admin_invitation_path %>
+      <%= link_to "生徒を招待", new_user_invitation_path %>
+      <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
       <% end %>
-      <div class="header-link">
+    </div>
+    <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+    <label for="openSidebarMenu" class="sidebarIconToggle">
+      <div class="spinner diagonal part-1"></div>
+      <div class="spinner horizontal"></div>
+      <div class="spinner diagonal part-2"></div>
+    </label>
+    <label id="header-close" for="openSidebarMenu"></label>
+    <div id="sidebarMenu">
+      <ul class="sidebarMenuInner dropdwn">
         <% if user_signed_in? %>
-          <%= link_to "プロフィール", current_user %>
-          <%= link_to "自分の質問", user_question_questions_path %>
-          <%= link_to "みんなの質問", questions_path %>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <% user_project.subjects.each do |subject| %>
+        <li><%= subject.title %>
+          <% if subject.parts.present? %>
+          <ul class="dropdwn_menu">
+            <% subject.parts.each do |part| %>
+            <li><%= link_to part.title, project_subject_part_path(user_project.id, subject.id, part.id) %></li>
+            <% end %>
+          </ul>
+          <% end %>
+        </li>
+        <% end %>
         <% end %>
         <% if admin_signed_in? %>
-          <%= link_to "社員を招待", new_admin_invitation_path %>
-          <%= link_to "生徒を招待", new_user_invitation_path %>
-          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+        <% admin_project.subjects.each do |subject| %>
+        <li><%= subject.title %>
+          <% if subject.parts.present? %>
+          <ul class="dropdwn_menu">
+            <% subject.parts.each do |part| %>
+            <li><%= link_to part.title, project_subject_part_path(admin_project.id, subject.id, part.id) %></li>
+            <% end %>
+          </ul>
+          <% end %>
+        </li>
         <% end %>
-      </div>
-    <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
-      <label for="openSidebarMenu" class="sidebarIconToggle">
-        <div class="spinner diagonal part-1"></div>
-        <div class="spinner horizontal"></div>
-        <div class="spinner diagonal part-2"></div>
-      </label>
-      <label id="header-close" for="openSidebarMenu"></label>
-      <div id="sidebarMenu">
-        <ul class="sidebarMenuInner dropdwn">
-          <% if user_signed_in? %>
-          <% user_project.subjects.each do |subject| %>
-            <li><%= subject.title %>
-              <% if subject.parts.present? %>
-              <ul class="dropdwn_menu">
-                <% subject.parts.each do |part| %>
-                  <li><%= link_to part.title, project_subject_part_path(user_project.id, subject.id, part.id) %></li>
-                <% end %>
-              </ul>
-              <% end %>
-            </li>
-          <% end %>
-          <% end %>
-          <% if admin_signed_in? %>
-          <% admin_project.subjects.each do |subject| %>
-            <li><%= subject.title %>
-              <% if subject.parts.present? %>
-              <ul class="dropdwn_menu">
-                <% subject.parts.each do |part| %>
-                  <li><%= link_to part.title, project_subject_part_path(admin_project.id, subject.id, part.id) %></li>
-                <% end %>
-              </ul>
-              <% end %>
-            </li>
-          <% end %>
-          <% end %>
-        </ul>
-      </div>
+        <% end %>
+      </ul>
     </div>
-    <% end %>
-    <% if notice %>
-      <div class="alert alert-info alert-dismissible animated flash" role="alert">
-        <%= notice %>
-      </div>
-    <% end %>
-    <% if alert %>
-      <div class="alert alert-danger alert-dismissible animated flash" role="alert">
-        <%= alert %>
-      </div>
-    <% end %>
-    <% if admin_signed_in? && current_admin.project_admin_projects.present? %>
-      <div class="navigation">
-          <div class="row">
-            <div class="col"><%= link_to "Project Index", projects_path, class: "nav-link" %></div>
-            <div class="col"><%= link_to "Subject Index", project_subjects_path(admin_project.id), class: "nav-link" %></div>
-            <div class="col"><%= link_to "Question Index", questions_path, class: "nav-link" %></div>
-            <div class="col"><%= link_to "My Page", current_admin, class: "nav-link" %></div>
-          </div>
-      </div>
-    <% end %>
-    <%= yield %>
+  </div>
+  <% end %>
+  <% if notice %>
+  <div class="alert alert-info alert-dismissible animated flash" role="alert">
+    <%= notice %>
+  </div>
+  <% end %>
+  <% if alert %>
+  <div class="alert alert-danger alert-dismissible animated flash" role="alert">
+    <%= alert %>
+  </div>
+  <% end %>
+  <% if admin_signed_in? && current_admin.project_admin_projects.present? %>
+  <div class="navigation">
+    <div class="row">
+      <div class="col"><%= link_to "Project Index", projects_path, class: "nav-link" %></div>
+      <div class="col"><%= link_to "Subject Index", project_subjects_path(admin_project.id), class: "nav-link" %></div>
+      <div class="col"><%= link_to "Question Index", questions_path, class: "nav-link" %></div>
+      <div class="col"><%= link_to "My Page", current_admin, class: "nav-link" %></div>
     </div>
-  </body>
+  </div>
+  <% end %>
+  <%= yield %>
+</body>
 </html>
 <!-- hrefをidも含めて完全一致させる -->
 <script>
   $(function(){
-      $("a").each(function(){
-          if(this.href == location.href) $(this).addClass("active");
-      });
+    $("a").each(function(){
+      if(this.href == location.href) $(this).addClass("active");
+    });
   });
 </script>
 <script>
   $(function(){
-      $('.dropdwn li').hover(function(){
-          var window_y = $(window).scrollTop();
-          var scroll_y = $(".dropdwn").scrollTop();
-        	$(".dropdwn_menu").css({
-            "position": "absolute", "left": 0, "top": 0
-          });
-        $("ul:not(:animated)", this).slideDown();
-      }, function(){
-          $("ul.dropdwn_menu",this).slideUp();
+    $('.dropdwn li').hover(function(){
+      var window_y = $(window).scrollTop();
+      var scroll_y = $(".dropdwn").scrollTop();
+      $(".dropdwn_menu").css({
+        "position": "absolute", "left": 0, "top": 0
       });
+      $("ul:not(:animated)", this).slideDown();
+    }, function(){
+      $("ul.dropdwn_menu",this).slideUp();
+    });
   });
 </script>
 <script>
-$('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="tooltip"]').tooltip();
 </script>

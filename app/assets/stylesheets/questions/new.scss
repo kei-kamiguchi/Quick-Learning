@@ -1,5 +1,5 @@
-.parts-index{
-  padding: 140px 0 50px;
+.questions-new{
+  padding-top: 140px;
   .container {
     max-width: 960px;
   }
@@ -25,13 +25,14 @@
       overflow-y:scroll;
       background-color: #FFF;
     }
-    td {
+    th {
+      background-color: #F0F8FF;
       padding: 0 10px;
       margin: 0;
       min-width: 140px;
       vertical-align: middle;
     }
-    .part-title {
+    .question-title {
       font-size: 1rem;
       word-break: break-all;
       display: block;
@@ -42,5 +43,8 @@
       text-decoration: none;
       color: #333333;
     }
+  }
+  #comments-form {
+    margin: 50px 15px;
   }
 }

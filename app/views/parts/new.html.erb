@@ -1,11 +1,13 @@
-<div class=container>
-  <div class="main-wrap">
-    <div class="main">
-      <div class="form">
+<div class="parts-new">
+  <div class=container>
+    <div class="main-wrap">
+      <div class="main">
+        <div class="form">
 
-        <h3><%= @subject.title %></h3>
+          <h3><%= @subject.title %></h3>
 
-        <%= render partial:'form', locals: { subject: @subject, project: @project, part: @part } %>
+          <%= render partial:'form', locals: { subject: @subject, project: @project, part: @part } %>
+        </div>
       </div>
     </div>
   </div>

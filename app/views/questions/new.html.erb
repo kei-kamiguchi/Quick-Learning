@@ -1,13 +1,12 @@
-<% if user_signed_in? %>
-<%= stylesheet_link_tag "user", :media => "all" %>
-<% end %>
-<div class=container>
-<div class="main-wrap">
-  <div class="main">
-    <h3>New Question</h3>
-    <div class="form">
-      <%= render partial:'form', locals: { project: @project, subject: @subject, part: @part, question: @question } %>
+<div class="questions-new">
+  <div class=container>
+    <div class="main-wrap">
+      <div class="main">
+        <h3>New Question</h3>
+        <div class="form">
+          <%= render partial:'form', locals: { project: @project, subject: @subject, part: @part, question: @question } %>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 </div>
