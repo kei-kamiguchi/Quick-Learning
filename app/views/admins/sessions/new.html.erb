@@ -1,6 +1,8 @@
+<%= render partial: 'layouts/headers/adminSignInHeader' %>
 <%= render partial: 'layouts/bgAnimation' %>
 
 <div class="admins-sessions-new">
+  <h1 class="page-title">Sign in</h1>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -19,17 +21,4 @@
     <%= link_to 'ゲストログイン（閲覧用）', admins_guest_sign_in_path, method: :post, class: 'btn btn-info btn-sm animated fadeIn slower' %>
   </div>
   <% end %>
-
-  <div class="session-link text-right animated lightSpeedIn slow">
-    <%= link_to 'General user here!', new_user_session_path %>
-  </div>
-
-  <div class="session-link text-right animated lightSpeedIn delay-1s">
-    <%= link_to 'Sign up', new_admin_registration_path %>
-  </div>
-
-
-  <div class="shared-link text-right animated lightSpeedIn slower delay-1s">
-    <%= render "admins/shared/links" %>
-  </div>
 </div>

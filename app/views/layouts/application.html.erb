@@ -25,10 +25,9 @@
 <body>
   <% if admin_signed_in? && admin_project.present? %>
     <%= render partial: 'layouts/headers/adminHeader' %>
-  <% elsif user_signed_in? && user_project.present? %>
+  <% end %>
+  <% if user_signed_in? && user_project.present? %>
     <%= render partial: 'layouts/headers/userHeader' %>
-  <% else %>
-    <%= render partial: 'layouts/headers/header' %>
   <% end %>
   <%= yield %>
 </body>
