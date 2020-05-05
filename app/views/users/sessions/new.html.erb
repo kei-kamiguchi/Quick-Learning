@@ -1,34 +1,30 @@
-<div class="container">
-  <div class="user-main-wrap">
-    <div class="session-title animated bounceInDown delay-1s">
-      <h1>Quick Learning</h1>
-    </div>
+<%= render partial: 'layouts/bgAnimation' %>
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+<div class="users-sessions-new">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="form-group">
-      <br />
-      <%= f.email_field :email, autocomplete: "email", placeholder: "email", class: "form-control animated bounceInDown faster delay-1s"%>
-    </div>
+  <div class="form-group">
+    <br />
+    <%= f.email_field :email, autocomplete: "email", placeholder: "email", class: "form-control animated bounceInDown faster delay-1s"%>
+  </div>
 
-    <div class="form-group">
-      <br />
-      <%= f.password_field :password, autocomplete: "current-password", placeholder: "password", class: "form-control animated bounceInDown fast delay-1s" %>
-    </div>
+  <div class="form-group">
+    <br />
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: "password", class: "form-control animated bounceInDown fast delay-1s" %>
+  </div>
 
-    <div class="actions">
-      <%= f.submit "Sign in", class: 'btn btn-info btn-sm animated fadeIn slower' %>
-      <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: 'btn btn-info btn-sm animated fadeIn slower' %>
-    </div>
-    <% end %>
+  <div class="actions">
+    <%= f.submit "Sign in", class: 'btn btn-info btn-sm animated fadeIn slower' %>
+    <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: 'btn btn-info btn-sm animated fadeIn slower' %>
+  </div>
+  <% end %>
 
-    <div class="session-link text-right animated lightSpeedIn slow">
-      <%= link_to 'Administer here!', new_admin_session_path %>
-    </div>
+  <div class="session-link text-right animated lightSpeedIn slow">
+    <%= link_to 'Administer here!', new_admin_session_path %>
+  </div>
 
-    <div class="shared-link text-right animated lightSpeedIn slower delay-1s">
-      <%= render "users/shared/links" %>
-    </div>
+  <div class="shared-link text-right animated lightSpeedIn slower delay-1s">
+    <%= render "users/shared/links" %>
   </div>
 </div>

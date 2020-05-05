@@ -1,0 +1,44 @@
+.bgImage {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bgImage {
+  position: absolute;
+  background-image: url(book03.jpg);
+  background-size: cover;
+  background-position: top;
+  -webkit-filter: grayscale(70%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(70%);
+  z-index: -2;
+}
+
+.blobCont {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+@for $i from 1 through 18 {
+  $a: #{$i*90};
+  $b: #{$i*90+360};
+
+  .blob:nth-child(#{$i}) {
+    animation: move#{$i} 20s infinite linear;
+  }
+
+  @keyframes move#{$i} {
+    from {
+      transform: rotate(#{$a}deg) translate(200px, 0.1px) rotate(-#{$a}deg);
+    }
+    to {
+      transform: rotate(#{$b}deg) translate(200px, 0.1px) rotate(-#{$b}deg);
+    }
+  }
+}
