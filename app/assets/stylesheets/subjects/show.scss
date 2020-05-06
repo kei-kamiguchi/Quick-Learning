@@ -1,4 +1,4 @@
-.parts-index{
+.subjects-show{
   padding: 140px 0 50px;
   .container {
     max-width: 960px;
@@ -31,16 +31,8 @@
       margin: 0;
       vertical-align: middle;
     }
-    .new-part-icon {
-      margin-top: 8px;
-      margin-right: 5px;
-      color: #008080;
-    }
-    .new-part-icon:hover {
-      color: #fff;
-    }
     td {
-      padding: 0 7px;
+      padding: 0 5px;
       margin: 0;
       min-width: 140px;
       vertical-align: middle;
@@ -57,7 +49,7 @@
       word-break: break-all;
       display: block;
       color: #777777;
-      padding: 7px;
+      padding: 5px;
     }
     a:hover {
       text-decoration: none;

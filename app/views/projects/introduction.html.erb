@@ -1,22 +1,22 @@
-<br />
-<br />
-<div class="welcome-simbol"><h3>Welcome to Quick Learning！</h3></div>
-<div class="jumbotron jumbotron-extend animated rubberBand">
-<%= stylesheet_link_tag "projects/introduction", :media => "all" %>
-</div>
+<div class="projects-introduction">
+  <div class="welcome-simbol"></div>
+  <div class="jumbotron jumbotron-extend animated rubberBand">
+    <h1>Welcome to Quick Learning！</h1><%= stylesheet_link_tag "projects/introduction", :media => "all" %>
+  </div>
 
-<div class="container">
-  <% if current_user.present? %>
-  <% if @project_user.present? %>
+  <div class="container">
+    <% if current_user.present? %>
+    <% if @project_user.present? %>
     <%= link_to '退出する', project_user_path(id: @project_user.id), method: :delete, class: 'btn btn-danger' %>
-  <% else %>
+    <% else %>
     <%= link_to '参加する', project_users_path(project_id: Admin.find(current_user.invited_by_id).project_admin_projects.last.id), method: :post, class: 'btn btn-info btn-block btn-lg' %>
-  <% end %>
-<% else %>
-  <% if @project_admin.present? %>
+    <% end %>
+    <% else %>
+    <% if @project_admin.present? %>
     <%= link_to '退出する', project_admin_path(id: @project_admin.id), method: :delete, class: 'btn btn-danger' %>
-  <% else %>
+    <% else %>
     <%= link_to '参加する', project_admins_path(project_id: Admin.find(current_admin.invited_by_id).project_admin_projects.last.id), method: :post, class: 'btn btn-info btn-block btn-lg' %>
-  <% end %>
-<% end %>
+    <% end %>
+    <% end %>
+  </div>
 </div>

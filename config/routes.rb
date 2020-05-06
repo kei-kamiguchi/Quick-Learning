@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     get :introduction, on: :collection
     get :project_launch, on: :member
     resources :subjects do
-      resources :parts do
+      resources :parts, only: [:new, :show, :update, :create, :edit, :destroy, :toggle_status] do
         patch :toggle_status
         resources :questions, only: [:new, :show, :update, :create, :edit, :destroy] do
           resources :comments
@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :parts, only: [:index]
   resources :questions, only: [:user_question, :index] do
     get :user_question, on: :collection
   end

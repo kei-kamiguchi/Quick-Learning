@@ -1,19 +1,21 @@
 <table class="table table-hover">
-  <thead class="thead-light">
-    <tr>
-      <th>Title</th>
-      <th colspan="1"></th>
-    </tr>
-  </thead>
   <tbody>
-  <% @parts.each do |part| %>
-    <% if part.id.present? %>
-      <tr>
-        <td><%= link_to part.title, project_subject_part_path(@project, @subject, part), class: "part-title" %></td>
-        <td class="text-right"><%= link_to 'Edit', edit_project_subject_part_path(@project, @subject, part), class: "btn btn-outline-info btn-sm" %>
-        <%= link_to 'Destroy', project_subject_part_path(@project, @subject, part), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %></td>
-      </tr>
-    <% end %>
+    <% @subjects.each do |subject| %>
+      <% if subject.id.present? %>
+        <tr>
+          <th class="subject-title"><%= subject.title %></th>
+          <th class="text-right"><%= link_to "", new_project_subject_part_path(@project, subject, @part), class: "far fa-plus-square fa-lg new-part-icon" %></th>
+        </tr>
+        <% subject.parts.each do |part| %>
+          <% if part.id.present? %>
+            <tr>
+              <td><%= link_to part.title, project_subject_part_path(@project, subject, part), class: "part-title" %></td>
+              <td class="text-right"><%= link_to 'Edit', edit_project_subject_part_path(@project, subject, part), class: "btn btn-outline-info btn-sm" %>
+              <%= link_to 'Destroy', project_subject_part_path(@project, subject, part), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      <% end %>
     <% end %>
   </tbody>
 </table>

@@ -3,8 +3,9 @@ class PartsController < ApplicationController
   skip_before_action :admin_login_required, only: [:show, :toggle_status]
 
   def index
-    @project = Project.find(params[:project_id])
-    @subject = Subject.find(params[:subject_id])
+    @project = admin_project
+    @subjects = @project.subjects
+    # @subject = Subject.find(params[:subject_id])
     @parts = Part.all.order(created_at: :desc)
   end
 
@@ -22,7 +23,7 @@ class PartsController < ApplicationController
 
     respond_to do |format|
       if @part.save
-        format.html { redirect_to project_subject_parts_path, notice: "投稿しました!" }
+        format.html { redirect_to parts_path, notice: "投稿しました!" }
         format.json { render :show, status: :created, location: @part }
       else
         format.html { render :new }

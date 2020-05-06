@@ -22,7 +22,7 @@
             </thead>
             <tbody>
               <% @questions.each do |question| %>
-              <tr class="table-title-bg">
+              <tr>
                 <th><%= link_to question.title, project_subject_part_question_path(question.project_id, question.subject_id, question.part_id, question), class: "question-title" %></th>
               </tr>
               <tr>

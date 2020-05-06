@@ -3,7 +3,7 @@ class SubjectsController < ApplicationController
 
   def index
     @project = Project.find(params[:project_id])
-    @subjects = admin_project.subjects.all.order(created_at: :desc)
+    @subjects = admin_project.subjects
     @subject = Subject.new
   end
 
