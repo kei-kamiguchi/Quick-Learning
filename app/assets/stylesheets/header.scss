@@ -1,60 +1,66 @@
 .header {
-    display: table;
-    margin: 0 auto;
-    width: 100%;
-    max-width: 100%;
-    box-shadow: none;
-    background-color: #008080;
-    opacity: 0.98;
-    position: fixed;
-    height: 60px!important;
-    overflow: hidden;
-    z-index: 10;
-}
-.header-brand {
-  display:table-cell;
-  color: #fff;
-  font-weight: bold;
-  vertical-align: middle;
-  font-size: 1.2em;
-  padding-left: 60px;
-}
-.header-link {
-  display:table-cell;
-  text-align: right;
-  color: #fff;
-  vertical-align: middle;
-  font-size: 1em;
-  font-weight: bold;
-}
-.header-link a {
-  color: #fff;
-  text-decoration: none;
-  padding: 10px;
-}
-.header-link a:hover {
-  color: #333333
-}
-.header-link a.active {
-  display: none;
-}
-#sidebarMenu {
+  display: table;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  box-shadow: none;
+  background-color: #008080;
+  opacity: 0.98;
+  position: fixed;
+  height: 60px!important;
+  overflow: hidden;
+  z-index: 10;
+  .header-brand {
+    display:table-cell;
+    color: #fff;
+    font-weight: bold;
+    vertical-align: middle;
+    font-size: 1.2em;
+    padding-left: 60px;
+  }
+  .header-link {
+    display:table-cell;
+    text-align: right;
+    color: #fff;
+    vertical-align: middle;
+    font-size: 1em;
+    font-weight: bold;
+  }
+  .header-link a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+  }
+  .header-link a:hover {
+    color: #333333
+  }
+  .header-link a.active {
+    display: none;
+  }
+  #sidebarMenu {
     z-index: 200000;
     height: 100%;
     position: fixed;
     left: 0;
-    width: 250px;
+    width: 500px;
     margin-top: 60px;
     transform: translateX(-250px);
     transition: transform 250ms ease-in-out;
+    overflow: scroll;
+    padding-bottom: 65px;
+  }
+  // スクロールバーを非表示にしている
+  #sidebarMenu::-webkit-scrollbar {
+    display: none;
+  }
+  .sidebarMenuInner{
     background: linear-gradient(180deg, #008080 0%, #00CCCC 100%);
-}
-.sidebarMenuInner{
+    width: 250px;
     margin:0;
     padding:0;
-    border-top: 1px solid rgba(255, 255, 255, 0.10);
-}
-.sidebarMenuInner li{
+  }
+  .sidebarMenuInner li{
+    width: 250px;
     list-style: none;
     color: #fff;
     text-transform: uppercase;
@@ -63,29 +69,29 @@
     cursor: pointer;
     word-break: break-all;
     border: 5px solid rgba(255, 255, 255, 0.10);
-}
-.sidebarMenuInner li span{
+  }
+  .sidebarMenuInner li span{
     display: block;
     font-size: 14px;
     color: rgba(255, 255, 255, 0.50);
-}
-.sidebarMenuInner li a{
+  }
+  .sidebarMenuInner li a{
     color: #fff;
     text-transform: uppercase;
     font-weight: bold;
     cursor: pointer;
     text-decoration: none;
-}
-input[type="checkbox"]:checked ~ #sidebarMenu {
+  }
+  input[type="checkbox"]:checked ~ #sidebarMenu {
     transform: translateX(0);
-}
+  }
 
-input[type=checkbox] {
+  input[type=checkbox] {
     transition: all 0.3s;
     box-sizing: border-box;
     display: none;
-}
-.sidebarIconToggle {
+  }
+  .sidebarIconToggle {
     transition: all 0.3s;
     box-sizing: border-box;
     cursor: pointer;
@@ -97,72 +103,67 @@ input[type=checkbox] {
     left: 15px;
     height: 22px;
     width: 22px;
-}
-.spinner {
+  }
+  .spinner {
     transition: all 0.3s;
     box-sizing: border-box;
     position: absolute;
     height: 3px;
     width: 100%;
     background-color: #fff;
-}
-.horizontal {
+  }
+  .horizontal {
     transition: all 0.3s;
     box-sizing: border-box;
     position: relative;
     float: left;
     margin-top: 3px;
-}
-.diagonal.part-1 {
+  }
+  .diagonal.part-1 {
     position: relative;
     transition: all 0.3s;
     box-sizing: border-box;
     float: left;
-}
-.diagonal.part-2 {
+  }
+  .diagonal.part-2 {
     transition: all 0.3s;
     box-sizing: border-box;
     position: relative;
     float: left;
     margin-top: 3px;
-}
-input[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
+  }
+  input[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
     transition: all 0.3s;
     box-sizing: border-box;
     opacity: 0;
-}
-input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+  }
+  input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
     transition: all 0.3s;
     box-sizing: border-box;
     transform: rotate(135deg);
     margin-top: 8px;
-}
-input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+  }
+  input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     transition: all 0.3s;
     box-sizing: border-box;
     transform: rotate(-135deg);
     margin-top: -9px;
-}
-// ここからドロップダウンメニュー
-li:hover{
-  background: #FFFFFF;
-  opacity: 0.98;
-  color: #008080;
-}
-li a{
-  display: block;
-  padding: 20px;
-  margin: 0;
-}
-
-li a:hover{
-  color: #008080;
-}
-.dropdwn_menu li{
-  padding: 0;
-}
-
-.dropdwn_menu{
+  }
+  // ここからドロップダウンメニュー
+  li:hover{
+    background: #FFFFFF;
+    opacity: 0.98;
+    color: #008080;
+  }
+  li a{
+    display: block;
+    padding: 20px;
+    margin: 0;
+  }
+  li a:hover{
+    color: #008080;
+  }
+  .dropdwn_menu{
     width: 100%;
     display: none;
     position: absolute;
@@ -172,8 +173,11 @@ li a:hover{
     opacity: 0.98;
     overflow: scroll;
     height: 100vh;
-}
-#header-close{
+    li {
+      padding: 0;
+    }
+  }
+  #header-close{
     display: none;
     position: fixed;
     z-index: 150000;
@@ -183,8 +187,9 @@ li a:hover{
     height: 100%;
     background: #000;
     opacity: 0;
-}
-.openSidebarMenu:checked ~ #header-close{
+  }
+  .openSidebarMenu:checked ~ #header-close{
     display: block;
     opacity: .7;
+  }
 }

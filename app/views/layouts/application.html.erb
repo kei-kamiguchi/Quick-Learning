@@ -48,9 +48,9 @@
       $(".dropdwn_menu").css({
         "position": "absolute", "left": 0, "top": 0
       });
-      $("ul:not(:animated)", this).slideDown();
+      $(">ul:not(:animated)", this).slideDown("fast");
     }, function(){
-      $("ul.dropdwn_menu",this).slideUp();
+      $(">ul",this).slideUp("fast");
     });
   });
 </script>
