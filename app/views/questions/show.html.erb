@@ -9,10 +9,12 @@
             <li class="list-group-item">質問者：<%= @question.user.name %></li>
             <li class="list-group-item"><%= @question.content %></li>
           </ul>
-          <% if user_signed_in? %>
+          <div class="text-right">
+            <% if user_signed_in? %>
             <%= link_to 'Edit', edit_project_subject_part_question_path(@project, @subject, @part, @question), class: 'btn btn-outline-info btn-sm' %>
-            <%= link_to 'Destroy', project_subject_part_question_path(@project, @subject, @part, @question), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
-          <% end %>
+            <%= link_to 'Destroy', project_subject_part_question_path(@project, @subject, @part, @question), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-info btn-sm' %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

@@ -12,7 +12,9 @@
 <% end %>
 <div class="form-group">
   <%= form.text_area :content, placeholder: "content", rows: 5, class: "form-control" %>
-  <%= form.submit nil, class: 'btn btn-outline-info btn-sm mt-2' %>
+  <div class="text-right">
+    <%= form.submit nil, class: 'btn btn-outline-info btn-sm mt-2' %>
+  </div>
 </div>
 <% end %>
 </div>

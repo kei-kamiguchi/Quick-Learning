@@ -1,17 +1,18 @@
-<div class="main-wrap">
-  <div class="main">
+<%= render partial: 'layouts/headers/userSignInHeader' %>
+<%= render partial: 'layouts/bgAnimation' %>
 
-    <h3>Forgot your password?</h3>
+<div class="users-sessions-new">
+  <h1>Forgot your password?</h1>
 
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="form-group">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-    </div>
+  <div class="form-group">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email", class: "form-control" %>
+  </div>
 
-    <%= f.submit "Send me reset password instructions", class: "btn btn-outline-info btn-sm" %>
-    <% end %>
+  <%= f.submit "Send me reset password instructions", class: "btn btn-info btn-sm" %>
+  <% end %>
 
-    <%= render "users/shared/links" %>
+  <%= render "users/shared/links" %>
+</div>
