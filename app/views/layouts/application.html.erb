@@ -43,11 +43,6 @@
 <script>
   $(function(){
     $('.dropdwn li').hover(function(){
-      var window_y = $(window).scrollTop();
-      var scroll_y = $(".dropdwn").scrollTop();
-      $(".dropdwn_menu").css({
-        "position": "absolute", "left": 0, "top": 0
-      });
       $(">ul:not(:animated)", this).slideDown("fast");
     }, function(){
       $(">ul",this).slideUp("fast");

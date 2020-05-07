@@ -1,6 +1,6 @@
 .header {
   display: table;
-  margin: 0 auto;
+  margin: 50;
   width: 100%;
   max-width: 100%;
   box-shadow: none;
@@ -44,9 +44,10 @@
     left: 0;
     width: 500px;
     margin-top: 60px;
-    transform: translateX(-250px);
+    transform: translateX(-500px);
     transition: transform 250ms ease-in-out;
     overflow: scroll;
+    overscroll-behavior: none;
     padding-bottom: 65px;
   }
   // スクロールバーを非表示にしている
@@ -164,15 +165,15 @@
     color: #008080;
   }
   .dropdwn_menu{
+    padding: 0;
     width: 100%;
     display: none;
     position: absolute;
-    margin-left: 250px;
-    padding: 0;
+    margin-left: 225px;
+    margin-top: -49px;
+    margin-bottom: 65px;
     background: linear-gradient(180deg, #008080	 0%, #00CCCC 100%);
     opacity: 0.98;
-    overflow: scroll;
-    height: 100vh;
     li {
       padding: 0;
     }
