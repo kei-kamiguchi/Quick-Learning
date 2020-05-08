@@ -8,3 +8,12 @@
   <%= alert %>
 </div>
 <% end %>
+<% if resource.errors.any? %>
+  <div class="alert alert-danger alert-dismissible animated flash" role="alert">
+    <ul>
+      <% resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
