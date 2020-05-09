@@ -3,12 +3,11 @@ class ApplicationController < ActionController::Base
   include ProjectUsersHelper
   # CSRF対策
   protect_from_forgery with: :exception
-  # flashメッセージの
-  add_flash_types :success, :info, :warning, :danger
-  # ログイン済ユーザーのみにアクセスを許可する
+  # ログイン済の場合のみアクセスを許可
   before_action :login_required
+  # adminユーザーのみアクセスを許可
   before_action :admin_login_required
-  # ログイン後、遷移先を分岐
+  # ログイン後の遷移先を分岐
   def after_sign_in_path_for(resource)
     case resource
     when Admin
@@ -20,7 +19,7 @@ class ApplicationController < ActionController::Base
         new_project_path
       end
     when User
-      unless user_project.present?
+      unless user_participation?
         introduction_projects_path
       else
         current_user
@@ -46,13 +45,12 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     # サインアップ時にnameのストロングパラメータを追加
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-    # アカウント編集の時にnameのストロングパラメータを追加
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
     devise_parameter_sanitizer.permit(:invite, keys: [:name])
     devise_parameter_sanitizer.permit(:accept_invitation, keys: [:name])
-    # devise_invitableを使用する際に、他のモデルからでも招待ができるようにする
-    def authenticate_inviter!
-      authenticate_admin!(force: true)
-    end
+  end
+  # devise_invitableを使用する際に、他のモデルからでも招待ができるようにする
+  def authenticate_inviter!
+    authenticate_admin!(force: true)
   end
 end

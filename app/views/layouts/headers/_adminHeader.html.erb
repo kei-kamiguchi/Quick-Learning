@@ -1,3 +1,4 @@
+<% if admin_signed_in? %>
 <div class="header">
   <div class="header-brand">Quick Learning / <%= current_admin.name %></div>
   <div class="header-link">
@@ -30,3 +31,15 @@
 </div>
 <%= render partial: 'layouts/flashMessage' %>
 <%= render partial: 'layouts/navigation' %>
+<% else %>
+<div class="header">
+  <div class="header-brand">Quick Learning</div>
+  <div class="header-link">
+    <%= link_to 'Sign in', new_admin_session_path %>
+    <%= link_to 'General user here!', new_user_session_path %>
+    <%= link_to 'Sign up', new_admin_registration_path %>
+    <%= render "admins/shared/links" %>
+  </div>
+</div>
+<%= render partial: 'layouts/flashMessage' %>
+<% end %>
