@@ -11,18 +11,18 @@
           </ul>
           <div class="text-right">
             <% if user_signed_in? %>
-            <%= link_to 'Edit', edit_project_subject_part_question_path(@project, @subject, @part, @question), class: 'btn btn-outline-info btn-sm' %>
-            <%= link_to 'Destroy', project_subject_part_question_path(@project, @subject, @part, @question), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-info btn-sm' %>
+            <%= link_to 'Edit', edit_question_path(@question), class: 'btn btn-outline-info btn-sm' %>
+            <%= link_to 'Destroy', question_path(@question), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-info btn-sm' %>
             <% end %>
           </div>
         </div>
       </div>
     </div>
     <div id="comments-area">
-      <%= render partial: 'comments/index', locals: { project: @project, subject: @subject, part: @part, question: @question, comments: @comments } %>
+      <%= render partial: 'comments/index', locals: { question: @question, comments: @comments } %>
     </div>
     <div id="comments-form">
-      <%= render partial: 'comments/form', locals: { comment: @comment, question: @question, part: @part, subject: @subject, project: @project } %>
+      <%= render partial: 'comments/form', locals: { comment: @comment, question: @question } %>
     </div>
   </div>
 </div>

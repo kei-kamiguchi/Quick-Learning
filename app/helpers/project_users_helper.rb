@@ -6,5 +6,4 @@ module ProjectUsersHelper
   def user_participation?
     current_user.project_users.present?
   end
-
 end

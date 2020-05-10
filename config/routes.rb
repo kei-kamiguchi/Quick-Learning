@@ -24,11 +24,11 @@ Rails.application.routes.draw do
   resources :projects do
     get :introduction, on: :collection
     get :project_launch, on: :member
-    resources :subjects do
-      resources :parts, only: [:new, :show, :update, :create, :edit, :destroy, :toggle_status] do
+    resources :subjects, shallow: true do
+      resources :parts, except: [:index], shallow: true do
         patch :toggle_status
-        resources :questions, only: [:new, :show, :update, :create, :edit, :destroy] do
-          resources :comments
+        resources :questions, shallow: true do
+          resources :comments, shallow: true
         end
       end
     end

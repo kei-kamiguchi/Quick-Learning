@@ -16,14 +16,15 @@ class ProjectsController < ApplicationController
 
   def show
     @subjects = @project.subjects
-    @subject = @project.subjects.build
   end
 
   def create
     @project = current_admin.projects.build(project_params)
     if @project.save
+      # プロジェクトの作成が初めてでない場合
       if current_admin.projects.count() > 1
         redirect_back(fallback_location: root_path)
+        # プロジェクトの作成が初めての場合
       else
         redirect_to project_launch_project_path(@project), notice: "プロジェクトを作成しました！カリキュラムの作成に取り掛かりましょう！"
       end
@@ -54,8 +55,8 @@ class ProjectsController < ApplicationController
     end
   end
 
-# 生徒を招待、社員が社員を招待、アプリ管理者がクライアントを招待、クライアントがプロジェクトを作成した際、それ以外の場合分け
-# current_admin.invited_by_id.present?はアプリ管理者がクライアントを招待する際に設定していないとエラーになる
+  # 生徒を招待、社員が社員を招待、アプリ管理者がクライアントを招待、クライアントがプロジェクトを作成した際、それ以外の場合分け
+  # current_admin.invited_by_id.present?はアプリ管理者がクライアントを招待する際に設定していないとエラーになる
   def introduction
     if current_user.present?
       if user_project.nil?
@@ -79,13 +80,12 @@ class ProjectsController < ApplicationController
     end
   end
 
-
   private
-    def set_project
-      @project = Project.find(params[:id])
-    end
+  def set_project
+    @project = Project.find(params[:id])
+  end
 
-    def project_params
-      params.require(:project).permit(:title)
-    end
+  def project_params
+    params.require(:project).permit(:title)
+  end
 end

@@ -43,13 +43,12 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    # サインアップ時にnameのストロングパラメータを追加
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
     devise_parameter_sanitizer.permit(:invite, keys: [:name])
     devise_parameter_sanitizer.permit(:accept_invitation, keys: [:name])
   end
-  # devise_invitableを使用する際に、他のモデルからでも招待ができるようにする
+# adminモデルであればどのモデルに対しても招待可能（デフォルトでは同一モデルしか招待できない）
   def authenticate_inviter!
     authenticate_admin!(force: true)
   end

@@ -1,9 +1,9 @@
 class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:index, :create]
 
   def index
-    @project = Project.find(params[:project_id])
-    @subjects = admin_project.subjects
+    @subjects = @project.subjects
     @subject = Subject.new
   end
 
@@ -13,16 +13,13 @@ class SubjectsController < ApplicationController
 
   def show
     @parts = @subject.parts
-    @part = @subject.parts.build
   end
 
   def edit
   end
 
   def create
-    @project = Project.find(params[:project_id])
     @subject = @project.subjects.build(subject_params)
-
     if @subject.save
       redirect_back(fallback_location: root_path)
     else
@@ -33,7 +30,7 @@ class SubjectsController < ApplicationController
 
   def update
     if @subject.update(subject_params)
-      redirect_to @project, notice: "投稿しました"
+      redirect_to project_subjects_path(@subject.project_id), notice: "投稿しました"
     else
       flash[:alert] = "タイトルを入力してください。"
       render 'edit'
@@ -45,14 +42,17 @@ class SubjectsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-
   private
-    def set_subject
-      @project = Project.find(params[:project_id])
-      @subject = @project.subjects.find(params[:id])
-    end
 
-    def subject_params
-      params.require(:subject).permit(:project_id, :title)
-    end
+  def set_subject
+    @subject = Subject.find(params[:id])
+  end
+
+  def set_project
+    @project = Project.find(params[:project_id])
+  end
+
+  def subject_params
+    params.require(:subject).permit(:project_id, :title)
+  end
 end

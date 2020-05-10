@@ -23,7 +23,7 @@
             <tbody>
               <% @questions.each do |question| %>
               <tr class="table-title-bg">
-                <th><%= link_to question.title, project_subject_part_question_path(question.project_id, question.subject_id, question.part_id, question), class: "question-title" %></th>
+                <th><%= link_to question.title, question_path(question), class: "question-title" %></th>
               </tr>
               <tr>
                 <td>part：<%= question.part.title %></td>

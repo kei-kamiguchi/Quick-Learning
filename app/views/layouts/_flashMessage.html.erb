@@ -19,3 +19,33 @@
 </div>
 <% end %>
 <% end %>
+<% if @part %>
+<% if @part.errors.any? %>
+<div class="alert alert-danger alert-dismissible animated flash" role="alert">
+  <ul>
+    <% @part.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<% end %>
+
+
+
+
+
+<% if false %>
+ここがうまく機能しない！！
+<% if @comment %>
+<% if @comment.errors.any? %>
+<div class="alert alert-danger alert-dismissible animated flash" role="alert">
+  <ul>
+    <% @comment.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<% end %>
+<% end %>

@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:edit, :update, :create, :destroy]
+  before_action :set_comment, only: [:create]
   skip_before_action :admin_login_required
 
   def create
@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
       if @comment.save
         format.js { render :index }
       else
-        format.html { redirect_to project_subject_part_question_path(@question), notice: '投稿できませんでした...' }
+        format.html { redirect_to question_path(@question), alert: 'コメントが投稿できませんでした。' }
       end
     end
   end
@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
-      redirect_to controller: 'questions', action: 'show', id: @question.id, notice: 'コメントを編集しました！'
+      redirect_to controller: 'questions', action: 'show', id: @comment.question.id, notice: 'コメントを編集しました！'
     else
       render 'edit'
     end
@@ -42,9 +42,9 @@ class CommentsController < ApplicationController
   private
 
   def set_comment
-    @project = Project.find(params[:project_id])
-    @subject = Subject.find(params[:subject_id])
-    @part = Part.find(params[:part_id])
+    # @project = Project.find(params[:project_id])
+    # @subject = Subject.find(params[:subject_id])
+    # @part = Part.find(params[:part_id])
     @question = Question.find(params[:question_id])
   end
 

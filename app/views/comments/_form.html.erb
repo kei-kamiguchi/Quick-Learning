@@ -1,5 +1,11 @@
 <div class="comment-form">
-<%= form_with(model: [project, subject, part, question, comment]) do |form| %>
+<%= form_with(model: [question, comment]) do |form| %>
+
+
+
+
+<% if false %>
+ここがうまく機能しない！！
 <% if comment.errors.any? %>
 <div id="error_explanation">
   <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -10,6 +16,10 @@
   </ul>
 </div>
 <% end %>
+<% end %>
+
+
+
 <div class="form-group">
   <%= form.text_area :content, placeholder: "content", rows: 5, class: "form-control" %>
   <div class="text-right">
