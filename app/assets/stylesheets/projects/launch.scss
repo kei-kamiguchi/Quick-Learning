@@ -1,9 +1,9 @@
-.projects-new {
-  margin: 50px 200px;
+.projects-launch {
+  margin: 50px 300px;
   .jumbotron-extend {
     position: relative;
     height: 70vh;
-    background: image-url('project_new.jpg') no-repeat center center;
+    background: image-url('user_introduction.png') no-repeat center center;
     background-size: cover;
     margin: 0;
     h1 {
@@ -11,8 +11,8 @@
       text-align: center;
     }
   }
-  .projects-new-action{
-    margin: 0 200px;
+  .projects-launch-action{
+    margin: 0 100px;
   }
   .btn:hover {
     background-color: #fff;

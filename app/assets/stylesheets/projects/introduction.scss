@@ -1,13 +1,18 @@
 .projects-introduction {
+  margin: 50px 300px;
   .jumbotron-extend {
     position: relative;
-    height: 80vh;
+    height: 70vh;
     background: image-url('user_introduction.png') no-repeat center center;
     background-size: cover;
+    margin: 0;
     h1 {
       font-size: 3rem;
       text-align: center;
     }
+  }
+  .projects-introduction-action{
+    margin: 0 100px;
   }
   .btn:hover {
     background-color: #fff;

@@ -1,2 +1,3 @@
 $("#comments-area").html("<%= j(render 'comments/index', { comments: @comment.question.comments, question: @comment.question }) %>")
+$('.alert').remove()
 $("textarea").val('')

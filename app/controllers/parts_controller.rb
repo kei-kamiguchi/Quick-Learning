@@ -1,39 +1,30 @@
 class PartsController < ApplicationController
-  before_action :set_part, only: [:edit, :update, :destroy, :toggle_status]
   skip_before_action :admin_login_required, only: [:show, :toggle_status]
+  before_action :set_part, only: [:show, :edit, :update, :destroy, :toggle_status]
+  before_action :set_subject, only: [:new, :create]
 
   def index
     @project = admin_project
     @subjects = @project.subjects
-    # @subject = Subject.find(params[:subject_id])
-    @parts = Part.all.order(created_at: :desc)
   end
 
   def new
-    # @project = Project.find(params[:project_id])
-    @subject = Subject.find(params[:subject_id])
     @part=Part.new
   end
 
-  # なぜここだけredirect_toの書き方を変えないと読み込まないのか？
   def create
-    # @project = Project.find(params[:project_id])
-    @subject = Subject.find(params[:subject_id])
     @part = @subject.parts.build(part_params)
-
     respond_to do |format|
       if @part.save
         format.html { redirect_to parts_path, notice: "投稿しました!" }
         format.json { render :show, status: :created, location: @part }
       else
         format.html { render :new }
-        # format.json { render json: @part.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def show
-    @part = Part.find(params[:id] || params[:part_id])
   end
 
   def edit
@@ -53,6 +44,7 @@ class PartsController < ApplicationController
 
   def destroy
     @part.destroy
+    flash[:alert] = "削除しました。"
     redirect_back(fallback_location: root_path)
   end
 
@@ -64,12 +56,14 @@ class PartsController < ApplicationController
   private
 
   def set_part
-    # @project = Project.find(params[:project_id])
-    # @subject = Subject.find(params[:subject_id])
-    @part = Part.find(params[:id] || params[:part_id])
+    @part = Part.find(params[:id])
+  end
+
+  def set_subject
+    @subject = Subject.find(params[:subject_id])
   end
 
   def part_params
-    params.require(:part).permit(:title, :content, :status, :subject_id, :project_id)
+    params.require(:part).permit(:title, :content, :status, :subject_id)
   end
 end

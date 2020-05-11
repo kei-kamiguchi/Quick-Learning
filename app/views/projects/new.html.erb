@@ -1,26 +1,26 @@
-<br />
-<br />
-<div class="container-fluid">
+<div class="projects-new">
   <div class="jumbotron jumbotron-extend animated rubberBand">
+    <h1>Dicide your project title！</h1>
   </div>
-  <%= form_with(model: @project, local: true) do |form| %>
-    <% if @project.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
 
-        <ul>
+  <div class="projects-new-action">
+    <%= form_with(model: @project, local: true) do |form| %>
+    <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
         <% @project.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+        <li><%= message %></li>
         <% end %>
-        </ul>
-      </div>
+      </ul>
+    </div>
     <% end %>
 
     <div class="form-group">
       <%= form.text_field :title, placeholder: "input project title", class: "form-control mb-3" %>
-      <%= form.submit nil, class: "btn btn-info btn-block btn-lg"  %>
+      <%= form.submit nil, class: "btn btn-info btn-block"  %>
     </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
-
-<%= stylesheet_link_tag "projects/new", :media => "all" %>
