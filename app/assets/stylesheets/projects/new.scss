@@ -1,18 +1,24 @@
 .projects-new {
-  margin: 50px 200px;
+  margin-top: 50px;
+  width: 900px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   .jumbotron-extend {
     position: relative;
-    height: 70vh;
+    height: 50vh;
     background: image-url('project_new.jpg') no-repeat center center;
     background-size: cover;
     margin: 0;
-    h1 {
-      font-size: 3rem;
-      text-align: center;
-    }
+  }
+  h1 {
+    font-size: 2.5rem;
+    text-align: center;
   }
   .projects-new-action{
-    margin: 0 200px;
+    margin: 20px 200px;
   }
   .btn:hover {
     background-color: #fff;

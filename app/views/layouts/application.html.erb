@@ -23,10 +23,10 @@
 </head>
 
 <body>
-  <% if admin_signed_in? && admin_project.present? %>
+  <% if admin_signed_in? %>
     <%= render partial: 'layouts/headers/adminHeader' %>
   <% end %>
-  <% if user_signed_in? && user_project.present? %>
+  <% if user_signed_in? %>
     <%= render partial: 'layouts/headers/userHeader' %>
   <% end %>
   <%= yield %>

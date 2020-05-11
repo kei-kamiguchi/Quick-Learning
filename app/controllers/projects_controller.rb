@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:edit, :update, :destroy, :show, :project_launch]
   skip_before_action :admin_login_required, only: [:introduction]
+  before_action :set_project, only: [:edit, :update, :destroy, :show, :project_launch]
 
   def index
     @projects = current_admin.projects.order(created_at: :desc)
@@ -18,13 +18,12 @@ class ProjectsController < ApplicationController
     @subjects = @project.subjects
   end
 
+  # プロジェクトを作成したことがあるかないかで分岐
   def create
     @project = current_admin.projects.build(project_params)
     if @project.save
-      # プロジェクトの作成が初めてでない場合
       if current_admin.projects.count() > 1
         redirect_back(fallback_location: root_path)
-        # プロジェクトの作成が初めての場合
       else
         redirect_to project_launch_project_path(@project), notice: "プロジェクトを作成しました！カリキュラムの作成に取り掛かりましょう！"
       end
