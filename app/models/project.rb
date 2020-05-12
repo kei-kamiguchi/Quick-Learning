@@ -1,10 +1,10 @@
 class Project < ApplicationRecord
   belongs_to :admin
   has_many :subjects, dependent: :destroy
-  has_many :project_users, dependent: :destroy
-  has_many :project_user_users, through: :project_users, source: :user
-  has_many :project_admins, dependent: :destroy
-  has_many :project_admin_admins, through: :project_admins, source: :admin
+  has_many :user_participations, dependent: :destroy
+  has_many :user_participation_users, through: :user_participations, source: :user
+  has_many :admin_participations, dependent: :destroy
+  has_many :admin_participation_admins, through: :admin_participations, source: :admin
 
   validates :title, presence: true
 end

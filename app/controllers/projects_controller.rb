@@ -30,7 +30,7 @@ class ProjectsController < ApplicationController
   end
 
   def project_launch
-    @project_admin = current_admin.project_admins.find_by(project_id: @project.id)
+    @admin_participation = current_admin.admin_participations.find_by(project_id: @project.id)
   end
 
   def update
@@ -56,13 +56,13 @@ class ProjectsController < ApplicationController
       if admin_participation?
         redirect_to project_subjects_path(admin_project)
       else
-        @project_admin = current_admin.project_admins.find_by(project_id: admin_invitee_project.id)
+        @admin_participation = current_admin.admin_participations.find_by(project_id: admin_invitee_project.id)
       end
     else
       if user_participation?
         redirect_to current_user
       else
-        @project_user = current_user.project_users.find_by(project_id: user_invitee_project.id)
+        @user_participation = current_user.user_participations.find_by(project_id: user_invitee_project.id)
       end
     end
   end

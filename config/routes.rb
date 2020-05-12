@@ -39,6 +39,6 @@ Rails.application.routes.draw do
   resources :questions, only: [:user_question, :index] do
     get :user_question, on: :collection
   end
-  resources :project_users, only: [:create, :destroy]
-  resources :project_admins, only: [:create, :destroy]
+  resources :user_participations, only: [:create, :destroy]
+  resources :admin_participations, only: [:create, :destroy]
 end

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  include ProjectAdminsHelper
-  include ProjectUsersHelper
+  include AdminParticipationsHelper
+  include UserParticipationsHelper
   # CSRF対策
   protect_from_forgery with: :exception
   # ログイン済の場合のみアクセスを許可

@@ -2,5 +2,5 @@
   <div class="jumbotron jumbotron-extend animated rubberBand">
   </div>
   <div class="projects-launch-action">
-    <%= link_to 'カリキュラムの作成を始めましょう！', project_admins_path(project_id: @project.id), method: :post, class: 'btn btn-info btn-block' %>
+    <%= link_to 'カリキュラムの作成を始めましょう！', admin_participations_path(project_id: @project.id), method: :post, class: 'btn btn-info btn-block' %>
   </div>

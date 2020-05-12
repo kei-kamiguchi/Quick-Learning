@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_25_050525) do
+ActiveRecord::Schema.define(version: 2020_05_12_091008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admin_participations", force: :cascade do |t|
+    t.integer "admin_id"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "name", null: false
@@ -62,20 +69,6 @@ ActiveRecord::Schema.define(version: 2020_04_25_050525) do
     t.index ["subject_id"], name: "index_parts_on_subject_id"
   end
 
-  create_table "project_admins", force: :cascade do |t|
-    t.integer "admin_id"
-    t.integer "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "project_users", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "projects", force: :cascade do |t|
     t.string "title", null: false
     t.datetime "created_at", null: false
@@ -101,6 +94,13 @@ ActiveRecord::Schema.define(version: 2020_04_25_050525) do
     t.datetime "updated_at", null: false
     t.bigint "project_id"
     t.index ["project_id"], name: "index_subjects_on_project_id"
+  end
+
+  create_table "user_participations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
