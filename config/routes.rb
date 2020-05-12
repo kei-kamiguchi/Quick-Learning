@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :admins, only: [:show]
 # プロジェクトに関するルーティング
-  resources :projects do
+  resources :projects, except: [:show] do
     get :introduction, on: :collection
     get :project_launch, on: :member
     resources :subjects, shallow: true do

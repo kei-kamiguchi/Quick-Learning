@@ -14,10 +14,6 @@ class ProjectsController < ApplicationController
   def edit
   end
 
-  def show
-    @subjects = @project.subjects
-  end
-
   # プロジェクトを作成したことがあるかないかで分岐
   def create
     @project = current_admin.projects.build(project_params)

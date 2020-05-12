@@ -24,10 +24,10 @@
 
 <body>
   <% if admin_signed_in? %>
-    <%= render partial: 'layouts/headers/adminHeader' %>
+    <%= render partial: 'layouts/headers/afterSignInAdminHeader' %>
   <% end %>
   <% if user_signed_in? %>
-    <%= render partial: 'layouts/headers/userHeader' %>
+    <%= render partial: 'layouts/headers/afterSignInUserHeader' %>
   <% end %>
   <%= yield %>
 </body>

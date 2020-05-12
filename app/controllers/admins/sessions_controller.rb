@@ -3,6 +3,7 @@
 class Admins::SessionsController < Devise::SessionsController
   skip_before_action :login_required
   skip_before_action :admin_login_required
+  skip_before_action :logout_required, only: [:create, :destroy]
 
   # before_action :configure_sign_in_params, only: [:create]
 
@@ -24,7 +25,7 @@ class Admins::SessionsController < Devise::SessionsController
   def new_guest
     admin = Admin.guest
     sign_in admin
-    redirect_to root_path, notice: 'ゲスト管理者としてログインしました。'
+    redirect_to project_subjects_path(admin_project), notice: 'ゲスト管理者としてログインしました。'
   end
 
 

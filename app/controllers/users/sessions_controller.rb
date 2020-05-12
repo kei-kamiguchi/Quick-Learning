@@ -3,6 +3,7 @@
 class Users::SessionsController < Devise::SessionsController
   skip_before_action :login_required
   skip_before_action :admin_login_required
+  skip_before_action :logout_required, only: [:create, :destroy]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -22,7 +23,7 @@ class Users::SessionsController < Devise::SessionsController
   def new_guest
     user = User.guest
     sign_in user
-    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to current_user, notice: 'ゲストユーザーとしてログインしました。'
   end
 
   # protected
