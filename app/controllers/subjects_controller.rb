@@ -30,7 +30,7 @@ class SubjectsController < ApplicationController
 
   def update
     if @subject.update(subject_params)
-      redirect_to project_subjects_path(@subject.project_id), notice: "投稿しました"
+      redirect_to project_subjects_path(@subject.project_id), notice: "サブジェクトを更新しました"
     else
       flash[:alert] = "タイトルを入力してください。"
       render 'edit'

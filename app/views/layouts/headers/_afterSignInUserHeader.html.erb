@@ -1,7 +1,7 @@
 <% if user_participation? %>
 <div class="header">
   <div class="header-brand">Quick Learning / <%= current_user.name %></div>
-  <div class="header-link">
+  <div class="header-nav">
     <%= link_to "プロフィール", current_user %>
     <%= link_to "自分の質問", user_question_questions_path %>
     <%= link_to "みんなの質問", questions_path %>
@@ -31,8 +31,6 @@
   </div>
 </div>
 <% else %>
-<div class="header">
-  <div class="header-brand">Quick Learning</div>
-</div>
+<%= render partial: 'layouts/headers/noHeaderNav' %>
 <% end %>
 <%= render partial: 'layouts/flashMessage' %>

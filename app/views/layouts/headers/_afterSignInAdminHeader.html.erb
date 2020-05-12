@@ -1,7 +1,7 @@
 <% if admin_participation? %>
 <div class="header">
   <div class="header-brand">Quick Learning / <%= current_admin.name %></div>
-  <div class="header-link">
+  <div class="header-nav">
     <%= link_to "社員を招待", new_admin_invitation_path %>
     <%= link_to "生徒を招待", new_user_invitation_path %>
     <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
@@ -32,8 +32,5 @@
 <%= render partial: 'layouts/flashMessage' %>
 <%= render partial: 'layouts/navigation' %>
 <% else %>
-<div class="header">
-  <div class="header-brand">Quick Learning</div>
-</div>
-<%= render partial: 'layouts/flashMessage' %>
+<%= render partial: 'layouts/headers/noHeaderNav' %>
 <% end %>

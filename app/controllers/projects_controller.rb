@@ -50,7 +50,7 @@ class ProjectsController < ApplicationController
     end
   end
 
-#プロジェクトへ参加済みのadmin、未参加のadmin、参加済みのuser、未参加のuserで条件分岐
+  #プロジェクトへ参加済みのadmin、未参加のadmin、参加済みのuser、未参加のuserで条件分岐
   def introduction
     if admin_signed_in?
       if admin_participation?
@@ -68,6 +68,7 @@ class ProjectsController < ApplicationController
   end
 
   private
+  
   def set_project
     @project = Project.find(params[:id])
   end

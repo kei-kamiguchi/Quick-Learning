@@ -1,8 +1,7 @@
 class QuestionsController < ApplicationController
+  skip_before_action :admin_login_required
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :set_part, only: [:create, :new]
-  skip_before_action :admin_login_required
-
 # 例としてjoinsとeager_loadを使っている。違いを調べよ。
   def index
     if admin_signed_in?
@@ -58,8 +57,6 @@ class QuestionsController < ApplicationController
   private
 
   def set_part
-    # @project = Project.find(params[:project_id])
-    # @subject = Subject.find(params[:subject_id])
     @part = Part.find(params[:part_id])
   end
 
@@ -68,6 +65,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :content, :project_id, :subject_id, :part_id, :user_id)
+    params.require(:question).permit(:title, :content, :part_id, :user_id)
   end
 end

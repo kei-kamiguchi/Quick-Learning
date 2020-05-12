@@ -18,7 +18,7 @@
     font-size: 1.2em;
     padding-left: 60px;
   }
-  .header-link {
+  .header-nav {
     display:table-cell;
     text-align: right;
     color: #fff;
@@ -26,15 +26,15 @@
     font-size: 1em;
     font-weight: bold;
   }
-  .header-link a {
+  .header-nav a {
     color: #fff;
     text-decoration: none;
     padding: 10px;
   }
-  .header-link a:hover {
+  .header-nav a:hover {
     color: #333333
   }
-  .header-link a.active {
+  .header-nav a.active {
     display: none;
   }
   #sidebarMenu {
