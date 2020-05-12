@@ -49,10 +49,10 @@ class QuestionsController < ApplicationController
     redirect_to questions_path, notice: '質問を削除しました！'
   end
 
-  # def user_question
-  #   @search = Question.joins({:part => {:subject => :project}}).ransack(params[:q])
-  #   @questions = @search.result.order(created_at: :desc)
-  # end
+  def my_question_index
+    @search = Question.where(user_id: current_user).ransack(params[:q])
+    @questions = @search.result.order(created_at: :desc)
+  end
 
   private
 

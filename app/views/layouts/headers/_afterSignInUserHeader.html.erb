@@ -3,7 +3,7 @@
   <div class="header-brand">Quick Learning / <%= current_user.name %></div>
   <div class="header-nav">
     <%= link_to "プロフィール", current_user %>
-    <%= link_to "自分の質問", user_question_questions_path %>
+    <%= link_to "自分の質問", self_questions_path %>
     <%= link_to "みんなの質問", questions_path %>
     <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
   </div>

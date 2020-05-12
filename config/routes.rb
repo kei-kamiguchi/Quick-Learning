@@ -23,22 +23,22 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :admins, only: [:show]
 # プロジェクトに関するルーティング
+  resources :questions, only: [:my_question_index, :index] do
+    get :my_question_index, on: :collection, as: :self
+  end
   resources :projects, except: [:show] do
     get :introduction, on: :collection
     get :project_launch, on: :member
     resources :subjects, shallow: true do
       resources :parts, except: [:index], shallow: true do
         patch :toggle_status
-        resources :questions, shallow: true do
+        resources :questions, except: [:index], shallow: true do
           resources :comments, shallow: true
         end
       end
     end
   end
   resources :parts, only: [:index]
-  resources :questions, only: [:user_question, :index] do
-    get :user_question, on: :collection
-  end
   resources :user_participations, only: [:create, :destroy]
   resources :admin_participations, only: [:create, :destroy]
 end
