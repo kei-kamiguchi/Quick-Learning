@@ -50,28 +50,20 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # 生徒を招待、社員が社員を招待、アプリ管理者がクライアントを招待、クライアントがプロジェクトを作成した際、それ以外の場合分け
-  # current_admin.invited_by_id.present?はアプリ管理者がクライアントを招待する際に設定していないとエラーになる
+#プロジェクトへ参加済みのadmin、未参加のadmin、参加済みのuser、未参加のuserで条件分岐
   def introduction
-    if current_user.present?
-      if user_project.nil?
-        @project_user = current_user.project_users.find_by(project_id: Admin.find(current_user.invited_by_id).project_admin_projects.last.id)
-        return
+    if admin_signed_in?
+      if admin_participation?
+        redirect_to project_subjects_path(admin_project)
       else
-        redirect_to current_user
+        @project_admin = current_admin.project_admins.find_by(project_id: admin_invitee_project.id)
       end
-    elsif current_admin.nil?
-      redirect_to new_admin_session_path
-    elsif current_admin.invited_by_id.nil?
-      redirect_to projects_path
-    elsif current_admin.project_admin_projects.present?
-      @project_admin = current_admin.project_admin_projects.last
-    elsif Admin.find(current_admin.invited_by_id).project_admin_projects.present?
-      @project_admin = current_admin.project_admins.find_by(project_id: Admin.find(current_admin.invited_by_id).project_admin_projects.last.id)
-    elsif Admin.find(current_admin.invited_by_id).project_admin_projects.empty?
-      redirect_to new_project_path
     else
-      redirect_to new_user_session_path
+      if user_participation?
+        redirect_to current_user
+      else
+        @project_user = current_user.project_users.find_by(project_id: user_invitee_project.id)
+      end
     end
   end
 

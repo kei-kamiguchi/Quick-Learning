@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 # ユーザーに関するルーティング
+  root 'projects#introduction'
   devise_scope :admin do
-    root "projects#introduction"
     post 'admins/guest_sign_in', to: 'admins/sessions#new_guest'
+  end
+  devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
   end
   devise_for :admins, controllers: {
