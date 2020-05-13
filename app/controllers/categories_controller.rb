@@ -1,7 +1,13 @@
 class CategoriesController < ApplicationController
+  skip_before_action :admin_login_required
 
   def index
-    @categories = Category.where(project_id: admin_project.id)
+    if admin_signed_in?
+      @categories = Category.where(project_id: admin_project.id)
+    end
+    if user_signed_in?
+      @categories = Category.where(project_id: user_project.id)
+    end
   end
 
   def new

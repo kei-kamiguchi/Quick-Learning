@@ -2,6 +2,7 @@
 <div class="header">
   <div class="header-brand">Quick Learning / <%= current_user.name %></div>
   <div class="header-nav">
+    <%= link_to "カテゴリ", project_categories_path(user_project) %>
     <%= link_to "プロフィール", current_user %>
     <%= link_to "自分の質問", self_questions_path %>
     <%= link_to "みんなの質問", questions_path %>
@@ -16,7 +17,7 @@
   <label id="header-close" for="openSidebarMenu"></label>
   <div id="sidebarMenu">
     <ul class="sidebarMenuInner dropdwn">
-      <% user_project.subjects.each do |subject| %>
+      <% user_project.subjects.where(category_id: 1).each do |subject| %>
       <li><%= subject.title %>
         <% if subject.parts.present? %>
         <ul class="dropdwn_menu">
