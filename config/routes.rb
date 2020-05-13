@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :projects, except: [:show] do
     get :introduction, on: :collection
     get :project_launch, on: :member
+    resources :categories, shallow: true
     resources :subjects, shallow: true do
       resources :parts, except: [:index], shallow: true do
         patch :toggle_status

@@ -22,12 +22,15 @@ end
 Admin.all.each do |admin|
   admin.projects.create!(
     title: 'Ruby on Rails',
-    admin_id: admin.id
+    admin_id: admin.id,
   )
 end
 AdminParticipation.create!(admin_id: 1, project_id: 1)
 UserParticipation.create!(user_id: 1, project_id: 1)
-
+1.times do |n|
+  title = "未分類"
+  Category.create!(title: title, project_id: 1)
+end
 subjects = ["RailsのためのRuby入門","Railsアプリケーションをのぞいてみよう","タスク管理アプリケーションを作ろう","現実の複雑さに対応する","テストをはじめよう","Railsの全体像を理解する","機能を追加してみよう","RailsとJavaScript","複数人でRailsアプリケーションを開発する","Railsアプリケーションと長く付き合うために"]
 subject_num = subjects.size
 subject_num.times do |n|
@@ -35,7 +38,8 @@ subject_num.times do |n|
   Project.all.each do |project|
     project.subjects.create!(
       title: title,
-      project_id: project.id
+      project_id: project.id,
+      category_id: 1
     )
   end
 end

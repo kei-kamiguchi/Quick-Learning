@@ -53,6 +53,6 @@ class SubjectsController < ApplicationController
   end
 
   def subject_params
-    params.require(:subject).permit(:project_id, :title)
+    params.require(:subject).permit(:project_id, :category_id, :title)
   end
 end

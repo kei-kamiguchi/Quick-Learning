@@ -18,6 +18,7 @@ class ProjectsController < ApplicationController
   def create
     @project = current_admin.projects.build(project_params)
     if @project.save
+      Category.create(title: "未分類", project_id: @project.id)
       if current_admin.projects.count() > 1
         redirect_back(fallback_location: root_path)
       else
@@ -68,7 +69,7 @@ class ProjectsController < ApplicationController
   end
 
   private
-  
+
   def set_project
     @project = Project.find(params[:id])
   end

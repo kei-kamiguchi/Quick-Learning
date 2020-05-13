@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_12_091008) do
+ActiveRecord::Schema.define(version: 2020_05_13_030419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,14 @@ ActiveRecord::Schema.define(version: 2020_05_12_091008) do
     t.index ["invited_by_id"], name: "index_admins_on_invited_by_id"
     t.index ["invited_by_type", "invited_by_id"], name: "index_admins_on_invited_by_type_and_invited_by_id"
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "title", default: "未分類", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "project_id"
+    t.index ["project_id"], name: "index_categories_on_project_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -93,6 +101,8 @@ ActiveRecord::Schema.define(version: 2020_05_12_091008) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "project_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_subjects_on_category_id"
     t.index ["project_id"], name: "index_subjects_on_project_id"
   end
 
@@ -128,6 +138,7 @@ ActiveRecord::Schema.define(version: 2020_05_12_091008) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "categories", "projects"
   add_foreign_key "comments", "admins"
   add_foreign_key "comments", "questions"
   add_foreign_key "comments", "users"
@@ -135,5 +146,6 @@ ActiveRecord::Schema.define(version: 2020_05_12_091008) do
   add_foreign_key "projects", "admins"
   add_foreign_key "questions", "parts"
   add_foreign_key "questions", "users"
+  add_foreign_key "subjects", "categories"
   add_foreign_key "subjects", "projects"
 end

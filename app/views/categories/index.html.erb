@@ -1,0 +1,23 @@
+<h1>Categories#index</h1>
+<div class='category-list'>
+  <table class='table'>
+    <thead class='thead-light'>
+      <tr>
+        <th><%= Category.human_attribute_name(:title) %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categorys&.each do |category| %>
+        <tr>
+          <td>
+            <%= category.title %>
+          </td>
+          <td class='text-right'>
+            <%= link_to "destroy", category, method: :delete, class: 'btn btn-outline-dark' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
