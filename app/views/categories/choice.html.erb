@@ -1,0 +1,18 @@
+<div class="projects-launch">
+  <div class="jumbotron jumbotron-extend animated rubberBand">
+  </div>
+  <div class="dropdown">
+    <button type="button" id="dropdown1"
+    class="btn btn-secondary dropdown-toggle"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="false">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdown1">
+    <% @project.categories.each do |category| %>
+    <%= link_to category.title, admin_choice_categories_path(category_id: category.id), method: :post, class: 'dropdown-item' %>
+    <% end %>
+  </div>
+</div>
+</div>

@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   include AdminParticipationsHelper
   include UserParticipationsHelper
+  include AdminChoiceCategoriesHelper
+  include UserChoiceCategoriesHelper
   # CSRF対策
   protect_from_forgery with: :exception
   # ログイン済の場合のみアクセスを許可

@@ -29,7 +29,9 @@ Rails.application.routes.draw do
   resources :projects, except: [:show] do
     get :introduction, on: :collection
     get :project_launch, on: :member
-    resources :categories, shallow: true
+    resources :categories, shallow: true do
+      get :choice, on: :collection
+    end
     resources :subjects, shallow: true do
       resources :parts, except: [:index], shallow: true do
         patch :toggle_status
@@ -42,4 +44,6 @@ Rails.application.routes.draw do
   resources :parts, only: [:index]
   resources :user_participations, only: [:create, :destroy]
   resources :admin_participations, only: [:create, :destroy]
+  resources :admin_choice_categories, only: [:create, :destroy]
+  resources :user_choice_categories, only: [:create, :destroy]
 end

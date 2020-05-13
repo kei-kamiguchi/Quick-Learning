@@ -1,2 +1,12 @@
-<h1>Categories#edit</h1>
-<p>Find me in app/views/categories/edit.html.erb</p>
+<div class="categories-index">
+  <div class="container">
+    <div class="main-wrap">
+      <div class="main">
+        <h3>Category Index</h3>
+        <div class="form">
+          <%= render partial:'categories/form', locals: { category: @category, project: @project } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

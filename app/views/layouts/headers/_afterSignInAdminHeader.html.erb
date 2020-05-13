@@ -1,7 +1,26 @@
 <% if admin_participation? %>
 <div class="header">
-  <div class="header-brand">Quick Learning / <%= current_admin.name %></div>
+  <div class="header-brand">
+    <% if admin_project.categories.count() == 1 %>
+    Quick Learning
+    <% else %>
+    <div class="dropdown">
+      <button type="button" id="dropdown1"
+      class="btn dropdown-toggle"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"><%= admin_choice_category.title %></button>
+      <div class="dropdown-menu" aria-labelledby="dropdown1">
+        <% admin_project.categories.each do |category| %>
+        <%= link_to category.title, admin_choice_categories_path(category_id: category.id), method: :post, class: 'dropdown-item' %>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <div class="header-title"><h3>Quick Learning</h3></div>
   <div class="header-nav">
+    <%= link_to "マイページ", current_admin %>
     <%= link_to "社員を招待", new_admin_invitation_path %>
     <%= link_to "生徒を招待", new_user_invitation_path %>
     <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
@@ -15,7 +34,7 @@
   <label id="header-close" for="openSidebarMenu"></label>
   <div id="sidebarMenu">
     <ul class="sidebarMenuInner dropdwn">
-      <% admin_project.subjects.each do |subject| %>
+      <% admin_project.subjects.where(category_id: admin_choice_category.id).each do |subject| %>
       <li><%= subject.title %>
         <% if subject.parts.present? %>
         <ul class="dropdwn_menu">

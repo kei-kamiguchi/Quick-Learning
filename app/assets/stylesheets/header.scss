@@ -8,7 +8,7 @@
   opacity: 0.98;
   position: fixed;
   height: 60px!important;
-  overflow: hidden;
+  // overflow: hidden;
   z-index: 10;
   .header-brand {
     display:table-cell;
@@ -35,7 +35,8 @@
     color: #333333
   }
   .header-nav a.active {
-    display: none;
+    pointer-events: none;
+    color: #333333
   }
   #sidebarMenu {
     z-index: 200000;
@@ -192,5 +193,25 @@
   .openSidebarMenu:checked ~ #header-close{
     display: block;
     opacity: .7;
+  }
+  .dropdown {
+    display: inline;
+    background-color: #008080;
+    .btn {
+      background-color: #fff;
+      color: #008080;
+      font-weight: bold;
+    }
+    .btn:hover {
+      background-color: #777777;
+      color: #fff;
+    }
+    a {
+      color: #008080;
+      font-weight: bold;
+    }
+  }
+  .header-title {
+    display: inline;
   }
 }

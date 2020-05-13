@@ -19,7 +19,7 @@
               <tr>
                 <td><%= link_to project.title, admin_participations_path(project_id: project.id), method: :post, class: "project-title" %></td>
                 <td>
-                  <% if admin_project==project %>active
+                  <% if admin_project == project %>active
                   <% end %>
                 </td>
                 <td class="text-right"><%= link_to 'Edit', edit_project_path(project), class: "btn btn-outline-info btn-sm" %>

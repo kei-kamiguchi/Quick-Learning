@@ -3,24 +3,31 @@
     <div class="main-wrap">
       <div class="main">
         <h3>Category Index</h3>
+        <div class="form">
+          <%= render partial:'categories/form', locals: { category: @category, project: @project } %>
+        </div>
         <div class="main-table">
           <table class="table table-hover">
             <thead class="thead-light">
               <tr>
                 <th><%= Category.human_attribute_name(:title) %></th>
-                <th colspan="1"></th>
+                <th colspan="2"></th>
               </tr>
             </thead>
             <tbody>
               <% @categories.each do |category| %>
               <% if category.id.present? %>
               <tr>
-                <td><%= category.title %></td>
+                <td><%= link_to category.title, admin_choice_categories_path(category_id: category.id), method: :post, class: "category-title" %>
+                </td>
+                <td>
+                  <% if admin_choice_category == category %>active
+                  <% end %>
+                </td>
                 <td class='text-right'>
                   <% if admin_signed_in? %>
                   <%= link_to 'Edit', edit_category_path(category), class: "btn btn-outline-info btn-sm" %>
                   <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
-                  <%= link_to "destroy", category, method: :delete, class: 'btn btn-outline-dark' %>
                   <% end %>
                 </td>
               </tr>
