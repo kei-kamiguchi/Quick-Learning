@@ -11,18 +11,14 @@
             <thead class="thead-light">
               <tr>
                 <th><%= Category.human_attribute_name(:title) %></th>
-                <th colspan="2"></th>
+                <th colspan="1"></th>
               </tr>
             </thead>
             <tbody>
               <% @categories.each do |category| %>
               <% if category.id.present? %>
               <tr>
-                <td><%= link_to category.title, admin_choice_categories_path(category_id: category.id), method: :post, class: "category-title" %>
-                </td>
-                <td>
-                  <% if admin_choosed_category == category %>active
-                  <% end %>
+                <td class="category-title"><%= category.title %>
                 </td>
                 <td class='text-right'>
                   <% if admin_signed_in? %>
