@@ -6,7 +6,7 @@
     <% else %>
     <div class="dropdown">
       <button type="button" id="dropdown1"
-      class="btn dropdown-toggle"
+      class="btn dropdown-toggle dropdown-category-btn"
       data-toggle="dropdown"
       aria-haspopup="true"
       aria-expanded="false"><%= admin_choice_category.title %></button>
@@ -18,11 +18,19 @@
     </div>
     <% end %>
   </div>
-  <div class="header-title"><h3>Quick Learning</h3></div>
   <div class="header-nav">
     <%= link_to "マイページ", current_admin %>
-    <%= link_to "社員を招待", new_admin_invitation_path %>
-    <%= link_to "生徒を招待", new_user_invitation_path %>
+    <div class="dropdown">
+      <button type="button" id="dropdown1"
+      class="btn"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false">招待する</button>
+      <div class="dropdown-menu" aria-labelledby="dropdown1">
+        <%= link_to "社員を招待", new_admin_invitation_path, class: 'dropdown-item' %>
+        <%= link_to "生徒を招待", new_user_invitation_path, class: 'dropdown-item' %>
+      </div>
+    </div>
     <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
   </div>
   <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">

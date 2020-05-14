@@ -5,7 +5,7 @@
     <% else %>
     <div class="dropdown">
       <button type="button" id="dropdown1"
-      class="btn"
+      class="btn dropdown-category-btn"
       data-toggle="dropdown"
       aria-haspopup="true"
       aria-expanded="false"><%= user_choice_category.title %></button>
@@ -18,9 +18,18 @@
     <% end %>
   </div>
   <div class="header-nav">
-    <%= link_to "プロフィール", current_user %>
-    <%= link_to "自分の質問", self_questions_path %>
-    <%= link_to "みんなの質問", questions_path %>
+    <%= link_to "マイページ", current_user %>
+    <div class="dropdown">
+      <button type="button" id="dropdown1"
+      class="btn"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false">質問</button>
+      <div class="dropdown-menu" aria-labelledby="dropdown1">
+        <%= link_to "自分の質問", self_questions_path, class: 'dropdown-item' %>
+        <%= link_to "みんなの質問", questions_path, class: 'dropdown-item' %>
+      </div>
+    </div>
     <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
   </div>
   <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
