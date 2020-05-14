@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
   before_action :logout_required, if: :devise_controller?
   # adminユーザーのみアクセスを許可
   before_action :admin_login_required
+  #カテゴリの選択していなければアクセスを拒否
+  before_action :category_choice_required, unless: :devise_controller?
   # ログイン後の遷移先を分岐
   def after_sign_in_path_for(resource)
     case resource
@@ -46,6 +48,16 @@ class ApplicationController < ActionController::Base
 
   def admin_login_required
     redirect_back(fallback_location: root_path) unless current_admin
+  end
+
+  def category_choice_required
+    if admin_signed_in? && !admin_choosed_category?
+      admin_choice_category = current_admin.admin_choice_categories.create(category_id: admin_project.categories.last.id)
+      redirect_to project_subjects_path(admin_project)
+    elsif user_signed_in? && !user_choosed_category?
+      user_choice_category = current_user.user_choice_categories.create(category_id: user_project.categories.last.id)
+      redirect_to current_user
+    end
   end
 
   protected

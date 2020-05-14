@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   skip_before_action :admin_login_required
+  skip_before_action :category_choice_required
   before_action :set_category, only: [:edit, :destroy, :update]
 
   def index
@@ -41,12 +42,16 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    unless @category == admin_choice_category
+    unless @category == admin_choosed_category
       @category.destroy
       redirect_to project_categories_path(@category.project), notice: "カテゴリを削除しました"
     else
       redirect_to project_categories_path(@category.project), alert: "active中のカテゴリは削除できません！！"
     end
+  end
+
+  def choice
+    @project = Project.find(params[:project_id])
   end
 
   private

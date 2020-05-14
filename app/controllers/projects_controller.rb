@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   skip_before_action :admin_login_required, only: [:introduction]
+  skip_before_action :category_choice_required, only: [:new, :create, :project_launch, :introduction]
   before_action :set_project, only: [:edit, :update, :destroy, :show, :project_launch]
 
   def index

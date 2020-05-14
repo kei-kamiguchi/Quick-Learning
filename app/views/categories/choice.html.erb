@@ -1,18 +1,26 @@
 <div class="projects-launch">
   <div class="jumbotron jumbotron-extend animated rubberBand">
   </div>
-  <div class="dropdown">
-    <button type="button" id="dropdown1"
-    class="btn btn-secondary dropdown-toggle"
-    data-toggle="dropdown"
-    aria-haspopup="true"
-    aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdown1">
-    <% @project.categories.each do |category| %>
-    <%= link_to category.title, admin_choice_categories_path(category_id: category.id), method: :post, class: 'dropdown-item' %>
-    <% end %>
+  <div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <button type="button" class="btn btn-info btn-block" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapseExample">カテゴリを選択してください</button>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <ul class="list-group">
+          <% if admin_signed_in? %>
+            <% admin_project.categories.each do |category| %>
+            <li class="list-group-item"><%= link_to category.title, admin_choice_categories_path(category_id: category.id), method: :post %></li>
+            <% end %>
+          <% else %>
+            <% user_project.categories.each do |category| %>
+            <li class="list-group-item"><%= link_to category.title, user_choice_categories_path(category_id: category.id), method: :post %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
-</div>
 </div>

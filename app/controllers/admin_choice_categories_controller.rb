@@ -1,6 +1,8 @@
 class AdminChoiceCategoriesController < ApplicationController
+  skip_before_action :category_choice_required
+
   def create
-    if admin_choice_category?
+    if admin_choosed_category?
       admin_choice_category = current_admin.admin_choice_categories.last.destroy
       admin_choice_category = current_admin.admin_choice_categories.create(category_id: params[:category_id])
       flash[:notice] = "カテゴリを変更しました！"

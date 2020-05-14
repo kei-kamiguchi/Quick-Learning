@@ -21,7 +21,7 @@
                 <td><%= link_to category.title, admin_choice_categories_path(category_id: category.id), method: :post, class: "category-title" %>
                 </td>
                 <td>
-                  <% if admin_choice_category == category %>active
+                  <% if admin_choosed_category == category %>active
                   <% end %>
                 </td>
                 <td class='text-right'>

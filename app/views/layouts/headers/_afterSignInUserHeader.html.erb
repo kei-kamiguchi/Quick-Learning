@@ -1,4 +1,4 @@
-<% if user_participation? %>
+<% if user_choosed_category? %>
 <div class="header">
   <div class="header-brand"><% if user_project.categories.count() == 1 %>
     Quick Learning
@@ -8,7 +8,7 @@
       class="btn dropdown-category-btn"
       data-toggle="dropdown"
       aria-haspopup="true"
-      aria-expanded="false"><%= user_choice_category.title %></button>
+      aria-expanded="false"><%= user_choosed_category.title %></button>
       <div class="dropdown-menu" aria-labelledby="dropdown1">
         <% user_project.categories.each do |category| %>
         <%= link_to category.title, user_choice_categories_path(category_id: category.id), method: :post, class: 'dropdown-item' %>
@@ -41,7 +41,7 @@
   <label id="header-close" for="openSidebarMenu"></label>
   <div id="sidebarMenu">
     <ul class="sidebarMenuInner dropdwn">
-      <% user_project.subjects.where(category_id: user_choice_category.id).each do |subject| %>
+      <% user_project.subjects.where(category_id: user_choosed_category.id).each do |subject| %>
       <li><%= subject.title %>
         <% if subject.parts.present? %>
         <ul class="dropdwn_menu">
