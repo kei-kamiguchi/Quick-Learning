@@ -20,8 +20,8 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     invitations: 'users/invitations'
   }
-  resources :users, only: [:show]
-  resources :admins, only: [:show]
+  resources :users, only: [:index, :show, :destroy]
+  resources :admins, only: [:index, :show, :destroy]
 # プロジェクトに関するルーティング
   resources :questions, only: [:my_question_index, :index] do
     get :my_question_index, on: :collection, as: :self

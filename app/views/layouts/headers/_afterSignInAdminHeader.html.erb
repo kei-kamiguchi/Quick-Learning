@@ -20,6 +20,18 @@
   </div>
   <div class="header-nav">
     <%= link_to "マイページ", current_admin %>
+    <% if current_admin.admin? %>
+    <div class="dropdown">
+      <button type="button" id="dropdown1"
+      class="btn"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false">ユーザー一覧</button>
+      <div class="dropdown-menu" aria-labelledby="dropdown1">
+        <%= link_to "社員一覧", admins_path, class: 'dropdown-item' %>
+        <%= link_to "生徒一覧", users_path, class: 'dropdown-item' %>
+      </div>
+    </div>
     <div class="dropdown">
       <button type="button" id="dropdown1"
       class="btn"
@@ -31,6 +43,7 @@
         <%= link_to "生徒を招待", new_user_invitation_path, class: 'dropdown-item' %>
       </div>
     </div>
+    <% end %>
     <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
   </div>
   <% if admin_choosed_category.subjects.present? %>

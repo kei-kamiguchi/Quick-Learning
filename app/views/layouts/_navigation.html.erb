@@ -1,6 +1,8 @@
 <div class="navigation">
   <div class="row">
+    <% if current_admin.admin? %>
     <div class="col"><%= link_to "Project Index", projects_path, class: "nav-link" %></div>
+    <% end %>
     <div class="col"><%= link_to "Category Index", project_categories_path(admin_project), class: "nav-link" %></div>
     <div class="col"><%= link_to "Subject Index", project_subjects_path(admin_project.id), class: "nav-link" %></div>
     <div class="col"><%= link_to "Part Index", parts_path, class: "nav-link" %></div>
