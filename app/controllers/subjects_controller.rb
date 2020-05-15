@@ -3,7 +3,7 @@ class SubjectsController < ApplicationController
   before_action :set_project, only: [:index, :create]
 
   def index
-    @subjects = @project.subjects
+    @subjects = @project.subjects.includes(:parts)
     @subject = Subject.new
   end
 

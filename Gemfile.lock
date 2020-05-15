@@ -59,6 +59,9 @@ GEM
       popper_js (>= 1.12.9, < 2)
       sass (>= 3.5.2)
     builder (3.2.4)
+    bullet (6.1.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     byebug (11.1.1)
     capistrano (3.6.0)
       airbrussh (>= 1.0.0)
@@ -284,6 +287,7 @@ GEM
     unicorn (5.5.4)
       kgio (~> 2.6)
       raindrops (~> 0.7)
+    uniform_notifier (1.13.0)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (3.7.0)
@@ -308,6 +312,7 @@ DEPENDENCIES
   bcrypt_pbkdf
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.1.1)
+  bullet
   byebug
   capistrano (= 3.6.0)
   capistrano-bundler

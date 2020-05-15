@@ -4,8 +4,7 @@ class PartsController < ApplicationController
   before_action :set_subject, only: [:new, :create]
 
   def index
-    @project = admin_project
-    @subjects = @project.subjects
+    @subjects = admin_project.subjects.includes(:parts)
   end
 
   def new
