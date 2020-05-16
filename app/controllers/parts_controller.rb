@@ -4,7 +4,7 @@ class PartsController < ApplicationController
   before_action :set_subject, only: [:new, :create]
 
   def index
-    @subjects = admin_project.subjects.includes(:parts)
+    @subjects = Subject.eager_load(:parts).where(project_id: admin_project.id)
   end
 
   def new

@@ -24,7 +24,7 @@
 
 <body>
   <% if admin_signed_in? %>
-    <%= render partial: 'layouts/headers/afterSignInAdminHeader' %>
+    <%= render partial: 'layouts/headers/afterSignInAdminHeader', locals: {subjects: admin_project.subjects.includes(:parts) } %>
   <% end %>
   <% if user_signed_in? %>
     <%= render partial: 'layouts/headers/afterSignInUserHeader' %>
@@ -32,7 +32,6 @@
   <%= yield %>
 </body>
 </html>
-<!-- hrefをidも含めて完全一致させる -->
 <script>
   $(function(){
     $("a").each(function(){
@@ -41,11 +40,22 @@
   });
 </script>
 <script>
+  $("#sidebarMenu a").on('click',function(event){
+     event.preventDefault();
+     var linkUrl = $(this).attr('href');
+     $("ul").animate({ "margin-left" : "-250px" }, 500, "swing");
+     function action() {
+       location.href = linkUrl;
+     }
+     setTimeout(action,500);
+   });
+</script>
+<script>
   $(function(){
     $('.dropdwn li').hover(function(){
-      $(">ul:not(:animated)", this).slideDown("fast");
+      $(">ul:not(:animated)", this).slideDown(100);
     }, function(){
-      $(">ul",this).slideUp("fast");
+      $(">ul",this).slideUp(100);
     });
   });
 </script>

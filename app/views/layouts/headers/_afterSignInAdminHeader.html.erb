@@ -56,7 +56,7 @@
   <label id="header-close" for="openSidebarMenu"></label>
   <div id="sidebarMenu">
     <ul class="sidebarMenuInner dropdwn">
-      <% admin_project.subjects.where(category_id: admin_choosed_category.id).each do |subject| %>
+      <% subjects.where(category_id: admin_choosed_category.id).each do |subject| %>
       <li><%= subject.title %>
         <% if subject.parts.present? %>
         <ul class="dropdwn_menu">
