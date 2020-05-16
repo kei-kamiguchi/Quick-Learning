@@ -3,7 +3,8 @@ class SubjectsController < ApplicationController
   before_action :set_project, only: [:index, :create]
 
   def index
-    @subjects = @project.subjects.includes(:parts)
+    # @project = Project.includes(categories: :subjects).where(project_id: admin_project.id)
+    @categories = Category.includes(subjects: :parts).where(project_id: admin_project.id)
     @subject = Subject.new
   end
 

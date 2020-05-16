@@ -1,6 +1,6 @@
 <% if user_choosed_category? %>
 <div class="header">
-  <div class="header-brand"><% if user_project.categories.count() == 1 %>
+  <div class="header-brand"><% if user_project.categories.size() == 1 %>
     Quick Learning
     <% else %>
     <div class="dropdown">

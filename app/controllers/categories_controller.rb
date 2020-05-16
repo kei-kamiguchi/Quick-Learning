@@ -7,10 +7,10 @@ class CategoriesController < ApplicationController
     @category = Category.new
     @project = admin_project
     if admin_signed_in?
-      @categories = Category.where(project_id: admin_project.id)
+      @categories = Category.includes(subjects: :parts).where(project_id: admin_project.id)
     end
     if user_signed_in?
-      @categories = Category.where(project_id: user_project.id)
+      @categories = Category.includes(:subjects).where(project_id: user_project.id)
     end
   end
 

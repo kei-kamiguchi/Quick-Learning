@@ -1,7 +1,7 @@
 <% if admin_choosed_category? %>
 <div class="header">
   <div class="header-brand">
-    <% if admin_project.categories.count() == 1 %>
+    <% if admin_project.categories.size() == 1 %>
     Quick Learning
     <% else %>
     <div class="dropdown">
