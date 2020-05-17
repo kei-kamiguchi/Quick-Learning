@@ -43,11 +43,13 @@
   $("#sidebarMenu a").on('click',function(event){
      event.preventDefault();
      var linkUrl = $(this).attr('href');
-     $("ul").animate({ "margin-left" : "-250px" }, 500, "swing");
+     $("ul").animate({ "margin-left" : "-250px" }, 300, "swing");
+     $("#header-close").animate({ "opacity" : "0" }, 300, "swing");
+     $(".container").fadeOut(300);
      function action() {
        location.href = linkUrl;
      }
-     setTimeout(action,500);
+     setTimeout(action,300);
    });
 </script>
 <script>
