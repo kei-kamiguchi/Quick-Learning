@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :user_participations, dependent: :destroy
   has_many :user_participation_projects, through: :user_participations, source: :project, dependent: :destroy
-  has_many :qusetions, dependent: :destroy
+  has_many :questions, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :user_choice_categories, dependent: :destroy
   has_many :user_choice_category_categories, through: :user_choice_categories, source: :category

@@ -43,7 +43,7 @@ class PartsController < ApplicationController
 
   def destroy
     @part.destroy
-    flash[:alert] = "削除しました。"
+    flash[:notice] = "削除しました。"
     redirect_back(fallback_location: root_path)
   end
 

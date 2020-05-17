@@ -3,7 +3,7 @@
     <%= form.text_field :title, placeholder: "input title", class: "form-control" %>
     <%= form.select :category_id, Category.where(project_id: project.id).map { |category| [category.title, category.id] }, {}, class: "form-control mt-1" %>
     <div class="text-right">
-      <%= form.submit nil, class: "btn btn-outline-info btn-sm"  %>
+      <%= form.submit nil, class: "btn btn-info btn-sm"  %>
     </div>
   </div>
 <% end %>

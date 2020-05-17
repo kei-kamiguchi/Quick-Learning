@@ -40,6 +40,7 @@ class SubjectsController < ApplicationController
 
   def destroy
     @subject.destroy
+    flash[:notice] = "サブジェクトを削除しました。"
     redirect_back(fallback_location: root_path)
   end
 

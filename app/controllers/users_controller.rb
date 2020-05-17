@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :admin_login_required
+  skip_before_action :admin_login_required, only: [:show]
   before_action :set_user, only: [:destroy, :show]
 
   def index
@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def destroy

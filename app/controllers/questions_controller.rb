@@ -46,7 +46,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    redirect_to questions_path, notice: '質問を削除しました！'
+    redirect_to self_questions_path, notice: '質問を削除しました！'
   end
 
   def my_question_index

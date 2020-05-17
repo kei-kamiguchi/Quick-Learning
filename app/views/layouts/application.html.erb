@@ -24,10 +24,18 @@
 
 <body>
   <% if admin_signed_in? %>
-    <%= render partial: 'layouts/headers/afterSignInAdminHeader', locals: {subjects: admin_project.subjects.includes(:parts) } %>
+    <% if admin_participation? %>
+      <%= render partial: 'layouts/headers/afterSignInAdminHeader', locals: {subjects: admin_project.subjects.includes(:parts) } %>
+    <% else %>
+      <%= render partial: 'layouts/headers/noHeaderNav' %>
+    <% end %>
   <% end %>
   <% if user_signed_in? %>
-    <%= render partial: 'layouts/headers/afterSignInUserHeader' %>
+    <% if user_participation? %>
+      <%= render partial: 'layouts/headers/afterSignInUserHeader', locals: {subjects: user_project.subjects.includes(:parts) } %>
+    <% else %>
+      <%= render partial: 'layouts/headers/noHeaderNav' %>
+    <% end %>
   <% end %>
   <%= yield %>
 </body>

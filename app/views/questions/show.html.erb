@@ -2,21 +2,21 @@
   <div class=container>
     <div class="main-wrap">
       <div class="main">
-        <h3>Question</h3>
+        <h3 class="page-title">Question</h3>
         <div class="main-table">
           <ul class="list-group list-group-flush">
             <li class="list-group-item"><h3><%= @question.title %></h3></li>
             <li class="list-group-item">質問者：<%= @question.user.name %></li>
-            <li class="list-group-item"><%= @question.content %></li>
+            <li class="list-group-item"><%= simple_format(h(@question.content), {}, sanitize: false, wrapper_tag: "div") %></li>
           </ul>
-          <div class="text-right">
-            <% if user_signed_in? %>
-            <%= link_to 'Edit', edit_question_path(@question), class: 'btn btn-outline-info btn-sm' %>
-            <% end %>
-          </div>
         </div>
       </div>
     </div>
+    <% if user_signed_in? %>
+    <div class="question-action text-right">
+      <%= link_to 'Edit', edit_question_path(@question), class: 'btn btn-outline-info btn-sm' %>
+    </div>
+    <% end %>
     <div id="comments-area">
       <%= render partial: 'comments/index', locals: { question: @question, comments: @comments } %>
     </div>

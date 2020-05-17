@@ -6,14 +6,14 @@
       <li class="list-group-item comment-admin-name">回答者：<%= comment.admin.name %></li>
       <li class="list-group-item"><%= simple_format(h(comment.content), {}, sanitize: false, wrapper_tag: "div") %></li>
     </ul>
-    <% if comment.admin == current_admin %>
-    <div class="text-right">
-    <%= link_to 'Edit', edit_comment_path(comment), class: 'btn btn-outline-info btn-sm' %>
-    <%= link_to 'Destroy', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
-    </div>
-    <% end %>
   </div>
 </div>
+<% if comment.admin == current_admin %>
+<div class="comment-action text-right">
+<%= link_to 'Edit', edit_comment_path(comment), class: 'btn btn-outline-info btn-sm' %>
+<%= link_to 'Destroy', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
+</div>
+<% end %>
 <% end %>
 <% if comment.user.present? %>
 <div class="user-comment">
@@ -22,13 +22,13 @@
       <li class="list-group-item comment-user-name">質問者：<%= comment.user.name %></li>
       <li class="list-group-item"><%= simple_format(h(comment.content), {}, sanitize: false, wrapper_tag: "div") %></li>
     </ul>
-    <% if comment.user == current_user %>
-    <div class="text-right">
-    <%= link_to 'Edit', edit_comment_path(comment), class: 'btn btn-outline-info btn-sm' %>
-    <%= link_to 'Destroy', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
-    </div>
-    <% end %>
   </div>
 </div>
+<% if comment.user == current_user %>
+<div class="comment-action text-right">
+<%= link_to 'Edit', edit_comment_path(comment), class: 'btn btn-outline-info btn-sm' %>
+<%= link_to 'Destroy', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
+</div>
+<% end %>
 <% end %>
 <% end %>
