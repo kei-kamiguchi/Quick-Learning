@@ -1,27 +1,20 @@
 <div class="questions-show">
-  <div class=container>
-    <div class="main-wrap">
-      <div class="main">
-        <h3 class="page-title">Question</h3>
-        <div class="main-table">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"><h3><%= @question.title %></h3></li>
-            <li class="list-group-item">質問者：<%= @question.user.name %></li>
-            <li class="list-group-item"><%= simple_format(h(@question.content), {}, sanitize: false, wrapper_tag: "div") %></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <% if user_signed_in? %>
-    <div class="question-action text-right">
-      <%= link_to 'Edit', edit_question_path(@question), class: 'btn btn-outline-info btn-sm' %>
-    </div>
-    <% end %>
-    <div id="comments-area">
-      <%= render partial: 'comments/index', locals: { question: @question, comments: @comments } %>
-    </div>
-    <div id="comments-form">
-      <%= render partial: 'comments/form', locals: { comment: @comment, question: @question } %>
-    </div>
+  <div class="container main-container">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item list-title">質問内容：<%= @question.title %></li>
+      <li class="list-group-item list-questioner">質問者：<%= @question.user.name %></li>
+      <li class="list-group-item"><%= simple_format(h(@question.content), {}, sanitize: false, wrapper_tag: "div") %></li>
+    </ul>
+  </div>
+  <% if user_signed_in? %>
+  <div class="action text-right">
+    <%= link_to 'Edit', edit_question_path(@question), class: 'btn btn-outline-info btn-sm' %>
+  </div>
+  <% end %>
+  <div id="comments-area">
+    <%= render partial: 'comments/index', locals: { question: @question, comments: @comments } %>
+  </div>
+  <div id="comments-form">
+    <%= render partial: 'comments/form', locals: { comment: @comment, question: @question } %>
   </div>
 </div>

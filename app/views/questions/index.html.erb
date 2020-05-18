@@ -1,38 +1,32 @@
 <div class="questions-index">
-  <div class=container>
-    <div class="main-wrap">
-      <div class="main">
-        <h3>Question Index</h3>
-        <div class="form">
-          <%= search_form_for @search do |f| %>
-          <div class="form-group row">
-            <%= f.search_field :title_cont, placeholder: "search question", class: "form-control col-9" %><%= f.submit 'search', class: "btn btn-info btn-sm col-2 ml-1" %>
-          </div>
-          <% end %>
-        </div>
-        <div class="main-table">
-          <table class="table">
-            <thead>
-              <tr>
-                <th class="sort-link"><%= sort_link(@search, :created_at) %></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @questions.each do |question| %>
-              <tr>
-                <th><%= link_to question.title, question_path(question), class: "question-title" %></th>
-              </tr>
-              <tr>
-                <td>質問者：<%= question.user.name %></td>
-              </tr>
-              <tr>
-                <td>part：<%= question.part.title %></td>
-              </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
+  <div class="container main-container">
+    <h3 class="main-title">Question Index</h3>
+    <div class="form">
+      <%= search_form_for @search do |f| %>
+      <div class="form-group row">
+        <%= f.search_field :title_cont, placeholder: "search question", class: "form-control col-9" %><%= f.submit 'search', class: "btn btn-info col-2 ml-1" %>
       </div>
+      <% end %>
     </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="sort-link"><%= sort_link(@search, :created_at) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @questions.each do |question| %>
+        <tr>
+          <th><%= link_to question.title, question_path(question), class: "question-title" %></th>
+        </tr>
+        <tr>
+          <td>質問者：<%= question.user.name %></td>
+        </tr>
+        <tr>
+          <td>part：<%= question.part.title %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

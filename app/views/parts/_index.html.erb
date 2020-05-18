@@ -3,8 +3,8 @@
     <% @subjects.each do |subject| %>
       <% if subject.id.present? %>
         <tr>
-          <th class="subject-title"><%= subject.title %></th>
-          <th class="text-right"><%= link_to "", new_subject_part_path(subject, @part), class: "far fa-plus-square fa-lg new-part-icon" %></th>
+          <th><%= subject.title %></th>
+          <th class="text-right"><%= link_to "", new_subject_part_path(subject), class: "far fa-plus-square fa-lg new-part-icon" %></th>
         </tr>
         <% subject.parts.each do |part| %>
           <% if part.id.present? %>

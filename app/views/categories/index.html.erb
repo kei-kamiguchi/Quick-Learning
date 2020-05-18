@@ -1,38 +1,32 @@
 <div class="categories-index">
-  <div class="container">
-    <div class="main-wrap">
-      <div class="main">
-        <h3>Category Index</h3>
-        <div class="form">
-          <%= render partial:'categories/form', locals: { category: @category, project: @project } %>
-        </div>
-        <div class="main-table">
-          <table class="table table-hover">
-            <thead class="thead-light">
-              <tr>
-                <th><%= Category.human_attribute_name(:title) %></th>
-                <th colspan="1"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @categories.each do |category| %>
-              <% if category.id.present? %>
-              <tr>
-                <td class="category-title"><%= category.title %>
-                </td>
-                <td class='text-right'>
-                  <% if admin_signed_in? %>
-                  <%= link_to 'Edit', edit_category_path(category), class: "btn btn-outline-info btn-sm" %>
-                  <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
-                  <% end %>
-                </td>
-              </tr>
-              <% end %>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
+  <div class="container main-container">
+    <h3 class="main-title">Category Index</h3>
+    <div class="form">
+      <%= render partial:'categories/form', locals: { category: @category, project: @project } %>
     </div>
+    <table class="table table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th><%= Category.human_attribute_name(:title) %></th>
+          <th colspan="1"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @categories.each do |category| %>
+        <% if category.id.present? %>
+        <tr>
+          <td class="category-title"><%= category.title %>
+          </td>
+          <td class='text-right'>
+            <% if admin_signed_in? %>
+            <%= link_to 'Edit', edit_category_path(category), class: "btn btn-outline-info btn-sm" %>
+            <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

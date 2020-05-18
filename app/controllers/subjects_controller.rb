@@ -17,11 +17,13 @@ class SubjectsController < ApplicationController
   end
 
   def edit
+    @project = admin_project
   end
 
   def create
     @subject = @project.subjects.build(subject_params)
     if @subject.save
+      flash[:notice] = "サブジェクトを作成しました！"
       redirect_back(fallback_location: root_path)
     else
       flash[:alert] = "サブジェクトを作成できませんでした。"

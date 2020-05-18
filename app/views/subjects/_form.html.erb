@@ -1,9 +1,5 @@
 <%= form_with(model: [project, subject], local: true) do |form| %>
-  <div class="form-group">
-    <%= form.text_field :title, placeholder: "input title", class: "form-control" %>
-    <%= form.select :category_id, Category.where(project_id: project.id).map { |category| [category.title, category.id] }, {}, class: "form-control mt-1" %>
-    <div class="text-right">
-      <%= form.submit nil, class: "btn btn-info btn-sm"  %>
-    </div>
+  <div class="form-group row">
+    <%= form.text_field :title, placeholder: "input title", class: "form-control col-11" %><%= form.select :category_id, Category.where(project_id: project.id).map { |category| [category.title, category.id] }, {}, class: "form-control mt-1 col-9" %><%= form.submit nil, class: "btn btn-info btn-sm col-2 mt-1 ml-1"  %>
   </div>
 <% end %>

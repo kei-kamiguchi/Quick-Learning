@@ -1,55 +1,46 @@
 .questions-index{
   padding: 140px 0 50px;
-  .container {
-    max-width: 960px;
-  }
-  .main-wrap {
-    margin: 0px 15px 15px 15px;
-    background-color: #F0F8FF;
-    border: 1px solid #DDDDDD	;
-    border-radius: 5px;
-  }
-  .main {
-    height: 100%;
-    padding: 20px 15px 0;
-  }
   .form {
-    margin: 30px 100px 0;
+    margin: 0 100px 30px;
   }
-  .main-table {
-    margin-top: 30px;
-    table {
-      overflow-y:scroll;
-      background-color: #FFF;
-    }
-    th {
-      background-color: #e9ecef;
-      padding: 0;
-      margin: 0;
-      min-width: 140px;
-      vertical-align: middle;
-    }
-    td {
-      padding: 5px;
-      margin: 0;
-    }
-    .question-title {
-      font-size: 1rem;
-      word-break: break-all;
-      display: block;
+  table {
+    overflow-y:scroll;
+    background-color: #FFF;
+  }
+  th {
+    background-color: #e9ecef;
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+    word-break: break-all;
+    color: #777777;
+  }
+  td {
+    padding: 5px 10px;
+    margin: 0;
+    min-width: 140px;
+    vertical-align: middle;
+    word-break: break-all;
+  }
+  .question-title {
+    display: block;
+    color: #777777;
+    padding: 5px 10px;
+
+  }
+  .sort-link {
+    background-color: #F0F8FF;
+    a {
       color: #777777;
-      padding: 10px;
-    }
-    .sort-link {
-      background-color: #F0F8FF;
-      a {
-        color: #555555;
-      }
     }
     a:hover {
-      text-decoration: none;
-      background-color: #999999;
-      color: #fff;
+      background-color: #F0F8FF;
+      color: #333333;
     }
+  }
+  a:hover {
+    text-decoration: none;
+    background-color: #999999;
+    color: #fff;
   }
 }

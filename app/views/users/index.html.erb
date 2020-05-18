@@ -1,25 +1,19 @@
 <div class="users-index">
-  <div class="container">
-    <div class="main-wrap">
-      <div class="main">
-        <h3>User Index</h3>
-        <div class="main-table">
-          <table class="table table-hover">
-            <tbody>
-              <% @users.each do |user| %>
-              <% if user.id.present? %>
-              <tr>
-                <td class="user-name"><%= user.name %></td>
-                <td class="text-right">
-                  <%= link_to 'Destroy', user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
-                </td>
-              </tr>
-              <% end %>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+  <div class="container main-container">
+    <h3 class="main-title">User Index</h3>
+    <table class="table table-hover">
+      <tbody>
+        <% @users.each do |user| %>
+        <% if user.id.present? %>
+        <tr>
+          <td class="user-name"><%= user.name %></td>
+          <td class="action text-right">
+            <%= link_to 'Destroy', user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
+          </td>
+        </tr>
+        <% end %>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

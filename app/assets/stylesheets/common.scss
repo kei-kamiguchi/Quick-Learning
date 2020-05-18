@@ -2,6 +2,7 @@ body {
   background: #F5F5F5;
   color: #777777;
   font-family: 'Lato', 'Noto Sans JP', 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+  margin-bottom: 50px;
 }
 .alert {
   padding-top: 70px;
@@ -16,11 +17,26 @@ body {
 h1 {
   color: #008080;
 }
-.btn-info {
+.btn-login {
   background-color: #008080;
+  color: #fff;
   opacity: 0.98;
+}
+.btn-login:hover {
+  background-color: #fff;
+  color: #008080;
 }
 .btn-info:hover {
   background-color: #fff;
   color: #008080;
+}
+.main-container {
+  max-width: 900px;
+  background-color: #F0F8FF;
+  border: 1px solid #DDDDDD	;
+  border-radius: 5px;
+  margin-bottom: 0;
+}
+.main-title {
+  padding: 20px 15px 30px;
 }

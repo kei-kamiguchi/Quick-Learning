@@ -1,31 +1,25 @@
 <div class="admins-index">
-  <div class="container">
-    <div class="main-wrap">
-      <div class="main">
-        <h3>Admin Index</h3>
-        <div class="main-table">
-          <table class="table table-hover">
-            <tbody>
-              <% @admins.each do |admin| %>
-              <% if admin.id.present? %>
-              <tr>
-                <td class="admin-name"><%= admin.name %></td>
-                <td>
-                  <% if admin.admin? %>admin
-                  <% end %>
-                </td>
-                <td class="text-right">
-                  <% unless current_admin == admin %>
-                  <%= link_to 'Destroy', admin_path(admin), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
-                  <% end %>
-                </td>
-              </tr>
-              <% end %>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+  <div class="container main-container">
+    <h3 class="main-title">Admin Index</h3>
+    <table class="table table-hover">
+      <tbody>
+        <% @admins.each do |admin| %>
+        <% if admin.id.present? %>
+        <tr>
+          <td class="admin-name"><%= admin.name %></td>
+          <td>
+            <% if admin.admin? %>admin
+            <% end %>
+          </td>
+          <td class="text-right">
+            <% unless current_admin == admin %>
+            <%= link_to 'Destroy', admin_path(admin), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

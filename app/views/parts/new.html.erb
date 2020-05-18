@@ -1,14 +1,8 @@
 <div class="parts-new">
-  <div class=container>
-    <div class="main-wrap">
-      <div class="main">
-        <div class="form">
-
-          <h3><%= @subject.title %></h3>
-
-          <%= render partial:'form', locals: { subject: @subject, part: @part } %>
-        </div>
-      </div>
+  <div class="container main-container">
+    <div class="form">
+      <h3 class="main-title"><%= @subject.title %></h3>
+      <%= render partial:'form', locals: { subject: @subject, part: @part } %>
     </div>
   </div>
 </div>

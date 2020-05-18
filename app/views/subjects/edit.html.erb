@@ -1,12 +1,12 @@
 <div class="subjects-edit">
-  <div class="container">
-    <div class="main-wrap">
-      <div class="main">
-        <h3>Editing Subject</h3>
-        <div class="form">
-          <%= render partial:'form', locals: { subject: @subject, project: @project } %>
-        </div>
+  <div class="container main-container">
+    <h3 class="main-title">Editing Subject</h3>
+    <div class="form">
+      <%= form_with(model: @subject, local: true) do |form| %>
+      <div class="form-group row">
+        <%= form.text_field :title, placeholder: "input title", class: "form-control col-11" %><%= form.select :category_id, Category.where(project_id: @project.id).map { |category| [category.title, category.id] }, {}, class: "form-control mt-1 col-9" %><%= form.submit nil, class: "btn btn-info btn-sm col-2 mt-1 ml-1"  %>
       </div>
+      <% end %>
     </div>
   </div>
 </div>
