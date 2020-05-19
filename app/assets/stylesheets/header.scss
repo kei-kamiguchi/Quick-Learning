@@ -226,4 +226,13 @@
     color: #fff;
     font-size: 1rem;
   }
+  .dropdown-menu {
+    padding: 15px;
+    a {
+      max-width: 700px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
 }

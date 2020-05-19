@@ -20,59 +20,83 @@
   </div>
   <div class="header-nav">
     <% if Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).where(checked: false).present? %>
-    <i class="fas fa-bell"></i><span class="badge badge-pill badge-danger"><%= Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).where(checked: false).size() %></span>
-    <% end %>
-    <%= link_to "マイページ", current_admin %>
-    <% if current_admin.admin? %>
     <div class="dropdown">
       <button type="button" id="dropdown1"
       class="btn"
       data-toggle="dropdown"
       aria-haspopup="true"
-      aria-expanded="false">ユーザー一覧</button>
-      <div class="dropdown-menu" aria-labelledby="dropdown1">
-        <%= link_to "社員一覧", admins_path, class: 'dropdown-item' %>
-        <%= link_to "生徒一覧", users_path, class: 'dropdown-item' %>
-      </div>
-    </div>
-    <div class="dropdown">
-      <button type="button" id="dropdown1"
-      class="btn"
-      data-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="false">招待する</button>
-      <div class="dropdown-menu" aria-labelledby="dropdown1">
-        <%= link_to "社員を招待", new_admin_invitation_path, class: 'dropdown-item' %>
-        <%= link_to "生徒を招待", new_user_invitation_path, class: 'dropdown-item' %>
-      </div>
-    </div>
-    <% end %>
-    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-  </div>
-  <% if admin_choosed_category.subjects.present? %>
-  <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
-  <label for="openSidebarMenu" class="sidebarIconToggle">
-    <div class="spinner diagonal part-1"></div>
-    <div class="spinner horizontal"></div>
-    <div class="spinner diagonal part-2"></div>
-  </label>
-  <label id="header-close" for="openSidebarMenu"></label>
-  <div id="sidebarMenu">
-    <ul class="sidebarMenuInner dropdwn">
-      <% subjects.where(category_id: admin_choosed_category.id).each do |subject| %>
-      <li><%= subject.title %>
-        <% if subject.parts.present? %>
-        <ul class="dropdwn_menu">
-          <% subject.parts.each do |part| %>
-          <li><%= link_to part.title, part_path(part.id) %></li>
-          <% end %>
-        </ul>
-        <% end %>
-      </li>
+      aria-expanded="false">
+      <i class="fas fa-bell"></i><span class="badge badge-pill badge-danger"><%= Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).where(checked: false).size() + Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).where(reply: false).size() %></span>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdown1">
+      <h4 class="dropdown-header">新たな質問が届いています！</h4>
+      <div class="dropdown-divider"></div>
+      <% Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).where(checked: false).each do |question| %>
+      <%= question.created_at %>
+      <%= link_to question.title, question_path(question), class: "dropdown-item" %>
+      <div class="dropdown-divider"></div>
       <% end %>
-    </ul>
+      <h4 class="dropdown-header">新たなコメントが届いています！</h4>
+      <div class="dropdown-divider"></div>
+      <% Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).where(reply: false).each do |question| %>
+      <%= question.updated_at %>
+      <%= link_to question.title, question_path(question), class: "dropdown-item" %>
+      <div class="dropdown-divider"></div>
+      <% end %>
+    </div>
   </div>
   <% end %>
+  <%= link_to "マイページ", current_admin %>
+  <% if current_admin.admin? %>
+  <div class="dropdown">
+    <button type="button" id="dropdown1"
+    class="btn"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="false">ユーザー一覧</button>
+    <div class="dropdown-menu" aria-labelledby="dropdown1">
+      <%= link_to "社員一覧", admins_path, class: 'dropdown-item' %>
+      <%= link_to "生徒一覧", users_path, class: 'dropdown-item' %>
+    </div>
+  </div>
+  <div class="dropdown">
+    <button type="button" id="dropdown1"
+    class="btn"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="false">招待する</button>
+    <div class="dropdown-menu" aria-labelledby="dropdown1">
+      <%= link_to "社員を招待", new_admin_invitation_path, class: 'dropdown-item' %>
+      <%= link_to "生徒を招待", new_user_invitation_path, class: 'dropdown-item' %>
+    </div>
+  </div>
+  <% end %>
+  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+</div>
+<% if admin_choosed_category.subjects.present? %>
+<input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+<label for="openSidebarMenu" class="sidebarIconToggle">
+  <div class="spinner diagonal part-1"></div>
+  <div class="spinner horizontal"></div>
+  <div class="spinner diagonal part-2"></div>
+</label>
+<label id="header-close" for="openSidebarMenu"></label>
+<div id="sidebarMenu">
+  <ul class="sidebarMenuInner dropdwn">
+    <% subjects.where(category_id: admin_choosed_category.id).each do |subject| %>
+    <li><%= subject.title %>
+      <% if subject.parts.present? %>
+      <ul class="dropdwn_menu">
+        <% subject.parts.each do |part| %>
+        <li><%= link_to part.title, part_path(part.id) %></li>
+        <% end %>
+      </ul>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 </div>
 <%= render partial: 'layouts/flashMessage' %>
 <%= render partial: 'layouts/navigation' %>
