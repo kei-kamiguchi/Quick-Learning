@@ -21,7 +21,9 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to ({controller: :questions, action: :show, id: @comment.question.id}), notice: 'コメントを編集しました！'
+      flash[:notice] = "コメントを編集しました！"
+      redirect_back(fallback_location: root_path)
+      # redirect_to ({controller: :questions, action: :show, id: @comment.question.id}), notice: 'コメントを編集しました！'
     else
       flash[:alert] = "コメントを更新できません！"
       render 'edit'
