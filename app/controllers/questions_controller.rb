@@ -29,6 +29,9 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    if admin_signed_in? && @question.checked == false
+      @question.update(checked: true, checker: current_admin.name)
+    end
     @comments = @question.comments
     @comment = @question.comments.build
   end
@@ -65,6 +68,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :content, :part_id, :user_id)
+    params.require(:question).permit(:title, :content, :part_id, :user_id, :checked, :checker, :reply)
   end
 end

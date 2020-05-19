@@ -3,6 +3,9 @@
     <ul class="list-group list-group-flush">
       <li class="list-group-item list-title">質問内容：<%= @question.title %></li>
       <li class="list-group-item list-questioner">質問者：<%= @question.user.name %></li>
+      <% if @question.checker.present? %>
+        <li class="list-group-item list-questioner">確認者：<%= @question.checker %></li>
+      <% end %>
       <li class="list-group-item"><%= simple_format(h(@question.content), {}, sanitize: false, wrapper_tag: "div") %></li>
     </ul>
   </div>

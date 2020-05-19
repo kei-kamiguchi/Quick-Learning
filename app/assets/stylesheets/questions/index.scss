@@ -26,7 +26,18 @@
     display: block;
     color: #777777;
     padding: 5px 10px;
-
+  }
+  .unchecked-question-title {
+    display: block;
+    color: #777777;
+    background-color: #FF9999;
+    padding: 5px 10px;
+  }
+  .unreplied-question-title {
+    display: block;
+    color: #777777;
+    background-color: #FFFF88;
+    padding: 5px 10px;
   }
   .sort-link {
     background-color: #F0F8FF;

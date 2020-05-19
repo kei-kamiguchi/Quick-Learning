@@ -19,6 +19,9 @@
     <% end %>
   </div>
   <div class="header-nav">
+    <% if Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).where(checked: false).present? %>
+    <i class="fas fa-bell"></i><span class="badge badge-pill badge-danger"><%= Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).where(checked: false).size() %></span>
+    <% end %>
     <%= link_to "マイページ", current_admin %>
     <% if current_admin.admin? %>
     <div class="dropdown">
