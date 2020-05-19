@@ -1,0 +1,52 @@
+<% if admin_signed_in? %>
+<div class="dropdown">
+  <button type="button" id="dropdown1"
+  class="btn"
+  data-toggle="dropdown"
+  aria-haspopup="true"
+  aria-expanded="false">
+  <i class="fas fa-bell"></i><span class="badge badge-pill badge-danger"><%= Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).where(checked_by_admin: false).size() + Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).where(reply: false).size() %></span>
+</button>
+<div class="dropdown-menu" aria-labelledby="dropdown1">
+  <% if Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).where(checked_by_admin: false).present? %>
+  <h4 class="dropdown-header">新たな質問が届いています！</h4>
+  <div class="dropdown-divider"></div>
+  <% Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).where(checked_by_admin: false).each do |question| %>
+  <%= question.created_at %>
+  <%= link_to question.title, question_path(question), class: "dropdown-item" %>
+  <div class="dropdown-divider"></div>
+  <% end %>
+  <% end %>
+  <% if Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).where(reply: false).present? %>
+  <h4 class="dropdown-header">新たなコメントが届いています！</h4>
+  <div class="dropdown-divider"></div>
+  <% Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).where(reply: false).each do |question| %>
+  <%= question.updated_at %>
+  <%= link_to question.title, question_path(question), class: "dropdown-item" %>
+  <div class="dropdown-divider"></div>
+  <% end %>
+  <% end %>
+</div>
+</div>
+<% end %>
+
+<% if user_signed_in? %>
+<div class="dropdown">
+  <button type="button" id="dropdown1"
+  class="btn"
+  data-toggle="dropdown"
+  aria-haspopup="true"
+  aria-expanded="false">
+  <i class="fas fa-bell"></i><span class="badge badge-pill badge-danger"><%= Question.joins(part: [subject: :project]).where(projects: {id: user_project.id}).where(checked_by_user: false).size() + Question.joins(part: [subject: :project]).where(projects: {id: user_project.id}).where(reply: false).size() %></span>
+</button>
+<div class="dropdown-menu" aria-labelledby="dropdown1">
+  <h4 class="dropdown-header">新たなコメントが届いています！</h4>
+  <div class="dropdown-divider"></div>
+  <% Question.joins(part: [subject: :project]).where(projects: {id: user_project.id}).where(checked_by_user: false).each do |question| %>
+  <%= question.updated_at %>
+  <%= link_to question.title, question_path(question), class: "dropdown-item" %>
+  <div class="dropdown-divider"></div>
+  <% end %>
+</div>
+</div>
+<% end %>

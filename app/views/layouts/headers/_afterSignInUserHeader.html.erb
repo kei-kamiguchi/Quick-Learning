@@ -18,6 +18,9 @@
     <% end %>
   </div>
   <div class="header-nav">
+    <% if Question.joins(part: [subject: :project]).where(projects: {id: user_project.id}).where(checked_by_user: false).present? %>
+    <%= render partial: 'layouts/notification' %>
+    <% end %>
     <%= link_to "マイページ", current_user %>
     <div class="dropdown">
       <button type="button" id="dropdown1"
