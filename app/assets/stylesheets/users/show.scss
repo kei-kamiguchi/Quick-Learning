@@ -15,7 +15,6 @@
   td {
     padding: 0;
     margin: 0;
-    min-width: 140px;
     vertical-align: middle;
     word-break: break-all;
   }
@@ -28,9 +27,9 @@
     margin-top: 15px;
     padding-top: 15px;
     a {
-    display: block;
-    color: #777777;
-    padding: 7px 10px;
+      display: block;
+      color: #777777;
+      padding: 7px 10px;
     }
     a:hover {
       text-decoration: none;
@@ -40,10 +39,10 @@
       margin-right: 15px;
       font-size: 1.5rem;
     }
-    .finish {
+    .achieved-icon {
       color: red;
     }
-    .unfinish {
+    .unachieved-icon {
       color: #EEEEEE;
     }
   }

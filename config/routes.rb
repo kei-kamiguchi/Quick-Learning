@@ -32,7 +32,6 @@ Rails.application.routes.draw do
     resources :categories, shallow: true
     resources :subjects, shallow: true do
       resources :parts, except: [:index], shallow: true do
-        patch :toggle_status, on: :member
         resources :questions, except: [:index], shallow: true do
           resources :comments, shallow: true
         end
@@ -44,4 +43,5 @@ Rails.application.routes.draw do
   resources :admin_participations, only: [:create, :destroy]
   resources :admin_choice_categories, only: [:create, :destroy]
   resources :user_choice_categories, only: [:create, :destroy]
+  resources :achieveds, only: [:create, :destroy]
 end

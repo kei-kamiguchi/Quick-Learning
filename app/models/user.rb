@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :user_choice_categories, dependent: :destroy
   has_many :user_choice_category_categories, through: :user_choice_categories, source: :category
+  has_many :achieveds, dependent: :destroy
+  has_many :achieved_parts, through: :achieveds, source: :part
 
   devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, invite_for: 24.hours
   validates :name, presence: true

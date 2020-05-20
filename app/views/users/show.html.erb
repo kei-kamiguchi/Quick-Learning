@@ -25,7 +25,13 @@
         <% if part.id.present? %>
         <tr>
           <td><%= link_to part.title, part_path(part) %></td>
-          <td class="text-right"><i class="far fa-circle <%= part.status %>"></i></td>
+          <td class="icon text-right">
+            <% if current_user.achieveds.find_by(part_id: part.id) %>
+            <i class="far fa-circle achieved-icon"></i>
+            <% else %>
+            <i class="far fa-circle unachieved-icon"></i>
+            <% end %>
+          </td>
         </tr>
         <% end %>
         <% end %>

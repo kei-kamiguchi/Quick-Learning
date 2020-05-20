@@ -1,6 +1,6 @@
 class PartsController < ApplicationController
-  skip_before_action :admin_login_required, only: [:show, :toggle_status]
-  before_action :set_part, only: [:show, :edit, :update, :destroy, :toggle_status]
+  skip_before_action :admin_login_required, only: [:show]
+  before_action :set_part, only: [:show, :edit, :update, :destroy]
   before_action :set_subject, only: [:new, :create]
 
   def index
@@ -24,6 +24,7 @@ class PartsController < ApplicationController
   end
 
   def show
+    @achieved = current_user.achieveds.find_by(part_id: @part.id) if user_signed_in?
   end
 
   def edit
@@ -47,11 +48,6 @@ class PartsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  def toggle_status
-    @part.toggle_status!
-    redirect_back(fallback_location: root_path)
-  end
-
   private
 
   def set_part
@@ -63,6 +59,6 @@ class PartsController < ApplicationController
   end
 
   def part_params
-    params.require(:part).permit(:title, :content, :status, :subject_id)
+    params.require(:part).permit(:title, :content, :subject_id)
   end
 end
