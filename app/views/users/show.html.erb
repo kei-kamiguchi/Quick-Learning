@@ -1,19 +1,37 @@
 <div class="users-show">
-  <div class=container>
-    <div class="main-wrap">
-      <div class="main">
-        <h3><%= @user.name %></h3>
-        <div class="main-table">
-          <table class="table">
-            <tbody>
-              <tr>
-                <th><%= User.human_attribute_name(:email) %></th>
-                <td><%= @user.email %></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+  <div class="container main-container user-information-container">
+    <h3 class="main-title"><%= @user.name %></h3>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th><%= User.human_attribute_name(:email) %></th>
+        </tr>
+        <tr>
+          <td><%= @user.email %></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+  <% if user_choosed_category.subjects.present? %>
+  <div class="container main-container achievement-information-container">
+    <table class="table table-hover">
+      <tbody>
+        <% user_choosed_category.subjects.each do |subject| %>
+        <tr>
+          <th><%= subject.title %></th>
+          <th colspan="1"></th>
+        </tr>
+        <% subject.parts.order(created_at: :asc).each do |part| %>
+        <% if part.id.present? %>
+        <tr>
+          <td><%= link_to part.title, part_path(part) %></td>
+          <td class="text-right"><i class="far fa-circle <%= part.status %>"></i></td>
+        </tr>
+        <% end %>
+        <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <% end %>
 </div>

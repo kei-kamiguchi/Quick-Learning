@@ -25,7 +25,8 @@ class CategoriesController < ApplicationController
     if @category.save
       redirect_to project_categories_path(@project), notice: "カテゴリを作成しました"
     else
-      render 'new'
+      flash[:alert] = "カテゴリを作成できませんでした。"
+      redirect_back(fallback_location: root_path)
     end
   end
 

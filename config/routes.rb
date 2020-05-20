@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     resources :categories, shallow: true
     resources :subjects, shallow: true do
       resources :parts, except: [:index], shallow: true do
-        patch :toggle_status
+        patch :toggle_status, on: :member
         resources :questions, except: [:index], shallow: true do
           resources :comments, shallow: true
         end

@@ -1,40 +1,50 @@
 .users-show{
   padding: 140px 0 50px;
-  .container {
-    max-width: 960px;
+  table {
+    overflow-y:scroll;
+    background-color: #FFF;
   }
-  .main-wrap {
-    margin: 0px 15px 15px 15px;
-    background-color: #F0F8FF;
-    border: 1px solid #DDDDDD	;
-    border-radius: 5px;
+  th {
+    background-color: #e9ecef;
+    padding: 5px 10px;
+    margin: 0;
+    vertical-align: middle;
+    word-break: break-all;
+    color: #777777;
   }
-  .main {
-    height: 100%;
-    padding: 20px 15px;
+  td {
+    padding: 0;
+    margin: 0;
+    min-width: 140px;
+    vertical-align: middle;
+    word-break: break-all;
   }
-  .main-table {
-    margin-top: 30px;
-    table {
-      overflow-y:scroll;
-      background-color: #FFF;
-    }
+  .user-information-container {
     td {
-      padding: 0 10px;
-      margin: 0;
-      min-width: 140px;
-      vertical-align: middle;
+      padding: 7px 10px;
     }
-    .subject-title {
-      font-size: 1rem;
-      word-break: break-all;
-      display: block;
-      color: #777777;
-      padding: 10px;
+  }
+  .achievement-information-container {
+    margin-top: 15px;
+    padding-top: 15px;
+    a {
+    display: block;
+    color: #777777;
+    padding: 7px 10px;
     }
     a:hover {
       text-decoration: none;
       color: #333333;
+    }
+    .fa-circle {
+      margin-right: 15px;
+      font-size: 1.5rem;
+    }
+    .finish {
+      color: red;
+    }
+    .unfinish {
+      color: #EEEEEE;
     }
   }
 }

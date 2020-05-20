@@ -1,11 +1,8 @@
-<% if @part.status_i18n == "クリア！" %>
-<%= stylesheet_link_tag "part_status", :media => "all" %>
-<% end %>
 <div class="parts-show">
   <div class="container main-container">
         <h3 class="main-title"><%= @part.subject.title %></h3>
         <% if user_signed_in? %>
-        <h4 class="text-right"><%= link_to @part.status_i18n, part_toggle_status_path(@part), method: :patch, class: 'btn btn-outline-info btn-sm part-status mr-2' %><%= link_to "質問する", new_part_question_path(@part), class: 'btn btn-outline-info btn-sm part-question' %></h4>
+        <h4 class="text-right"><%= link_to @part.status_i18n, toggle_status_part_path(@part), method: :patch, class: "btn btn-outline-info btn-sm part-status mr-2 #{@part.status}" %><%= link_to "質問する", new_part_question_path(@part), class: 'btn btn-outline-info btn-sm part-question' %></h4>
         <% end %>
           <table class="table table-responsive">
             <thead class="thead-default">
@@ -25,7 +22,7 @@
     </div>
     <% end %>
     <% if user_signed_in? %>
-    <h4 class="action text-right"><%= link_to @part.status_i18n, part_toggle_status_path(@part), method: :patch, class: 'btn btn-outline-info btn-sm part-status mr-2' %><%= link_to "質問する", new_part_question_path(@part), class: 'btn btn-outline-info btn-sm part-question' %></h4>
+    <h4 class="action text-right"><%= link_to @part.status_i18n, toggle_status_part_path(@part), method: :patch, class: "btn btn-outline-info btn-sm part-status mr-2 #{@part.status}" %><%= link_to "質問する", new_part_question_path(@part), class: 'btn btn-outline-info btn-sm part-question' %></h4>
     <% end %>
   </div>
 </div>

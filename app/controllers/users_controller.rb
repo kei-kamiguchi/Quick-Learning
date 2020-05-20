@@ -7,6 +7,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    # @subjects = Subject.eager_load(:parts).where(project_id: user_project.id).order(created_at: :desc)
+    # @parts = Part.joins(subject: :project).where(projects: {id: user_project.id}).order(created_at: :desc)
   end
 
   def destroy
