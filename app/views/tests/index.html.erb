@@ -1,0 +1,9 @@
+<div class="tests-index">
+  <div class="container main-container">
+    <h3 class="main-title">Test Index</h3>
+    <div class="form">
+      <%= render partial:'tests/form', locals: { test: @test, project: @project } %>
+    </div>
+    <%= render partial: 'tests/index' %>
+  </div>
+</div>

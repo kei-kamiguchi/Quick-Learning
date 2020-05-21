@@ -1,0 +1,39 @@
+.tests-show{
+  padding: 140px 0 50px;
+  table {
+    overflow-y:scroll;
+    background-color: #FFF;
+  }
+  th {
+    background-color: #e9ecef;
+    padding: 5px 10px;
+    margin: 0;
+    vertical-align: middle;
+    word-break: break-all;
+    color: #777777;
+  }
+  td {
+    padding: 0 5px;
+    margin: 0;
+    min-width: 140px;
+    vertical-align: middle;
+    word-break: break-all;
+  }
+  .part-title {
+    word-break: break-all;
+    display: block;
+    color: #777777;
+    padding: 7px;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  .new-part-icon {
+    margin-top: 8px;
+    margin-right: 5px;
+    color: #008080;
+  }
+  .new-part-icon:hover {
+    color: #fff;
+  }
+}

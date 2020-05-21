@@ -6,6 +6,7 @@ class Project < ApplicationRecord
   has_many :admin_participations, dependent: :destroy
   has_many :admin_participation_admins, through: :admin_participations, source: :admin
   has_many :categories, dependent: :destroy
+  has_many :tests, dependent: :destroy
 
   validates :title, presence: true
 end
