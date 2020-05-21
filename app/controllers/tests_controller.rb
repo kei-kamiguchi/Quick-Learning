@@ -3,8 +3,7 @@ class TestsController < ApplicationController
   before_action :set_project, only: [:index, :create]
 
   def index
-    # @project = admin_project
-    @subjects = Subject.where(project_id: admin_project.id)
+    @subjects = Subject.includes(:tests).where(project_id: admin_project.id)
     @test = Test.new
   end
 
@@ -24,7 +23,7 @@ class TestsController < ApplicationController
   end
 
   def show
-    @tests = @subject.tests
+    @test_questions = @test.test_questions
   end
 
   def edit

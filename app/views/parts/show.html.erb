@@ -1,27 +1,28 @@
 <div class="parts-show">
   <div class="container main-container">
-        <h3 class="main-title"><%= @part.subject.title %></h3>
-        <% if user_signed_in? %>
-        <h4 class="text-right">
-          <% if @achieved.present? %>
-            <%= link_to 'クリア！', achieved_path(id: @achieved.id), method: :delete, class: 'btn btn-outline-info btn-sm mr-2 achieved' %>
-          <% else %>
-            <%= link_to 'このパートが終わったらクリック！', achieveds_path(part_id: @part.id), method: :post, class: 'btn btn-outline-info btn-sm mr-2' %>
-          <% end %>
-          <%= link_to "質問する", new_part_question_path(@part), class: 'btn btn-outline-info btn-sm part-question' %></h4>
-        <% end %>
-          <table class="table table-responsive">
-            <thead class="thead-default">
-              <tr>
-                <th class="part-title"><%= @part.title %></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><%= @part.content.html_safe %></td>
-              </tr>
-            </tbody>
-          </table>
+    <h3 class="main-title"><%= @part.subject.title %></h3>
+    <% if user_signed_in? %>
+    <h4 class="text-right">
+      <% if @achieved.present? %>
+      <%= link_to 'クリア！', achieved_path(id: @achieved.id), method: :delete, class: 'btn btn-outline-info btn-sm mr-2 achieved' %>
+      <% else %>
+      <%= link_to 'このパートが終わったらクリック！', achieveds_path(part_id: @part.id), method: :post, class: 'btn btn-outline-info btn-sm mr-2' %>
+      <% end %>
+      <%= link_to "質問する", new_part_question_path(@part), class: 'btn btn-outline-info btn-sm part-question' %>
+    </h4>
+    <% end %>
+    <table class="table table-responsive">
+      <thead class="thead-default">
+        <tr>
+          <th class="part-title"><%= @part.title %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @part.content.html_safe %></td>
+        </tr>
+      </tbody>
+    </table>
     <% if admin_signed_in? %>
     <div class="action text-right">
       <%= link_to 'Edit', edit_part_path(@part), class: 'btn btn-info btn-block' %>
@@ -30,11 +31,11 @@
     <% if user_signed_in? %>
     <h4 class="action text-right">
       <% if @achieved.present? %>
-        <%= link_to 'クリア！', achieved_path(id: @achieved.id), method: :delete, class: 'btn btn-outline-info btn-sm mr-2 achieved' %>
+      <%= link_to 'クリア！', achieved_path(id: @achieved.id), method: :delete, class: 'btn btn-outline-info btn-sm mr-2 achieved' %>
       <% else %>
-        <%= link_to 'このパートが終わったらクリック！', achieveds_path(part_id: @part.id), method: :post, class: 'btn btn-outline-info btn-sm mr-2' %>
+      <%= link_to 'このパートが終わったらクリック！', achieveds_path(part_id: @part.id), method: :post, class: 'btn btn-outline-info btn-sm mr-2' %>
       <% end %>
       <%= link_to "質問する", new_part_question_path(@part), class: 'btn btn-outline-info btn-sm part-question' %></h4>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>

@@ -30,7 +30,9 @@ Rails.application.routes.draw do
     get :introduction, on: :collection
     get :project_launch, on: :member
     resources :categories, shallow: true
-    resources :tests, shallow: true
+    resources :tests, shallow: true do
+      resources :test_questions, shallow: true
+    end
     resources :subjects, shallow: true do
       resources :parts, except: [:index], shallow: true do
         resources :questions, except: [:index], shallow: true do

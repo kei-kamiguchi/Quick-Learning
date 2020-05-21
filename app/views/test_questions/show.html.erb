@@ -1,0 +1,14 @@
+<div class="test_questions-show">
+  <div class="container main-container">
+    <div class="form">
+      <h3 class="main-title">Show TestQuestion</h3>
+      <%= @test_question.title %>
+      <%= @test_question.content %>
+      <%= form_with(model: @test_question, local: true) do |form| %>
+      <div class="form-group">
+        <%= form.text_area :content, placeholder: "input content", rows: @test_question.form_size, class: "form-control mt-1" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
