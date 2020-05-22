@@ -28,10 +28,10 @@
                 <div class="form-group">
                   <%= form.text_field :title, placeholder: "input title", class: "form-control" %>
                   <%= form.select :subject_id, Subject.where(project_id: @project.id).map { |subject| [subject.title, subject.id] }, {}, class: "form-control mt-1" %>
+                  <%= form.submit nil, class: "btn btn-info btn-sm mt-1"  %>
                 </div>
               </div>
               <div class="modal-footer">
-                <%= form.submit nil, class: "btn btn-info btn-sm"  %>
                 <% end %>
                 <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">閉じる</button>
               </div>
