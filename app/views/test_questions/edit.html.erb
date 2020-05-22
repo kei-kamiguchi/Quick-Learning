@@ -1,2 +1,8 @@
-<h1>TestQuestions#edit</h1>
-<p>Find me in app/views/test_questions/edit.html.erb</p>
+<div class="test_questions-edit">
+  <div class="container main-container">
+    <h3 class="main-title">Edit TestQuestion</h3>
+    <div class="form">
+      <%= render partial:'form', locals: { test: @test, test_question: @test_question } %>
+    </div>
+  </div>
+</div>

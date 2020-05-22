@@ -28,7 +28,7 @@ class TestQuestionsController < ApplicationController
 
   def update
     if @test_question.update(test_question_params)
-      redirect_to test_path(@test), notice: "問題を更新しました！"
+      redirect_to test_test_questions_path(@test_question.test), notice: "問題を更新しました！"
     else
       flash[:alert] = "問題を更新できませんでした。"
       render 'edit'

@@ -1,28 +1,24 @@
 <div class="tests-show">
   <div class="container main-container">
     <h3 class="main-title"><%= @test.title %></h3>
-    <%= form_with model: @user_answers, url: user_answers_path, local: true do |form| %>
-    <% @test_questions.each do |test_question|%>
-    <%= fields_for 'user_answers[]', test_question do |field| %>
-    <%= field.hidden_field :user_id, :value => current_user.id %>
-    <%= field.hidden_field :test_question_id, :value => test_question.id %>
+    <% @test_questions.each_with_index do |test_question, n|%>
     <% if test_question.title.present? %>
     <div class="field">
-      <%= test_question.title %>
+      <h4>問題<%= n+1 %>.　<%= test_question.title %></h4>
     </div>
     <% end %>
-    <div class="field">
+    <div class="field test-question-content">
       <%= test_question.content %>
     </div>
-    <div class="field">
-      <%= field.label :content %>
-      <%= field.text_area :content %>
+    <% if test_question.form_size == 6 || test_question.form_size == 12 %>
+    <div class="form-group">
+      <%= text_area_tag 'description', "", disabled: true, rows: 1, class: "form-control col-#{test_question.form_size}" %>
+    </div>
+    <% else %>
+    <div class="form-group">
+      <%= text_area_tag 'description', "", disabled: true, rows: test_question.form_size, class: "form-control form-area" %>
     </div>
     <% end %>
-    <% end %>
-    <div class="actions">
-      <%= form.submit %>
-    </div>
     <% end %>
   </div>
 </div>

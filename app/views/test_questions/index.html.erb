@@ -4,14 +4,14 @@
     <table class="table table-hover">
       <tbody>
         <tr>
-          <th><%= @test.title %></th>
+          <th><%= link_to @test.title, test_path(@test), class: "test-title" %></th>
           <th class="text-right"><%= link_to "", new_test_test_question_path(@test), class: "far fa-plus-square fa-lg new-part-icon" %></th>
         </tr>
         <% @test_questions.each do |test_question| %>
         <% if test_question.id.present? %>
         <tr>
           <td><%= link_to test_question.title, test_question_path(test_question), class: "test_question-title" %></td>
-          <td class="text-right"><%= link_to 'Edit', edit_test_question_path(test_question), class: "btn btn-outline-info btn-sm" %>
+          <td class="table-action"><%= link_to 'Edit', edit_test_question_path(test_question), class: "btn btn-outline-info btn-sm" %>
             <%= link_to 'Destroy', test_question_path(test_question), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
           </td>
         </tr>

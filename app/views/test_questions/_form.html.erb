@@ -1,6 +1,12 @@
-<%= form_with(model: [test, test_question], local: true) do |form| %>
-<div class="form-group row">
-  <%= form.text_field :title, placeholder: "input title", class: "form-control col-11" %><%= form.text_area :content, placeholder: "input content", class: "form-control col-11 mt-1" %><%= form.select :form_size, [1,2,3], {},
-  class: 'sample' %><%= form.submit nil, class: "btn btn-info btn-sm col-2 mt-1 ml-1"  %>
-</div>
-<% end %>
+  <%= form_with(model: [test, test_question], local: true) do |form| %>
+  <div class="form-group row">
+    <%= form.text_field :title, placeholder: "input title", class: "form-control" %><%= form.text_area :content, placeholder: "input content", rows: 5, class: "form-control mt-1" %>
+  </div>
+  <div class="form-inline float-right">
+    <%= form.label :解答欄の行数：, class: "control-label mb-2" %>
+    <%= form.select :form_size, {半行: 6, １行: 12, ２行: 2, ３行: 3, ４行: 4, ５行: 5}, {}, class: 'form-control mb-2' %>
+  </div>
+  <div class="form-group">
+    <%= form.submit nil, class: "btn btn-info btn-block"  %>
+  </div>
+  <% end %>
