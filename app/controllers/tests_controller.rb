@@ -1,5 +1,6 @@
 class TestsController < ApplicationController
-  before_action :set_test, only: [:show, :edit, :update, :destroy]
+  skip_before_action :admin_login_required
+  before_action :set_test, only: [:show, :edit, :update, :destroy, :entry]
   before_action :set_project, only: [:index, :create]
 
   def index
@@ -43,6 +44,14 @@ class TestsController < ApplicationController
     @test.destroy
     flash[:notice] = "テストを削除しました。"
     redirect_back(fallback_location: root_path)
+  end
+
+  def active
+    @tests = Test.where(project_id: user_project.id)
+  end
+
+  def entry
+    @test_questions = @test.test_questions
   end
 
   private

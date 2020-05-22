@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     get :project_launch, on: :member
     resources :categories, shallow: true
     resources :tests, shallow: true do
+      get :active, on: :collection
+      get :entry, on: :member
       resources :test_questions, shallow: true
     end
     resources :subjects, shallow: true do
@@ -47,4 +49,5 @@ Rails.application.routes.draw do
   resources :admin_choice_categories, only: [:create, :destroy]
   resources :user_choice_categories, only: [:create, :destroy]
   resources :achieveds, only: [:create, :destroy]
+  resources :user_answers
 end
