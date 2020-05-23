@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :categories, shallow: true
     resources :tests, shallow: true do
       get :active, on: :collection
+      patch :toggle_active
       get :entry, on: :member
       resources :test_questions, shallow: true
     end

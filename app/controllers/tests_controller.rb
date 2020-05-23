@@ -1,6 +1,6 @@
 class TestsController < ApplicationController
   skip_before_action :admin_login_required
-  before_action :set_test, only: [:show, :edit, :update, :destroy, :entry]
+  before_action :set_test, only: [:show, :edit, :update, :destroy, :entry, :toggle_active]
   before_action :set_project, only: [:index, :create]
 
   def index
@@ -47,17 +47,22 @@ class TestsController < ApplicationController
   end
 
   def active
-    @tests = Test.where(project_id: user_project.id)
+    @tests = Test.where(project_id: user_project.id, active: 1)
   end
 
   def entry
     @test_questions = @test.test_questions
   end
 
+  def toggle_active
+    @test.toggle_active!
+    redirect_back(fallback_location: root_path)
+  end
+
   private
 
   def set_test
-    @test = Test.find(params[:id])
+    @test = Test.find(params[:id] || params[:test_id])
   end
 
   def set_project
@@ -65,6 +70,6 @@ class TestsController < ApplicationController
   end
 
   def test_params
-    params.require(:test).permit(:project_id, :subject_id, :title)
+    params.require(:test).permit(:project_id, :subject_id, :title, :active)
   end
 end
