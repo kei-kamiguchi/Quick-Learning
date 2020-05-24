@@ -32,7 +32,7 @@ UserParticipation.create!(user_id: 1, project_id: 1)
   title = "未分類"
   Category.create!(title: title, project_id: 1)
 end
-subjects = ["RailsのためのRuby入門","Railsアプリケーションをのぞいてみよう","タスク管理アプリケーションを作ろう","現実の複雑さに対応する","テストをはじめよう","Railsの全体像を理解する","機能を追加してみよう","RailsとJavaScript","複数人でRailsアプリケーションを開発する","Railsアプリケーションと長く付き合うために"]
+subjects = ["1RailsのためのRuby入門","2Railsアプリケーションをのぞいてみよう","3タスク管理アプリケーションを作ろう","4現実の複雑さに対応する","5テストをはじめよう","6Railsの全体像を理解する","7機能を追加してみよう","8RailsとJavaScript","9複数人でRailsアプリケーションを開発する","10Railsアプリケーションと長く付き合うために"]
 subject_num = subjects.size
 subject_num.times do |n|
   title = subjects[n]

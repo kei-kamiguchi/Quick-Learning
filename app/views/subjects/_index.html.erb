@@ -5,7 +5,7 @@
       <th><%= category.title %></th>
       <th colspan="1", class="category-title"></th>
     </tr>
-    <% @subjects.where(category_id: category.id).each do |subject| %>
+    <% @subjects.each do |subject| %>
     <% if subject.id.present? %>
     <tr data-item-id=<%= "#{subject.id}" %> data-project-id=<%= "#{@project.id}" %> class="item">
       <td><%= link_to subject.title, subject_path(subject), class: "subject-title" %></td>

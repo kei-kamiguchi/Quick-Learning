@@ -50,7 +50,7 @@ class SubjectsController < ApplicationController
 
   def update_row_order
     @subject = Subject.find(subject_params[:subject_id])
-    @subject.row_order_position = subject_params[:row_order_position]
+    @subject.row_order_position = subject_params[:row_order_position].to_i-1
     @subject.save
 
     render body: nil
