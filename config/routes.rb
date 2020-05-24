@@ -38,14 +38,16 @@ Rails.application.routes.draw do
     end
     resources :subjects, shallow: true do
       post :update_row_order, on: :collection
-      resources :parts, except: [:index], shallow: true do
+      resources :parts, except: [:index, :update_row_order], shallow: true do
         resources :questions, shallow: true do
           resources :comments, shallow: true
         end
       end
     end
   end
-  resources :parts, only: [:index]
+  resources :parts, only: [:index, :update_row_order] do
+    post :update_row_order, on: :collection
+  end
   resources :user_participations, only: [:create, :destroy]
   resources :admin_participations, only: [:create, :destroy]
   resources :admin_choice_categories, only: [:create, :destroy]

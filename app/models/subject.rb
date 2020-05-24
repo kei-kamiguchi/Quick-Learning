@@ -1,6 +1,6 @@
 class Subject < ApplicationRecord
   include RankedModel
-  ranks :row_order, :with_same => :project_id
+  ranks :row_order, with_same: :project_id
 
   belongs_to :project
   belongs_to :category

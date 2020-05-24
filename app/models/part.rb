@@ -1,4 +1,7 @@
 class Part < ApplicationRecord
+  include RankedModel
+  ranks :row_order
+
   belongs_to :subject
   has_many :questions, dependent: :destroy
   has_many :achieveds, dependent: :destroy

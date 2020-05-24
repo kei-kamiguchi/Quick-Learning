@@ -1,14 +1,14 @@
-<table class="table table-hover">
+<table class="table table-hover" id="part-sortable">
   <tbody>
-    <% @subjects.each do |subject| %>
+    <% @subjects.each_with_index do |subject, index| %>
       <% if subject.id.present? %>
-        <tr>
+        <tr class="ui-state-disabled">
           <th><%= subject.title %></th>
           <th class="text-right"><%= link_to "", new_subject_part_path(subject), class: "far fa-plus-square fa-lg new-part-icon" %></th>
         </tr>
-        <% subject.parts.each do |part| %>
+        <% subject.parts.rank(:row_order).each do |part| %>
           <% if part.id.present? %>
-            <tr>
+            <tr data-index=<%= "#{index}" %> data-item-id=<%= "#{part.id}" %> class="item">
               <td><%= link_to part.title, part_path(part), class: "part-title" %></td>
               <td class="text-right"><%= link_to 'Edit', edit_part_path(part), class: "btn btn-outline-info btn-sm" %>
               <%= link_to 'Destroy', part_path(part), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %></td>

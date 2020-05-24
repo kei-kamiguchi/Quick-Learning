@@ -5,7 +5,6 @@ class SubjectsController < ApplicationController
   def index
     # @project = Project.includes(categories: :subjects).where(project_id: admin_project.id)
     @categories = Category.where(project_id: admin_project.id)
-    @subjects = Subject.where(project_id: admin_project.id).rank(:row_order)
     @subject = Subject.new
   end
 
@@ -50,7 +49,7 @@ class SubjectsController < ApplicationController
 
   def update_row_order
     @subject = Subject.find(subject_params[:subject_id])
-    @subject.row_order_position = subject_params[:row_order_position].to_i-1
+    @subject.row_order_position = subject_params[:row_order_position]
     @subject.save
 
     render body: nil

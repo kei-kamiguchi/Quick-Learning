@@ -4,7 +4,7 @@ class PartsController < ApplicationController
   before_action :set_subject, only: [:new, :create]
 
   def index
-    @subjects = Subject.eager_load(:parts).where(project_id: admin_project.id)
+    @subjects = Subject.eager_load(:parts).where(project_id: admin_project.id).rank(:row_order)
   end
 
   def new
@@ -48,6 +48,14 @@ class PartsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def update_row_order
+    @part = Part.find(part_params[:part_id])
+    @part.row_order_position = part_params[:row_order_position]
+    @part.save
+
+    render body: nil
+  end
+
   private
 
   def set_part
@@ -59,6 +67,6 @@ class PartsController < ApplicationController
   end
 
   def part_params
-    params.require(:part).permit(:title, :content, :subject_id)
+    params.require(:part).permit(:title, :content, :subject_id, :row_order_position, :part_id)
   end
 end

@@ -1,13 +1,13 @@
-<table class="table table-hover" id="sortable">
+<table class="table table-hover" id="subject-sortable">
   <tbody>
-    <% @categories.each do |category| %>
+    <% @categories.each_with_index do |category, index| %>
     <tr>
       <th><%= category.title %></th>
       <th colspan="1", class="category-title"></th>
     </tr>
-    <% @subjects.each do |subject| %>
+    <% category.subjects.rank(:row_order).each do |subject| %>
     <% if subject.id.present? %>
-    <tr data-item-id=<%= "#{subject.id}" %> data-project-id=<%= "#{@project.id}" %> class="item">
+    <tr data-index=<%= "#{index}" %> data-item-id=<%= "#{subject.id}" %> data-project-id=<%= "#{@project.id}" %> class="item">
       <td><%= link_to subject.title, subject_path(subject), class: "subject-title" %></td>
       <td class="text-right">
         <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#modal<%= subject.id %>">
