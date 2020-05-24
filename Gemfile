@@ -83,6 +83,8 @@ gem 'jquery-rails'
 gem 'enum_help'
 # sort
 gem 'ransack'
+gem 'ranked-model'
+gem 'jquery-ui-rails'
 # deploy
 gem 'dotenv-rails'
 gem 'unicorn'

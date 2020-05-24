@@ -4,7 +4,8 @@ class SubjectsController < ApplicationController
 
   def index
     # @project = Project.includes(categories: :subjects).where(project_id: admin_project.id)
-    @categories = Category.includes(subjects: :parts).where(project_id: admin_project.id)
+    @categories = Category.where(project_id: admin_project.id)
+    @subjects = Subject.where(project_id: admin_project.id).rank(:row_order)
     @subject = Subject.new
   end
 
@@ -47,6 +48,14 @@ class SubjectsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def update_row_order
+    @subject = Subject.find(subject_params[:subject_id])
+    @subject.row_order_position = subject_params[:row_order_position]
+    @subject.save
+
+    render body: nil
+  end
+
   private
 
   def set_subject
@@ -58,6 +67,6 @@ class SubjectsController < ApplicationController
   end
 
   def subject_params
-    params.require(:subject).permit(:project_id, :category_id, :title)
+    params.require(:subject).permit(:project_id, :category_id, :title, :row_order_position, :subject_id)
   end
 end

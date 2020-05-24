@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   include UserParticipationsHelper
   include AdminChoiceCategoriesHelper
   include UserChoiceCategoriesHelper
-  # CSRF対策
-  protect_from_forgery with: :exception
+  # CSRF対策(sortableを利用できるようajax使用時のみ除外している)
+  protect_from_forgery :except => [:update_row_order]
   # ログイン済の場合のみアクセスを許可
   before_action :login_required
   #ログアウト済の場合のみアクセスを許可

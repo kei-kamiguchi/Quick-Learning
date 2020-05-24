@@ -1,4 +1,7 @@
 class Subject < ApplicationRecord
+  include RankedModel
+  ranks :row_order
+
   belongs_to :project
   belongs_to :category
   has_many :parts, dependent: :destroy

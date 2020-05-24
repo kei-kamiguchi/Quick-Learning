@@ -37,8 +37,9 @@ Rails.application.routes.draw do
       resources :test_questions, shallow: true
     end
     resources :subjects, shallow: true do
+      post :update_row_order, on: :collection
       resources :parts, except: [:index], shallow: true do
-        resources :questions, except: [:index], shallow: true do
+        resources :questions, shallow: true do
           resources :comments, shallow: true
         end
       end
