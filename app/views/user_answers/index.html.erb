@@ -1,0 +1,19 @@
+<div class="user_answers-index">
+  <div class="container main-container">
+    <h3 class="main-title">UserAnswer Index</h3>
+    <table class="table table-hover">
+      <tbody>
+        <tr>
+          <th class="test-title"><%= @test.title %></th>
+        </tr>
+        <% @user_answers.each do |user_answer| %>
+        <% if user_answer.user.name.present? %>
+        <tr>
+          <td><%= link_to user_answer.user.name, user_answer_path(user_answer, user: user_answer.user, test: @test), class: "user-name" %></td>
+        </tr>
+        <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
