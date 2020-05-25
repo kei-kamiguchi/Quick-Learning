@@ -15,7 +15,7 @@ $(document).on 'turbolinks:load', ->
       stop: (e, ui) ->
         ui.item.removeClass('active-item-shadow')
         # highlight the row on drop to indicate an update
-        ui.item.children('td').effect('highlight', {}, 1000)
+        ui.item.children('td').effect('highlight', {color: "#17a2b8"}, 1000)
       update: (e, ui) ->
         item_id = ui.item.data('item-id')
         console.log(item_id)

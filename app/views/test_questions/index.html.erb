@@ -1,7 +1,7 @@
 <div class="test_questions-index">
   <div class="container main-container">
     <h3 class="main-title">TestQuestion Index</h3>
-    <table class="table table-hover">
+    <table class="table table-hover" id="test_question-sortable">
       <tbody>
         <tr>
           <th><%= link_to @test.title, test_path(@test), class: "test-title" %></th>
@@ -9,7 +9,7 @@
         </tr>
         <% @test_questions.each do |test_question| %>
         <% if test_question.id.present? %>
-        <tr>
+        <tr data-item-id=<%= "#{test_question.id}" %> data-test-id=<%= "#{@test.id}" %> class="item">
           <td><%= link_to test_question.title, test_question_path(test_question), class: "test_question-title" %></td>
           <td class="table-action"><%= link_to 'Edit', edit_test_question_path(test_question), class: "btn btn-outline-info btn-sm" %>
             <%= link_to 'Destroy', test_question_path(test_question), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>

@@ -24,7 +24,7 @@ class TestsController < ApplicationController
   end
 
   def show
-    @test_questions = @test.test_questions
+    @test_questions = @test.test_questions.rank(:row_order)
   end
 
   def edit
@@ -59,6 +59,14 @@ class TestsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def update_row_order
+    @test = Test.find(test_params[:test_id])
+    @test.row_order_position = test_params[:row_order_position]
+    @test.save
+
+    render body: nil
+  end
+
   private
 
   def set_test
@@ -70,6 +78,6 @@ class TestsController < ApplicationController
   end
 
   def test_params
-    params.require(:test).permit(:project_id, :subject_id, :title, :active)
+    params.require(:test).permit(:project_id, :subject_id, :title, :active, :row_order_position, :test_id)
   end
 end

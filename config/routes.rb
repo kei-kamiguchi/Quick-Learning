@@ -34,7 +34,10 @@ Rails.application.routes.draw do
       get :active, on: :collection
       patch :toggle_active
       get :entry, on: :member
-      resources :test_questions, shallow: true
+      post :update_row_order, on: :collection
+      resources :test_questions, shallow: true do
+        post :update_row_order, on: :collection
+      end
     end
     resources :subjects, shallow: true do
       post :update_row_order, on: :collection

@@ -1,13 +1,13 @@
-<table class="table table-hover">
+<table class="table table-hover" id="test-sortable">
   <tbody>
-    <% @subjects.each do |subject| %>
+    <% @subjects.each_with_index do |subject, index| %>
     <tr>
       <th><%= subject.title %></th>
       <th colspan="1", class="subject-title"></th>
     </tr>
-    <% subject.tests.each do |test| %>
+    <% subject.tests.rank(:row_order).each do |test| %>
     <% if test.id.present? %>
-    <tr>
+    <tr data-index=<%= "#{index}" %> data-item-id=<%= "#{test.id}" %> data-project-id=<%= "#{@project.id}" %> class="item">
       <td><%= link_to test.title, test_path(test), class: "test-title" %></td>
       <td class="text-right">
         <%= link_to test.active, test_toggle_active_path(test), method: :patch, class: "btn btn-outline-danger btn-sm" %>

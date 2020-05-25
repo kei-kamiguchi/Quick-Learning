@@ -3,7 +3,7 @@ class TestQuestionsController < ApplicationController
   before_action :set_test, only: [:index, :new, :create]
 
   def index
-    @test_questions = @test.test_questions
+    @test_questions = @test.test_questions.rank(:row_order)
   end
 
   def new
@@ -41,6 +41,14 @@ class TestQuestionsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def update_row_order
+    @test_question = TestQuestion.find(test_question_params[:test_question_id])
+    @test_question.row_order_position = test_question_params[:row_order_position]
+    @test_question.save
+
+    render body: nil
+  end
+
   private
 
   def set_test_question
@@ -52,6 +60,6 @@ class TestQuestionsController < ApplicationController
   end
 
   def test_question_params
-    params.require(:test_question).permit(:test_id, :title, :content, :form_size)
+    params.require(:test_question).permit(:test_id, :title, :content, :form_size, :row_order_position, :test_question_id)
   end
 end

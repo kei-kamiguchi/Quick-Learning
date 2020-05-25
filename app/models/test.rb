@@ -1,4 +1,7 @@
 class Test < ApplicationRecord
+  include RankedModel
+  ranks :row_order
+
   belongs_to :project
   belongs_to :subject
   has_many :test_questions, dependent: :destroy
