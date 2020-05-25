@@ -3,19 +3,19 @@
     <h3 class="main-title"><%= @test.title %></h3>
     <% @test_questions.each_with_index do |test_question, n|%>
     <% if test_question.title.present? %>
-    <div class="field">
-      <h4>問題<%= n+1 %>.　<%= test_question.title %></h4>
+    <div class="test-question-title">
+      <h5>問題<%= n+1 %>.　<%= test_question.title %></h5>
     </div>
     <% end %>
-    <div class="field test-question-content">
-      <%= test_question.content %>
+    <div class="test-question-content">
+      <%= simple_format(h(test_question.content), {}, sanitize: false, wrapper_tag: "div") %>
     </div>
     <% if test_question.form_size == 6 || test_question.form_size == 12 %>
-    <div class="form-group">
+    <div class="form-group form-answer">
       <%= text_area_tag 'description', "", disabled: true, rows: 1, class: "form-control col-#{test_question.form_size}" %>
     </div>
     <% else %>
-    <div class="form-group">
+    <div class="form-group form-answer">
       <%= text_area_tag 'description', "", disabled: true, rows: test_question.form_size, class: "form-control form-area" %>
     </div>
     <% end %>

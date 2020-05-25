@@ -56,6 +56,9 @@ class TestsController < ApplicationController
 
   def toggle_active
     @test.toggle_active!
+    if @test.active=="active"
+      flash[:notice] = "「#{@test.title}」をactiveにしました！"
+    end
     redirect_back(fallback_location: root_path)
   end
 
@@ -63,7 +66,6 @@ class TestsController < ApplicationController
     @test = Test.find(test_params[:test_id])
     @test.row_order_position = test_params[:row_order_position]
     @test.save
-
     render body: nil
   end
 

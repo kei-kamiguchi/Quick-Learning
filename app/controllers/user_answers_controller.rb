@@ -12,9 +12,10 @@ class UserAnswersController < ApplicationController
       UserAnswer.create(
         user_id: value['user_id'],
         test_question_id: value['test_question_id'],
-        answer: value['content']
+        answer: value['answer']
       )
     end
+    redirect_to current_user, notice: "テストが終了しました！お疲れ様です！"
   end
 
   private
