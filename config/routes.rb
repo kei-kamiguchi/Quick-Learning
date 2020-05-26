@@ -56,5 +56,7 @@ Rails.application.routes.draw do
   resources :admin_choice_categories, only: [:create, :destroy]
   resources :user_choice_categories, only: [:create, :destroy]
   resources :achieveds, only: [:create, :destroy]
-  resources :user_answers
+  resources :user_answers do
+    get :check, on: :collection
+  end
 end

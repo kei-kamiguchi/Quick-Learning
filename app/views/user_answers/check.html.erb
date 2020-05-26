@@ -1,9 +1,8 @@
 <div class="tests-entry">
   <div class="container main-container">
-    <h3 class="main-title"><%= @test_title %></h3>
-    <%= form_with model: @user_answers, url: user_answer_path, method: :put, local: true do |form| %>
-    <% @specific_user_answers.each_with_index do |user_answer, n|%>
-    <%= fields_for 'user_answers[]', user_answer do |field| %>
+    <h3 class="main-title"><%= @test.title %></h3>
+    <% @user_answers.each_with_index do |user_answer, n|%>
+    <%= form_with model: user_answer do |form| %>
     <% if user_answer.title.present? %>
     <div class="test-question-title">
       <h5>問題<%= n+1 %>.　<%= user_answer.title %></h5>
@@ -18,17 +17,18 @@
     <div class="test-question-content">
       <%= simple_format(h(user_answer.answer), {}, sanitize: false, wrapper_tag: "div") %>
     </div>
-    <div class="test-question-content">
-      <%= simple_format(h(user_answer.description), {}, sanitize: false, wrapper_tag: "div") %>
+
+    <div id="description<%= user_answer.id %>_area" class="test-question-content">
+      <%= render partial: 'user_answers/description', locals: { user_answer: user_answer } %>
     </div>
+
     <div class="form-group form-answer">
-      <%= field.text_area :memo, class: "form-control" %>
+      <%= form.text_area :description, class: "form-control" %>
     </div>
-    <% end %>
-    <% end %>
     <div class="action">
       <%= form.submit nil, class: 'btn btn-info btn-block' %>
     </div>
+    <% end %>
     <% end %>
   </div>
 </div>

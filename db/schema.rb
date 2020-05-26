@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_032348) do
+ActiveRecord::Schema.define(version: 2020_05_26_074622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_032348) do
     t.bigint "test_id"
     t.integer "row_order"
     t.text "answer"
+    t.text "correct_answer", null: false
     t.index ["test_id"], name: "index_test_questions_on_test_id"
   end
 
@@ -156,6 +157,13 @@ ActiveRecord::Schema.define(version: 2020_05_25_032348) do
     t.text "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "content", null: false
+    t.text "description"
+    t.text "memo"
+    t.text "correct_answer", null: false
+    t.integer "test_id"
+    t.string "test_title"
   end
 
   create_table "user_choice_categories", force: :cascade do |t|

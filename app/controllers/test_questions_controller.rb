@@ -60,6 +60,6 @@ class TestQuestionsController < ApplicationController
   end
 
   def test_question_params
-    params.require(:test_question).permit(:test_id, :title, :content, :form_size, :row_order_position, :test_question_id)
+    params.require(:test_question).permit(:test_id, :title, :content, :correct_answer, :form_size, :row_order_position, :test_question_id)
   end
 end

@@ -6,6 +6,11 @@
     <%= fields_for 'user_answers[]', test_question do |field| %>
     <%= field.hidden_field :user_id, :value => current_user.id %>
     <%= field.hidden_field :test_question_id, :value => test_question.id %>
+    <%= field.hidden_field :test_id, :value => @test.id %>
+    <%= field.hidden_field :test_title, :value => @test.title %>
+    <%= field.hidden_field :title, :value => test_question.title %>
+    <%= field.hidden_field :content, :value => test_question.content %>
+    <%= field.hidden_field :correct_answer, :value => test_question.correct_answer %>
     <% if test_question.title.present? %>
     <div class="test-question-title">
       <%= test_question.title %>
