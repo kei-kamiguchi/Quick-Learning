@@ -26,24 +26,29 @@
   .achievement-information-container {
     margin-top: 15px;
     padding-top: 15px;
-    a {
-      display: block;
-      color: #777777;
-      padding: 7px 10px;
+    .action {
+      margin-bottom: 10px;
     }
-    a:hover {
-      text-decoration: none;
-      color: #333333;
-    }
-    .fa-circle {
-      margin-right: 15px;
-      font-size: 1.5rem;
-    }
-    .achieved-icon {
-      color: red;
-    }
-    .unachieved-icon {
-      color: #EEEEEE;
+    table {
+      a {
+        display: block;
+        color: #777777;
+        padding: 7px 10px;
+      }
+      a:hover {
+        text-decoration: none;
+        color: #333333;
+      }
+      .fa-circle {
+        margin-right: 15px;
+        font-size: 1.5rem;
+      }
+      .achieved-icon {
+        color: red;
+      }
+      .unachieved-icon {
+        color: #EEEEEE;
+      }
     }
   }
 }

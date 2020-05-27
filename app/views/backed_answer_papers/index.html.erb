@@ -1,0 +1,29 @@
+<div class="users-show">
+  <div class="container main-container user-information-container">
+    <h3 class="main-title"><%= current_user.name %></h3>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th><%= User.human_attribute_name(:email) %></th>
+        </tr>
+        <tr>
+          <td><%= current_user.email %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="container main-container achievement-information-container">
+    <div class="action">
+      <%= link_to "カリキュラム一覧に切り替える", current_user, class: "btn btn-login btn-block btn-sm" %>
+    </div>
+    <table class="table table-hover">
+      <tbody>
+        <% @backed_answer_papers.each do |backed_answer_paper| %>
+        <tr>
+          <td><%= link_to Test.find(backed_answer_paper.test_id).title, check_backed_answer_papers_path(test: backed_answer_paper.test_id) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

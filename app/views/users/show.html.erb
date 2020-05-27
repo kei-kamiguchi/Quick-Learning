@@ -14,6 +14,9 @@
   </div>
   <% if user_choosed_category.subjects.present? %>
   <div class="container main-container achievement-information-container">
+    <div class="action">
+      <%= link_to "テスト一覧に切り替える", backed_answer_papers_path, class: "btn btn-login btn-block btn-sm" %>
+    </div>
     <table class="table table-hover">
       <tbody>
         <% user_choosed_category.subjects.each do |subject| %>
