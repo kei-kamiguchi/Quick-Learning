@@ -22,5 +22,6 @@
       <%= render partial: 'answer_papers/description', locals: { answer_paper: answer_paper } %>
     </div>
     <% end %>
+    <%= link_to @answer_papers.last.checked, answer_paper_toggle_checked_path(@answer_papers.last, test: @test), method: :patch, class: "btn btn-info btn-block btn-sm checked-toggle-btn" %>
   </div>
 </div>

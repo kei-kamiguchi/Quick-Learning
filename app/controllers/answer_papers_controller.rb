@@ -2,8 +2,13 @@ class AnswerPapersController < ApplicationController
   skip_before_action :admin_login_required
 
   def index
+    # @test = Test.find(params[:test])
+    # @test_question = AnswerPaper.where(test_id: @test.id).last
+    # @users = @test_question.answer_paper_users
     @test = Test.find(params[:test])
-    @answer_papers = AnswerPaper.where(test_id: @test.id).select(:user_id).distinct
+    @test_questions = TestQuestion.where(test_id: @test.id).rank(:row_order)
+    @test_question = @test_questions.last
+    @answer_papers = AnswerPaper.where(test_question_id: @test_question)
   end
 # 以下おそらく不要
   # def new
@@ -43,7 +48,18 @@ class AnswerPapersController < ApplicationController
     @answer_paper = AnswerPaper.find(params[:id])
     respond_to do |format|
       if @answer_paper.update(answer_paper_params)
-        @answer_paper.toggle_status!
+        @answer_paper.toggle_edit!
+        format.js { render :description } if answer_paper_params.has_key?(:description)
+      else
+        format.html { redirect_to check_answer_papers_path, notice: '投稿できませんでした...' }
+      end
+    end
+  end
+
+  def toggle_edit
+    @answer_paper = AnswerPaper.find(params[:id] || params[:answer_paper_id])
+    respond_to do |format|
+      if @answer_paper.toggle_edit!
         format.js { render :description }
       else
         format.html { redirect_to check_answer_papers_path, notice: '投稿できませんでした...' }
@@ -51,15 +67,10 @@ class AnswerPapersController < ApplicationController
     end
   end
 
-  def toggle_status
+  def toggle_checked
     @answer_paper = AnswerPaper.find(params[:id] || params[:answer_paper_id])
-    respond_to do |format|
-      if @answer_paper.toggle_status!
-        format.js { render :description }
-      else
-        format.html { redirect_to check_answer_papers_path, notice: '投稿できませんでした...' }
-      end
-    end
+    @answer_paper.toggle_checked!
+    redirect_to answer_papers_path(test: params[:test])
   end
 
   private

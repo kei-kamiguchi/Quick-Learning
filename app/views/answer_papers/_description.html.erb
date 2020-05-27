@@ -6,7 +6,7 @@
 </div>
 <% end %>
 <div class="action text-right">
-  <%= link_to answer_paper.edit, answer_paper_toggle_status_path(answer_paper), method: :patch, remote: true, class: "btn btn-outline-info btn-sm" %>
+  <%= link_to answer_paper.edit, answer_paper_toggle_edit_path(answer_paper), method: :patch, remote: true, class: "btn btn-outline-info btn-sm" %>
 </div>
 <% else %>
 <div class="test-question-content">

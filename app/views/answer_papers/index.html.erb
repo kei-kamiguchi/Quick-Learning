@@ -5,13 +5,19 @@
       <tbody>
         <tr>
           <th class="test-title"><%= @test.title %></th>
+          <th colspan="1"></th>
         </tr>
         <% @answer_papers.each do |answer_paper| %>
-        <% if answer_paper.user.name.present? %>
         <tr>
           <td><%= link_to answer_paper.user.name, check_answer_papers_path(test: @test, user: answer_paper.user), class: "user-name" %></td>
+          <td class="icon text-right">
+            <% if answer_paper.checked == "unchecked" %>
+            <i class="fas fa-check checked-icon"></i>
+            <% else %>
+            <i class="fas fa-check unchecked-icon"></i>
+            <% end %>
+          </td>
         </tr>
-        <% end %>
         <% end %>
       </tbody>
     </table>
