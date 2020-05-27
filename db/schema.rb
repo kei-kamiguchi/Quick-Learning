@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_26_142911) do
+ActiveRecord::Schema.define(version: 2020_05_27_024504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,22 @@ ActiveRecord::Schema.define(version: 2020_05_26_142911) do
     t.index ["invited_by_id"], name: "index_admins_on_invited_by_id"
     t.index ["invited_by_type", "invited_by_id"], name: "index_admins_on_invited_by_type_and_invited_by_id"
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "answer_papers", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "test_question_id"
+    t.text "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.text "content", null: false
+    t.text "description"
+    t.text "memo"
+    t.text "correct_answer", null: false
+    t.integer "test_id"
+    t.string "test_title"
+    t.integer "edit", default: 0, null: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -149,22 +165,6 @@ ActiveRecord::Schema.define(version: 2020_05_26_142911) do
     t.integer "row_order"
     t.index ["project_id"], name: "index_tests_on_project_id"
     t.index ["subject_id"], name: "index_tests_on_subject_id"
-  end
-
-  create_table "user_answers", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "test_question_id"
-    t.text "answer"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "title"
-    t.text "content", null: false
-    t.text "description"
-    t.text "memo"
-    t.text "correct_answer", null: false
-    t.integer "test_id"
-    t.string "test_title"
-    t.integer "edit", default: 0, null: false
   end
 
   create_table "user_choice_categories", force: :cascade do |t|

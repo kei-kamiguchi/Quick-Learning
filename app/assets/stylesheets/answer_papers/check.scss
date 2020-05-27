@@ -1,4 +1,4 @@
-.user_answers-show{
+.answer_papers-check{
   padding: 140px 0 50px;
   .main-container {
     background-color: #fff;
@@ -17,6 +17,12 @@
   .test-question-content {
     margin-top: 50px;
     word-break: break-all;
+  }
+  .text-description {
+    border-bottom: solid 1px #777777;
+  }
+  #description {
+    background-color: #fff;
   }
   .action {
     margin-bottom: 10px;

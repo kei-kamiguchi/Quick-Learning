@@ -1,4 +1,4 @@
-<div class="user_answers-index">
+<div class="answer_papers-index">
   <div class="container main-container">
     <h3 class="main-title">UserAnswer Index</h3>
     <table class="table table-hover">
@@ -6,10 +6,10 @@
         <tr>
           <th class="test-title"><%= @test.title %></th>
         </tr>
-        <% @user_answers.each do |user_answer| %>
-        <% if user_answer.user.name.present? %>
+        <% @answer_papers.each do |answer_paper| %>
+        <% if answer_paper.user.name.present? %>
         <tr>
-          <td><%= link_to user_answer.user.name, check_user_answers_path(test: @test, user: user_answer.user), class: "user-name" %></td>
+          <td><%= link_to answer_paper.user.name, check_answer_papers_path(test: @test, user: answer_paper.user), class: "user-name" %></td>
         </tr>
         <% end %>
         <% end %>

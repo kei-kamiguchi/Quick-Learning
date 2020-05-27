@@ -7,8 +7,8 @@ class User < ApplicationRecord
   has_many :user_choice_category_categories, through: :user_choice_categories, source: :category
   has_many :achieveds, dependent: :destroy
   has_many :achieved_parts, through: :achieveds, source: :part
-  has_many :user_answers, dependent: :destroy
-  has_many :user_answer_test_questions, through: :user_answers, source: :test_question
+  has_many :answer_papers, dependent: :destroy
+  has_many :answer_paper_test_questions, through: :answer_papers, source: :test_question
 
   devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, invite_for: 24.hours
   validates :name, presence: true

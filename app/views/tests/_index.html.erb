@@ -10,8 +10,8 @@
     <tr data-index=<%= "#{index}" %> data-item-id=<%= "#{test.id}" %> data-project-id=<%= "#{@project.id}" %> class="item">
       <td><%= link_to test.title, test_path(test), class: "test-title" %></td>
       <td class="text-right">
-        <% if TestQuestion.where(test_id: test.id).first&.user_answer_users.present? %>
-        <%= link_to "answer", user_answers_path(test: test), class: "btn btn-outline-info btn-sm" %>
+        <% if TestQuestion.where(test_id: test.id).first&.answer_paper_users.present? %>
+        <%= link_to "answer", answer_papers_path(test: test), class: "btn btn-outline-info btn-sm" %>
         <% end %>
         <%= link_to test.active, test_toggle_active_path(test), method: :patch, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %>
         <%= link_to 'index', test_test_questions_path(test), class: "btn btn-outline-info btn-sm" %>

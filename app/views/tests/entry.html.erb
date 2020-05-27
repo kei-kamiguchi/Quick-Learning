@@ -1,9 +1,9 @@
 <div class="tests-entry">
   <div class="container main-container">
     <h3 class="main-title"><%= @test.title %></h3>
-    <%= form_with model: @user_answers, url: user_answers_path, local: true do |form| %>
+    <%= form_with model: @answer_papers, url: answer_papers_path, local: true do |form| %>
     <% @test_questions.each do |test_question|%>
-    <%= fields_for 'user_answers[]', test_question do |field| %>
+    <%= fields_for 'answer_papers[]', test_question do |field| %>
     <%= field.hidden_field :user_id, :value => current_user.id %>
     <%= field.hidden_field :test_question_id, :value => test_question.id %>
     <%= field.hidden_field :test_id, :value => @test.id %>
