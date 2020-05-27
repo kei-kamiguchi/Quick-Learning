@@ -9,6 +9,7 @@ class AnswerPapersController < ApplicationController
     @test_questions = TestQuestion.where(test_id: @test.id).rank(:row_order)
     @test_question = @test_questions.last
     @answer_papers = AnswerPaper.where(test_question_id: @test_question)
+    @specific_test_answer_papers = AnswerPaper.where(test_id: @test.id)
   end
 # 以下おそらく不要
   # def new
@@ -54,6 +55,18 @@ class AnswerPapersController < ApplicationController
         format.html { redirect_to check_answer_papers_path, notice: '投稿できませんでした...' }
       end
     end
+  end
+
+  def back
+    @test = Test.find(params[:test])
+    if params.has_key?(:user)
+      @user = User.find(params[:user])
+      @answer_paper = AnswerPaper.where(test_id: @test.id, user_id: @user.id)
+    else
+      @answer_paper = AnswerPaper.where(test_id: @test.id)
+    end
+    @answer_paper.update_all(backed: true)
+    redirect_to project_tests_path(admin_project)
   end
 
   def toggle_edit

@@ -6,10 +6,13 @@
         <tr>
           <th class="test-title"><%= @test.title %></th>
           <th colspan="1"></th>
+          <th class="text-right"><%= link_to "全生徒に返却する", back_answer_papers_path(test: @test), method: :patch, class: "btn btn-info btn-sm checked-toggle-btn" %></th>
         </tr>
         <% @answer_papers.each do |answer_paper| %>
+        <% if answer_paper.backed == false %>
         <tr>
           <td><%= link_to answer_paper.user.name, check_answer_papers_path(test: @test, user: answer_paper.user), class: "user-name" %></td>
+          <td><%= link_to "返却する", back_answer_papers_path(test: @test, user: answer_paper.user), method: :patch, class: "btn btn-info btn-sm checked-toggle-btn" %></td>
           <td class="icon text-right">
             <% if answer_paper.checked == "unchecked" %>
             <i class="fas fa-check checked-icon"></i>
@@ -18,6 +21,7 @@
             <% end %>
           </td>
         </tr>
+        <% end %>
         <% end %>
       </tbody>
     </table>

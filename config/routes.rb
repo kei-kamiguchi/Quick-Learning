@@ -60,5 +60,6 @@ Rails.application.routes.draw do
     get :check, on: :collection
     patch :toggle_edit
     patch :toggle_checked
+    patch :back, on: :collection
   end
 end
