@@ -36,13 +36,25 @@ class UserAnswersController < ApplicationController
 
   def check
     @test = Test.find(params[:test])
-    @user_answers = UserAnswer.where(test_id: @test.id, user_id: params[:user])
+    @user_answers = UserAnswer.where(test_id: @test.id, user_id: params[:user]).order(created_at: :asc)
   end
 
   def update
     @user_answer = UserAnswer.find(params[:id])
     respond_to do |format|
       if @user_answer.update(user_answer_params)
+        @user_answer.toggle_status!
+        format.js { render :description }
+      else
+        format.html { redirect_to check_user_answers_path, notice: '投稿できませんでした...' }
+      end
+    end
+  end
+
+  def toggle_status
+    @user_answer = UserAnswer.find(params[:id] || params[:user_answer_id])
+    respond_to do |format|
+      if @user_answer.toggle_status!
         format.js { render :description }
       else
         format.html { redirect_to check_user_answers_path, notice: '投稿できませんでした...' }
@@ -53,7 +65,7 @@ class UserAnswersController < ApplicationController
   private
 
   def user_answer_params
-    params.require(:user_answer).permit(:description, :memo)
+    params.require(:user_answer).permit(:description, :memo, :user_answer_id)
   end
 # ここはセキュリティー的に大丈夫？
   def user_answers_params

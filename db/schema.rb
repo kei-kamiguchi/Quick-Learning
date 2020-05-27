@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_26_074622) do
+ActiveRecord::Schema.define(version: 2020_05_26_142911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -164,6 +164,7 @@ ActiveRecord::Schema.define(version: 2020_05_26_074622) do
     t.text "correct_answer", null: false
     t.integer "test_id"
     t.string "test_title"
+    t.integer "edit", default: 0, null: false
   end
 
   create_table "user_choice_categories", force: :cascade do |t|

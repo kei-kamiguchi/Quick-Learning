@@ -58,5 +58,6 @@ Rails.application.routes.draw do
   resources :achieveds, only: [:create, :destroy]
   resources :user_answers do
     get :check, on: :collection
+    patch :toggle_status
   end
 end
