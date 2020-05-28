@@ -31,9 +31,7 @@ Rails.application.routes.draw do
     get :project_launch, on: :member
     resources :categories, shallow: true
     resources :tests, shallow: true do
-      get :active, on: :collection
       patch :toggle_active
-      get :entry, on: :member
       post :update_row_order, on: :collection
       resources :test_questions, shallow: true do
         post :update_row_order, on: :collection
@@ -65,5 +63,5 @@ Rails.application.routes.draw do
   resources :backed_answer_papers do
     get :check, on: :collection
   end
-  resources :testings, only: [:create, :destroy]
+  resources :testings
 end

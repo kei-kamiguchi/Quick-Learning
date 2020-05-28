@@ -1,6 +1,6 @@
 class AnswerPaper < ApplicationRecord
   belongs_to :user
-  belongs_to :test_question
+  # belongs_to :test_question
 
   enum edit: { edit: 0, editing: 1 }
   enum checked: { checked: 0, unchecked: 1 }
@@ -15,7 +15,7 @@ class AnswerPaper < ApplicationRecord
       edit!
     end
   end
-  
+
   def toggle_checked!
     if checked?
       unchecked!

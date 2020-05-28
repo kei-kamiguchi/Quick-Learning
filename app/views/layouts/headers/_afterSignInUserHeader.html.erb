@@ -22,7 +22,7 @@
     <%= render partial: 'layouts/notification' %>
     <% end %>
     <% if user_project.tests.where(active: 1).present? %>
-    <%= link_to "テスト", active_project_tests_path(user_project), class: "btn btn-test" %>
+    <%= link_to "テスト", testings_path, class: "btn btn-test" %>
     <% end %>
     <%= link_to "マイページ", current_user %>
     <div class="dropdown">

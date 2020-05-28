@@ -18,10 +18,12 @@
       <p class="text-description">正解</p>
       <%= simple_format(h(answer_paper.correct_answer), {}, sanitize: false, wrapper_tag: "div") %>
     </div>
+    <% if answer_paper.description.present? %>
     <div class="test-question-content">
       <p class="text-description">アドバイス</p>
       <%= simple_format(h(answer_paper.description), {}, sanitize: false, wrapper_tag: "div") %>
     </div>
+    <% end %>
     <div id="memo<%= answer_paper.id %>_area" class="test-question-content">
       <%= render partial: 'answer_papers/memo', locals: { answer_paper: answer_paper } %>
     </div>

@@ -1,8 +1,8 @@
-<div class="tests-entry">
+<div class="testings-show">
   <div class="container main-container">
     <h3 class="main-title"><%= @test.title %></h3>
     <%= form_with model: @answer_papers, url: answer_papers_path, local: true do |form| %>
-    <% @test_questions.each do |test_question|%>
+    <% @test_questions.each_with_index do |test_question, n|%>
     <%= fields_for 'answer_papers[]', test_question do |field| %>
     <%= field.hidden_field :user_id, :value => current_user.id %>
     <%= field.hidden_field :test_question_id, :value => test_question.id %>
@@ -13,20 +13,21 @@
     <%= field.hidden_field :correct_answer, :value => test_question.correct_answer %>
     <% if test_question.title.present? %>
     <div class="test-question-title">
-      <%= test_question.title %>
+      <h5>問題<%= n+1 %>.　<%= test_question.title %></h5>
     </div>
     <% end %>
     <div class="test-question-content">
       <%= simple_format(h(test_question.content), {}, sanitize: false, wrapper_tag: "div") %>
     </div>
-
     <% if test_question.form_size == 6 || test_question.form_size == 12 %>
-    <div class="form-group form-answer">
+    <div class="form-group form">
+      <%= field.label :answer %>
       <%= field.text_area :answer, rows: 1, class: "form-control col-#{test_question.form_size}" %>
     </div>
     <% else %>
-    <div class="form-group form-answer">
-      <%= field.text_area :answer, rows: test_question.form_size, class: "form-control form-area" %>
+    <div class="form-group form">
+      <%= field.label :answer %>
+      <%= field.text_area :answer, rows: test_question.form_size, class: "form-control" %>
     </div>
     <% end %>
     <% end %>
