@@ -21,7 +21,9 @@ Rails.application.routes.draw do
     invitations: 'users/invitations'
   }
   resources :users, only: [:index, :show, :destroy]
-  resources :admins, only: [:index, :show, :destroy]
+  resources :admins, only: [:index, :show, :destroy, :toggle_admin] do
+    patch :toggle_admin
+  end
 # プロジェクトに関するルーティング
   resources :questions, only: [:my_question_index, :index] do
     get :my_question_index, on: :collection, as: :self

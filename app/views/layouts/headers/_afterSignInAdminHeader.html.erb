@@ -23,7 +23,7 @@
     <%= render partial: 'layouts/notification' %>
     <% end %>
   <%= link_to "マイページ", current_admin %>
-  <% if current_admin.admin? %>
+  <% if current_admin.admin == "true" %>
   <div class="dropdown">
     <button type="button" id="dropdown1"
     class="btn"

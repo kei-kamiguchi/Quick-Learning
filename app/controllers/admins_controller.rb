@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  before_action :set_admin, only: [:destroy, :show]
+  before_action :set_admin, only: [:destroy, :show, :toggle_admin]
 
   def index
     @admins = admin_project.admin_participation_admins
@@ -14,9 +14,14 @@ class AdminsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def toggle_admin
+    @admin.toggle_admin!
+    redirect_back(fallback_location: root_path)
+  end
+
   private
 
   def set_admin
-    @admin = Admin.find(params[:id])
+    @admin = Admin.find(params[:id] || params[:admin_id])
   end
 end

@@ -6,7 +6,7 @@
                email: email,
                password: password,
                password_confirmation: password,
-               admin: true
+               admin: 1
                )
 end
 1.times do |n|
