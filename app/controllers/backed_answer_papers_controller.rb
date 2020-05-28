@@ -6,7 +6,7 @@ class BackedAnswerPapersController < ApplicationController
   end
 
   def check
-    @test = AnswerPaper.find_by(test_id: params[:test])
-    @answer_papers = AnswerPaper.where(test_id: params[:test], user_id: current_user.id)
+    @test = AnswerPaper.find_by(test_id: params[:test_id])
+    @answer_papers = AnswerPaper.where(test_id: params[:test_id], user_id: current_user.id)
   end
 end

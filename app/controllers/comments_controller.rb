@@ -9,8 +9,8 @@ class CommentsController < ApplicationController
     @comment.admin_id = current_admin.id if admin_signed_in?
     respond_to do |format|
       if @comment.save
-        @question.update(reply: true, checked_by_user: false) if admin_signed_in? && @question.reply == false
-        @question.update(reply: false) if user_signed_in? && @question.reply == true
+        @question.update(reply: true, checked_by_user: false) if admin_signed_in?
+        @question.update(reply: false) if user_signed_in?
         format.js { render :index }
       else
         format.html { redirect_to question_path(@question), alert: 'コメントが投稿できませんでした。' }
@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
       flash[:notice] = "コメントを編集しました！"
       redirect_back(fallback_location: root_path)
     else
-      flash[:alert] = "コメントを更新できません！"
+      flash[:alert] = "コメントを編集できませんでした！"
       render 'edit'
     end
   end

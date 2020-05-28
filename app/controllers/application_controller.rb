@@ -3,18 +3,13 @@ class ApplicationController < ActionController::Base
   include UserParticipationsHelper
   include AdminChoiceCategoriesHelper
   include UserChoiceCategoriesHelper
-  # CSRF対策(sortableを利用できるようajax使用時のみ除外している)
+  # CSRF対策(sortableを利用できるため、ajax使用時のみ除外している)
   protect_from_forgery :except => [:update_row_order]
-  # ログイン済の場合のみアクセスを許可
   before_action :login_required
-  #ログアウト済の場合のみアクセスを許可
   before_action :logout_required, if: :devise_controller?
-  # adminユーザーのみアクセスを許可
   before_action :admin_login_required
-  #カテゴリの選択していなければアクセスを拒否
   before_action :category_choice_required, unless: :devise_controller?
-  #テストにエントリー中のフラグをリセット
-  before_action :entry_reset, if: :user_signed_in?
+  before_action :test_entry_exit, if: :user_signed_in?
   # ログイン後の遷移先を分岐
   def after_sign_in_path_for(resource)
     case resource
@@ -62,7 +57,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def entry_reset
+  def test_entry_exit
     Testing.where(user_id: current_user.id).destroy_all if current_user.testings.present?
   end
 

@@ -12,7 +12,8 @@
   <h4 class="dropdown-header">新たな質問が届いています！</h4>
   <div class="dropdown-divider"></div>
   <% Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).where(checked_by_admin: false).each do |question| %>
-  <%= question.created_at %>
+  <p><%= question.created_at %></p>
+  <p><%= question.user.name %></p>
   <%= link_to question.title, question_path(question), class: "dropdown-item" %>
   <div class="dropdown-divider"></div>
   <% end %>
@@ -21,7 +22,8 @@
   <h4 class="dropdown-header">新たなコメントが届いています！</h4>
   <div class="dropdown-divider"></div>
   <% Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).where(reply: false).each do |question| %>
-  <%= question.updated_at %>
+  <p><%= question.updated_at %></p>
+  <p><%= question.user.name %></p>
   <%= link_to question.title, question_path(question), class: "dropdown-item" %>
   <div class="dropdown-divider"></div>
   <% end %>

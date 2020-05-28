@@ -1,23 +1,13 @@
 class AnswerPapersController < ApplicationController
   skip_before_action :admin_login_required
-  skip_before_action :entry_reset, only: [:create]
+  skip_before_action :test_entry_exit, only: [:create]
+  before_action :set_test, only: [:index, :check, :back]
 
   def index
-    # @test = Test.find(params[:test])
-    # @test_question = AnswerPaper.where(test_id: @test.id).last
-    # @users = @test_question.answer_paper_users
-    @test = Test.find(params[:test])
     @test_questions = TestQuestion.where(test_id: @test.id).rank(:row_order)
     @test_question = @test_questions.last
     @answer_papers = AnswerPaper.where(test_question_id: @test_question)
-    @specific_test_answer_papers = AnswerPaper.where(test_id: @test.id)
   end
-# 以下おそらく不要
-  # def new
-  #   @test = Test.find(params[:id])
-  #   @test_questions = @test.test_questions
-  #   @answer_papers = AnswerPaper.new
-  # end
 
   def create
     @answer_papers = answer_papers_params.values.each do |value|
@@ -35,14 +25,7 @@ class AnswerPapersController < ApplicationController
     redirect_to current_user, notice: "テストが終了しました！お疲れ様です！"
   end
 
-  # def edit
-  #   @answer_paper = AnswerPaper.find(params[:id])
-  #   @test_title = @answer_paper.test_title
-  #   @answer_papers = AnswerPaper.where(test_id: @answer_paper.test_id, user_id: @answer_paper.user_id)
-  # end
-
   def check
-    @test = Test.find(params[:test])
     @answer_papers = AnswerPaper.where(test_id: @test.id, user_id: params[:user]).order(created_at: :asc)
   end
 
@@ -54,13 +37,12 @@ class AnswerPapersController < ApplicationController
         format.js { render :description } if answer_paper_params.has_key?(:description)
         format.js { render :memo } if answer_paper_params.has_key?(:memo)
       else
-        format.html { redirect_to check_answer_papers_path, notice: '投稿できませんでした...' }
+        format.html { redirect_to check_answer_papers_path, alert: '投稿できませんでした。' }
       end
     end
   end
 
   def back
-    @test = Test.find(params[:test])
     if params.has_key?(:user)
       @user = User.find(params[:user])
       @answer_paper = AnswerPaper.where(test_id: @test.id, user_id: @user.id)
@@ -78,7 +60,7 @@ class AnswerPapersController < ApplicationController
         format.js { render :description } if @answer_paper.backed == false
         format.js { render :memo } if @answer_paper.backed == true
       else
-        format.html { redirect_to check_answer_papers_path, notice: '投稿できませんでした...' }
+        format.html { redirect_to check_answer_papers_path, alert: '投稿できませんでした。' }
       end
     end
   end
@@ -90,6 +72,10 @@ class AnswerPapersController < ApplicationController
   end
 
   private
+
+  def set_test
+    @test = Test.find(params[:test])
+  end
 
   def answer_paper_params
     params.require(:answer_paper).permit(:description, :memo, :answer_paper_id)

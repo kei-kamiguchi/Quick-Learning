@@ -1,6 +1,6 @@
 <div class="navigation">
   <div class="row">
-    <% if current_admin.admin? %>
+    <% if current_admin.admin == "true" %>
     <div class="col"><%= link_to "Project Index", projects_path, class: "nav-link" %></div>
     <% end %>
     <div class="col"><%= link_to "Category Index", project_categories_path(admin_project), class: "nav-link" %></div>

@@ -20,7 +20,7 @@
       <tbody>
         <% @backed_answer_papers.each do |backed_answer_paper| %>
         <tr>
-          <td><%= link_to AnswerPaper.find_by(test_id: backed_answer_paper.test_id).title, check_backed_answer_papers_path(test: backed_answer_paper.test_id) %></td>
+          <td><%= link_to AnswerPaper.find_by(test_id: backed_answer_paper.test_id).title, check_backed_answer_papers_path(test_id: backed_answer_paper.test_id) %></td>
         </tr>
         <% end %>
       </tbody>
