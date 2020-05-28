@@ -6,7 +6,7 @@
         <% @tests.each do |test| %>
         <% if test.id.present? %>
         <tr>
-          <td><%= link_to test.title, entry_test_path(test), class: "test-title" %></td>
+          <td><%= link_to test.title, testings_path(test_id: test.id), method: :post, class: "test-title" %></td>
         </tr>
         <% end %>
         <% end %>

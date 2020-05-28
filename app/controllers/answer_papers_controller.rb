@@ -1,5 +1,6 @@
 class AnswerPapersController < ApplicationController
   skip_before_action :admin_login_required
+  skip_before_action :entry_reset, only: [:create]
 
   def index
     # @test = Test.find(params[:test])

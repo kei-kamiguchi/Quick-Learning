@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :achieved_parts, through: :achieveds, source: :part
   has_many :answer_papers, dependent: :destroy
   has_many :answer_paper_test_questions, through: :answer_papers, source: :test_question
+  has_many :testings, dependent: :destroy
+  has_many :testing_tests, through: :testings, source: :test
 
   devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, invite_for: 24.hours
   validates :name, presence: true

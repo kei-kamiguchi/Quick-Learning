@@ -65,4 +65,5 @@ Rails.application.routes.draw do
   resources :backed_answer_papers do
     get :check, on: :collection
   end
+  resources :testings, only: [:create, :destroy]
 end
