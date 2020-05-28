@@ -25,11 +25,7 @@ Rails.application.routes.draw do
     patch :toggle_admin
   end
 # プロジェクトに関するルーティング
-  resources :questions, only: [:my_question_index, :index] do
-    get :my_question_index, on: :collection, as: :self
-  end
-  resources :projects, except: [:show] do
-    get :project_launch, on: :member
+  resources :projects, except: [:show, :edit] do
     resources :categories, shallow: true
     resources :tests, shallow: true do
       patch :toggle_active
@@ -49,6 +45,9 @@ Rails.application.routes.draw do
   end
   resources :parts, only: [:index, :update_row_order] do
     post :update_row_order, on: :collection
+  end
+  resources :questions, only: [:my_question_index, :index] do
+    get :my_question_index, on: :collection, as: :self
   end
   resources :user_participations, only: [:new, :create]
   resources :admin_participations, only: [:new, :create]

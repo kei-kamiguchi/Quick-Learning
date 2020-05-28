@@ -3,6 +3,10 @@
   <div class="jumbotron jumbotron-extend animated rubberBand">
   </div>
   <div class="projects-introduction-action">
+    <% if current_admin.projects.present? %>
+    <%= link_to 'カリキュラムの作成を始めましょう！', admin_participations_path(project_id: current_admin.projects.last.id), method: :post, class: 'btn btn-info btn-block' %>
+    <% else %>
     <%= link_to '参加する', admin_participations_path(project_id: admin_invitee_project.id), method: :post, class: 'btn btn-info btn-block' %>
+    <% end %>
   </div>
 </div>

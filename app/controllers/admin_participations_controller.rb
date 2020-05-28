@@ -1,11 +1,9 @@
 class AdminParticipationsController < ApplicationController
   skip_before_action :category_choice_required
-  #プロジェクトへ参加済みのadmin、未参加のadmin、参加済みのuser、未参加のuserで条件分岐
+
   def new
     if admin_participation?
       redirect_to project_subjects_path(admin_project)
-    else
-      @admin_participation = current_admin.admin_participations.find_by(project_id: admin_invitee_project.id)
     end
   end
   #ここでactiveにするプロジェクトを切り替えている

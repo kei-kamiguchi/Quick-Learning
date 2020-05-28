@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-  skip_before_action :category_choice_required, only: [:new, :create, :project_launch]
-  before_action :set_project, only: [:edit, :update, :destroy, :show, :project_launch]
+  skip_before_action :category_choice_required, only: [:new, :create]
+  before_action :set_project, only: [:update, :destroy]
 
   def index
     @projects = current_admin.projects.order(created_at: :desc)
@@ -11,9 +11,6 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
-  def edit
-  end
-  # プロジェクトを作成したことがあるかないかで分岐
   def create
     @project = current_admin.projects.build(project_params)
     if @project.save
@@ -21,7 +18,7 @@ class ProjectsController < ApplicationController
       if current_admin.projects.size() > 1
         redirect_back(fallback_location: root_path)
       else
-        redirect_to project_launch_project_path(@project), notice: "プロジェクトを作成しました！カリキュラムの作成に取り掛かりましょう！"
+        redirect_to new_admin_participation_path, notice: "プロジェクトを作成しました！カリキュラムの作成に取り掛かりましょう！"
       end
     else
       flash[:alert] = "プロジェクトを作成できませんでした。"
@@ -29,15 +26,12 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def project_launch
-    @admin_participation = current_admin.admin_participations.find_by(project_id: @project.id)
-  end
-
   def update
     if @project.update(project_params)
       redirect_to projects_path, notice: "プロジェクト名を更新しました！"
     else
-      render 'edit'
+      flash[:alert] = "プロジェクト名を更新できませんでした。"
+      redirect_back(fallback_location: root_path)
     end
   end
 

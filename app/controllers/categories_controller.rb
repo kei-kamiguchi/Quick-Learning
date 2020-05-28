@@ -1,17 +1,12 @@
 class CategoriesController < ApplicationController
   skip_before_action :admin_login_required
   skip_before_action :category_choice_required
-  before_action :set_category, only: [:edit, :destroy, :update]
+  before_action :set_category, only: [:destroy, :update]
 
   def index
     @category = Category.new
     @project = admin_project
-    if admin_signed_in?
-      @categories = Category.includes(subjects: :parts).where(project_id: admin_project.id)
-    end
-    if user_signed_in?
-      @categories = Category.includes(:subjects).where(project_id: user_project.id)
-    end
+    @categories = Category.includes(subjects: :parts).where(project_id: @project.id)
   end
 
   def new
@@ -30,29 +25,22 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     if @category.update(category_params)
       redirect_to project_categories_path(@category.project), notice: "カテゴリ名を編集しました"
     else
       flash[:alert] = "タイトルを入力してください。"
-      render 'edit'
+      redirect_back(fallback_location: root_path)
     end
   end
 
   def destroy
-    unless @category == admin_choosed_category
+    if @category == admin_choosed_category
+      redirect_to project_categories_path(@category.project), alert: "active中のカテゴリは削除できません！！"
+    else
       @category.destroy
       redirect_to project_categories_path(@category.project), notice: "カテゴリを削除しました"
-    else
-      redirect_to project_categories_path(@category.project), alert: "active中のカテゴリは削除できません！！"
     end
-  end
-
-  def choice
-    @project = Project.find(params[:project_id])
   end
 
   private

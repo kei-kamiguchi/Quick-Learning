@@ -52,7 +52,6 @@ class PartsController < ApplicationController
     @part = Part.find(part_params[:part_id])
     @part.row_order_position = part_params[:row_order_position]
     @part.save
-
     render body: nil
   end
 
