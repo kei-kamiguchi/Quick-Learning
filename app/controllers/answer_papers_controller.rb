@@ -51,6 +51,7 @@ class AnswerPapersController < ApplicationController
       if @answer_paper.update(answer_paper_params)
         @answer_paper.toggle_edit!
         format.js { render :description } if answer_paper_params.has_key?(:description)
+        format.js { render :memo } if answer_paper_params.has_key?(:memo)
       else
         format.html { redirect_to check_answer_papers_path, notice: '投稿できませんでした...' }
       end
@@ -73,7 +74,8 @@ class AnswerPapersController < ApplicationController
     @answer_paper = AnswerPaper.find(params[:id] || params[:answer_paper_id])
     respond_to do |format|
       if @answer_paper.toggle_edit!
-        format.js { render :description }
+        format.js { render :description } if @answer_paper.backed == false
+        format.js { render :memo } if @answer_paper.backed == true
       else
         format.html { redirect_to check_answer_papers_path, notice: '投稿できませんでした...' }
       end
