@@ -1,6 +1,7 @@
 class TestQuestionsController < ApplicationController
   before_action :set_test_question, only: [:show, :edit, :update, :destroy]
   before_action :set_test, only: [:index, :new, :create]
+  before_action :access_restrictions
 
   def index
     @test_questions = @test.test_questions.rank(:row_order)
@@ -61,5 +62,11 @@ class TestQuestionsController < ApplicationController
 
   def test_question_params
     params.require(:test_question).permit(:test_id, :title, :content, :correct_answer, :form_size, :row_order_position, :test_question_id)
+  end
+
+  def access_restrictions
+    if Testing.where(id: params[:id]).or(Testing.where(test_id: params[:test_id])).present?
+      redirect_back(fallback_location: root_path)
+    end
   end
 end
