@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery :except => [:update_row_order]
   before_action :login_required
   before_action :logout_required, if: :devise_controller?
-  before_action :admin_login_required
+  before_action :admin_login_required, unless: :admin_signed_in?
   before_action :category_choice_required, unless: :devise_controller?
   before_action :test_entry_exit, if: :user_signed_in?
   # ログイン後の遷移先を分岐
@@ -17,13 +17,13 @@ class ApplicationController < ActionController::Base
       if admin_participation?
         project_subjects_path(admin_project)
       elsif current_admin.invited_by_id.present?
-        introduction_projects_path
+        new_admin_participation_path
       else
         new_project_path
       end
     when User
       unless user_participation?
-        introduction_projects_path
+        new_user_participation_path
       else
         current_user
       end
@@ -44,7 +44,11 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_login_required
-    redirect_back(fallback_location: root_path) unless current_admin
+    if user_participation?
+      redirect_back(fallback_location: root_path)
+    else
+      redirect_to new_user_participation_path
+    end
   end
 
   def category_choice_required

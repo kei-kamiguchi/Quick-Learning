@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
-  skip_before_action :admin_login_required, only: [:introduction]
-  skip_before_action :category_choice_required, only: [:new, :create, :project_launch, :introduction]
+  skip_before_action :category_choice_required, only: [:new, :create, :project_launch]
   before_action :set_project, only: [:edit, :update, :destroy, :show, :project_launch]
 
   def index
@@ -48,23 +47,6 @@ class ProjectsController < ApplicationController
       redirect_to projects_path, notice: 'プロジェクトを削除しました！'
     else
       redirect_to projects_path, alert: "active中のプロジェクトは削除できません！！"
-    end
-  end
-
-  #プロジェクトへ参加済みのadmin、未参加のadmin、参加済みのuser、未参加のuserで条件分岐
-  def introduction
-    if admin_signed_in?
-      if admin_participation?
-        redirect_to project_subjects_path(admin_project)
-      else
-        @admin_participation = current_admin.admin_participations.find_by(project_id: admin_invitee_project.id)
-      end
-    else
-      if user_participation?
-        redirect_to current_user
-      else
-        @user_participation = current_user.user_participations.find_by(project_id: user_invitee_project.id)
-      end
     end
   end
 

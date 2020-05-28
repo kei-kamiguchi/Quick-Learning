@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 # ユーザーに関するルーティング
-  root 'projects#introduction'
+  root 'admin_participations#new'
   devise_scope :admin do
     post 'admins/guest_sign_in', to: 'admins/sessions#new_guest'
   end
@@ -29,7 +29,6 @@ Rails.application.routes.draw do
     get :my_question_index, on: :collection, as: :self
   end
   resources :projects, except: [:show] do
-    get :introduction, on: :collection
     get :project_launch, on: :member
     resources :categories, shallow: true
     resources :tests, shallow: true do
@@ -51,8 +50,8 @@ Rails.application.routes.draw do
   resources :parts, only: [:index, :update_row_order] do
     post :update_row_order, on: :collection
   end
-  resources :user_participations, only: [:create, :destroy]
-  resources :admin_participations, only: [:create, :destroy]
+  resources :user_participations, only: [:new, :create]
+  resources :admin_participations, only: [:new, :create]
   resources :admin_choice_categories, only: [:create, :destroy]
   resources :user_choice_categories, only: [:create, :destroy]
   resources :achieveds, only: [:create, :destroy]
