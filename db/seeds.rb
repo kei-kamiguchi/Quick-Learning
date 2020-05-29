@@ -66,3 +66,23 @@ part_num.times do |n|
       subject_id: 2
   )
 end
+titles = ["オブジェクトの考え方について","クラスについて","RESTについて"]
+contents = ["オブジェクトのイメージが掴めないのですが、どうすればいいですか？","クラスのinitializeの意味がわかりません！","RESTfulな設計とはどういう意味ですか？"]
+3.times do |n|
+  title = titles[n]
+  content = contents[n]
+  Question.create!(title: title, content: content, user_id: 1, part_id: 1)
+end
+1.times do |n|
+  title = "サンプルテスト"
+  Test.create!(title: title, subject_id: 1, project_id: 1)
+end
+titles = ["オブジェクトについての説明で正しいものを選択せよ","クラスについての説明で正しいものを選択せよ","RESTについて"]
+contents = ["1.ruby特有の考え方\n2.人間界のあらゆるものを抽象化した表現\n3.文字列と数値は含まれない","1.クラスはオブジェクトである\n2.クラスはプロジェクト内で1つしか作成できない","RESTfulについて簡単に説明せよ"]
+correct_answers = [2,1,"HTTPプロトコル経由で自由にCURD（作成/読み出し/更新/削除）できる（分類された）データ群"]
+3.times do |n|
+  title = titles[n]
+  content = contents[n]
+  correct_answer = correct_answers[n]
+  TestQuestion.create!(title: title, content: content, correct_answer: correct_answer, test_id: 1)
+end
