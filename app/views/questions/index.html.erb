@@ -11,13 +11,15 @@
     <table class="table">
       <thead>
         <tr>
-          <th class="sort-link"><%= sort_link(@search, :created_at) %></th>
+          <th class="sort-link"><%= sort_link(@search, :created_at) %><%= sort_link(@search, :reply, false, default_order: :asc) %></th>
         </tr>
       </thead>
       <tbody>
         <% @questions.each do |question| %>
         <tr>
-          <% if question.checked_by_admin == false %>
+          <% if user_signed_in? %>
+          <th><%= link_to question.title, question_path(question), class: "question-title" %></th>
+          <% elsif question.checked_by_admin == false %>
           <th><%= link_to question.title, question_path(question), class: "unchecked-question-title" %></th>
           <% elsif question.reply == false %>
           <th><%= link_to question.title, question_path(question), class: "unreplied-question-title" %></th>
@@ -26,8 +28,16 @@
           <% end %>
         </tr>
         <tr>
+          <td>更新：<%= question.updated_at.to_s(:datetime_jp) %></td>
+        </tr>
+        <tr>
           <td>質問者：<%= question.user.name %></td>
         </tr>
+        <% if question.checker.present? %>
+        <tr>
+          <td>確認者：<%= question.checker %></td>
+        </tr>
+        <% end %>
         <tr>
           <td>part：<%= question.part.title %></td>
         </tr>

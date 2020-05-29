@@ -227,7 +227,12 @@
     font-size: 1rem;
   }
   .dropdown-menu {
+    margin: 0;
     padding: 15px;
+    p {
+      margin: 0;
+      padding: 0 15px
+    }
     a {
       max-width: 700px;
       overflow: hidden;

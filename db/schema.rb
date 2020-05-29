@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_29_015229) do
+ActiveRecord::Schema.define(version: 2020_05_29_090529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 2020_05_29_015229) do
     t.bigint "part_id"
     t.boolean "checked_by_admin", default: false
     t.string "checker"
-    t.boolean "reply", default: true
+    t.boolean "reply", default: false
     t.boolean "checked_by_user", default: true
     t.index ["part_id"], name: "index_questions_on_part_id"
     t.index ["user_id"], name: "index_questions_on_user_id"
