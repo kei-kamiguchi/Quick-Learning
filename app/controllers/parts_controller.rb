@@ -24,7 +24,9 @@ class PartsController < ApplicationController
   end
 
   def show
-    @achieved = current_user.achieveds.find_by(part_id: @part.id) if user_signed_in?
+    if user_signed_in?
+      @achieved = current_user.achieveds.find_by(part_id: @part.id)
+    end
   end
 
   def edit

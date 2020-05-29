@@ -46,9 +46,8 @@ Rails.application.routes.draw do
   resources :parts, only: [:index, :update_row_order] do
     post :update_row_order, on: :collection
   end
-  resources :questions, only: [:my_question_index, :index] do
-    get :my_question_index, on: :collection, as: :self
-  end
+  resources :questions, only: [:index]
+  resources :self_questions, only: [:index]
   resources :user_participations, only: [:new, :create]
   resources :admin_participations, only: [:new, :create]
   resources :admin_choice_categories, only: [:create, :destroy]

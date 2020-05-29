@@ -33,7 +33,7 @@
       aria-expanded="false">質問</button>
       <div class="dropdown-menu" aria-labelledby="dropdown1">
         <%= link_to "自分の質問", self_questions_path, class: 'dropdown-item' %>
-        <%= link_to "みんなの質問", questions_path, class: 'dropdown-item' %>
+        <%= link_to "みんなの質問", questions_path(project_id: user_project.id), class: 'dropdown-item' %>
       </div>
     </div>
     <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>

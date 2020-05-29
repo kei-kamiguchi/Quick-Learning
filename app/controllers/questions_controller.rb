@@ -2,16 +2,10 @@ class QuestionsController < ApplicationController
   skip_before_action :admin_login_required
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :set_part, only: [:create, :new]
-# 例としてjoinsとeager_loadを使っている。違いを調べよ。
+
   def index
-    if admin_signed_in?
-      @search = Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).ransack(params[:q])
-      @questions = @search.result.order(created_at: :desc)
-    end
-    if user_signed_in?
-      @search = Question.eager_load(part: [subject: :project]).where(projects: {id: user_project.id}).ransack(params[:q])
-      @questions = @search.result.order(created_at: :desc)
-    end
+    @search = Question.includes(part: [subject: :project]).where(projects: {id: params[:project_id]}).ransack(params[:q])
+    @questions = @search.result.order(created_at: :desc)
   end
 
   def new
@@ -55,11 +49,6 @@ class QuestionsController < ApplicationController
     redirect_to self_questions_path, notice: '質問を削除しました！'
   end
 
-  def my_question_index
-    @search = Question.where(user_id: current_user).ransack(params[:q])
-    @questions = @search.result.order(created_at: :desc)
-  end
-
   private
 
   def set_part
@@ -71,6 +60,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :content, :part_id, :user_id, :checked_by_admin, :checked_by_user, :checker, :reply)
+    params.require(:question).permit(:title, :content, :part_id, :checked_by_admin, :checked_by_user, :checker, :reply)
   end
 end

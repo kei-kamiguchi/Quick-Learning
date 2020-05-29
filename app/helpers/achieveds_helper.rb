@@ -1,2 +1,0 @@
-module AchievedsHelper
-end

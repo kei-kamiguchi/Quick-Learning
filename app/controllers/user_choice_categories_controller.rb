@@ -4,7 +4,7 @@ class UserChoiceCategoriesController < ApplicationController
 
   def create
     if user_choosed_category?
-      user_choice_category = current_user.user_choice_categories.last.destroy
+      user_choice_category = UserChoiceCategory.where(user_id: current_user.id).destroy_all
       user_choice_category = current_user.user_choice_categories.create(category_id: params[:category_id])
       flash[:notice] = "カテゴリを変更しました！"
       redirect_back(fallback_location: root_path)

@@ -3,7 +3,6 @@ class SubjectsController < ApplicationController
   before_action :set_project, only: [:index, :create]
 
   def index
-    # @project = Project.includes(categories: :subjects).where(project_id: admin_project.id)
     @categories = Category.where(project_id: admin_project.id)
     @subject = Subject.new
   end
@@ -37,7 +36,7 @@ class SubjectsController < ApplicationController
       redirect_back(fallback_location: root_path)
     else
       flash[:alert] = "タイトルを入力してください。"
-      render 'edit'
+      redirect_back(fallback_location: root_path)
     end
   end
 
@@ -51,7 +50,6 @@ class SubjectsController < ApplicationController
     @subject = Subject.find(subject_params[:subject_id])
     @subject.row_order_position = subject_params[:row_order_position]
     @subject.save
-
     render body: nil
   end
 

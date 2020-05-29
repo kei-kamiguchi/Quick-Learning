@@ -1,6 +1,6 @@
 class AnswerPaper < ApplicationRecord
   belongs_to :user
-  # belongs_to :test_question
+  belongs_to :test_question, optional: true
 
   enum edit: { edit: 0, editing: 1 }
   enum checked: { checked: 0, unchecked: 1 }
