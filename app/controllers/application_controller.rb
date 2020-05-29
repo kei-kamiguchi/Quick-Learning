@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
 
   def admin_login_required
     if user_participation?
-      redirect_back(fallback_location: root_path)
+      redirect_to current_user
     else
       redirect_to new_user_participation_path
     end

@@ -1,8 +1,8 @@
 <% if answer_paper.edit == "edit" %>
-<% if answer_paper.description.present? %>
+<% if answer_paper.advice.present? %>
 <div class="test-question-content">
-  <p class="text-description">アドバイス</p>
-  <%= simple_format(h(answer_paper.description), {}, sanitize: false, wrapper_tag: "div") %>
+  <p class="text-advice">アドバイス</p>
+  <%= simple_format(h(answer_paper.advice), {}, sanitize: false, wrapper_tag: "div") %>
 </div>
 <% end %>
 <div class="action text-right">
@@ -11,9 +11,9 @@
 <% else %>
 <div class="test-question-content">
 <%= form_with model: answer_paper do |form| %>
-<%= form.text_area :description, rows:5, class: "form-control" %>
-<div class="action">
-  <%= form.submit nil, class: 'btn btn-info btn-block btn-sm mt-1' %>
+<%= form.text_area :advice, rows:5, class: "form-control" %>
+<div class="text-right action">
+  <%= form.submit nil, class: 'btn btn-info btn-sm mt-1' %>
 </div>
 <% end %>
 </div>

@@ -19,7 +19,7 @@
       <%= simple_format(h(answer_paper.answer), {}, sanitize: false, wrapper_tag: "div") %>
     </div>
     <div class="test-question-content">
-      <%= simple_format(h(answer_paper.description), {}, sanitize: false, wrapper_tag: "div") %>
+      <%= simple_format(h(answer_paper.advice), {}, sanitize: false, wrapper_tag: "div") %>
     </div>
     <div class="form-group form-answer">
       <%= field.text_area :memo, class: "form-control" %>

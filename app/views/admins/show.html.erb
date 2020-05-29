@@ -1,23 +1,17 @@
 <div class="admins-show">
-  <div class=container>
-    <div class="main-wrap">
-      <div class="main">
-        <h3>My Page</h3>
-        <div class="main-table">
-          <table class="table">
-            <tbody>
-              <tr>
-                <th><%= Admin.human_attribute_name(:email) %></th>
-                <td><%= @admin.email %></td>
-              </tr>
-              <tr>
-                <th><%= Admin.human_attribute_name(:name) %></th>
-                <td><%= @admin.name %></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+  <div class="container main-container">
+    <h3 class="main-title">My Page</h3>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th><%= Admin.human_attribute_name(:email) %></th>
+          <td><%= @admin.email %></td>
+        </tr>
+        <tr>
+          <th><%= Admin.human_attribute_name(:name) %></th>
+          <td><%= @admin.name %></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

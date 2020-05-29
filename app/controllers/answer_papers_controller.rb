@@ -34,7 +34,7 @@ class AnswerPapersController < ApplicationController
     respond_to do |format|
       if @answer_paper.update(answer_paper_params)
         @answer_paper.toggle_edit!
-        format.js { render :description } if answer_paper_params.has_key?(:description)
+        format.js { render :advice } if answer_paper_params.has_key?(:advice)
         format.js { render :memo } if answer_paper_params.has_key?(:memo)
       else
         format.html { redirect_to check_answer_papers_path, alert: '投稿できませんでした。' }
@@ -57,7 +57,7 @@ class AnswerPapersController < ApplicationController
     @answer_paper = AnswerPaper.find(params[:id] || params[:answer_paper_id])
     respond_to do |format|
       if @answer_paper.toggle_edit!
-        format.js { render :description } if @answer_paper.backed == false
+        format.js { render :advice } if @answer_paper.backed == false
         format.js { render :memo } if @answer_paper.backed == true
       else
         format.html { redirect_to check_answer_papers_path, alert: '投稿できませんでした。' }
@@ -78,7 +78,7 @@ class AnswerPapersController < ApplicationController
   end
 
   def answer_paper_params
-    params.require(:answer_paper).permit(:description, :memo, :answer_paper_id)
+    params.require(:answer_paper).permit(:advice, :memo, :answer_paper_id)
   end
 # ここはセキュリティー的に大丈夫？
   def answer_papers_params

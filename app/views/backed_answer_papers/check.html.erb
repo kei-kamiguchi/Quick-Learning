@@ -11,17 +11,17 @@
       <%= simple_format(h(answer_paper.content), {}, sanitize: false, wrapper_tag: "div") %>
     </div>
     <div class="test-question-content">
-      <p class="text-description">あなたの答え</p>
+      <p class="text-advice">あなたの答え</p>
       <%= simple_format(h(answer_paper.answer), {}, sanitize: false, wrapper_tag: "div") %>
     </div>
     <div class="test-question-content">
-      <p class="text-description">正解</p>
+      <p class="text-advice">正解</p>
       <%= simple_format(h(answer_paper.correct_answer), {}, sanitize: false, wrapper_tag: "div") %>
     </div>
-    <% if answer_paper.description.present? %>
+    <% if answer_paper.advice.present? %>
     <div class="test-question-content">
-      <p class="text-description">アドバイス</p>
-      <%= simple_format(h(answer_paper.description), {}, sanitize: false, wrapper_tag: "div") %>
+      <p class="text-advice">アドバイス</p>
+      <%= simple_format(h(answer_paper.advice), {}, sanitize: false, wrapper_tag: "div") %>
     </div>
     <% end %>
     <div id="memo<%= answer_paper.id %>_area" class="test-question-content">
