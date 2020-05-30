@@ -43,9 +43,9 @@
     height: 100%;
     position: fixed;
     left: 0;
-    width: 500px;
+    width: 250px;
     margin-top: 60px;
-    transform: translateX(-500px);
+    transform: translateX(-250px);
     transition: transform 250ms ease-in-out;
     overflow: scroll;
     overscroll-behavior: none;
@@ -63,6 +63,7 @@
   }
   .sidebarMenuInner li{
     width: 250px;
+    height: 100px;
     list-style: none;
     color: #fff;
     text-transform: uppercase;
@@ -177,6 +178,7 @@
     opacity: 0.98;
     li {
       padding: 0;
+      height: 100px
     }
   }
   #header-close{

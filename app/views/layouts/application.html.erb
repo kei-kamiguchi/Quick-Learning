@@ -50,6 +50,11 @@
   });
 </script>
 <script>
+  $('#sidebarMenu li').hover(function(){
+    $("#sidebarMenu").css('width', '500px');
+  }, function() {
+    $("#sidebarMenu").css('width', '250px');
+  });
   $("#sidebarMenu a").on('click',function(event){
      event.preventDefault();
      var linkUrl = $(this).attr('href');
@@ -64,7 +69,7 @@
 </script>
 <script>
   $(function(){
-    $('.dropdwn li').hover(function(){
+    $('#sidebarMenu li').hover(function(){
       $(">ul:not(:animated)", this).slideDown(100);
     }, function(){
       $(">ul",this).slideUp(100);
