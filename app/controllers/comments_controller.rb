@@ -9,10 +9,7 @@ class CommentsController < ApplicationController
     @comment.admin_id = current_admin.id if admin_signed_in?
     respond_to do |format|
       if @comment.save
-        if admin_signed_in?
-          @question.update(reply: true, checked_by_user: false) 
-          ToUserFromAdminMailer.contact_mail(@comment).deliver
-        end
+        @question.update(reply: true, checked_by_user: false) if admin_signed_in?
         @question.update(reply: false) if user_signed_in?
         format.js { render :index }
       else
