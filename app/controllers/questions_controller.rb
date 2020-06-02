@@ -16,6 +16,7 @@ class QuestionsController < ApplicationController
     @question = @part.questions.build(question_params)
     @question.user_id = current_user.id
     if @question.save
+      NotificationMailer.question_to_admin_mail(@question).deliver
       redirect_to part_path(@part), notice: "投稿しました"
     else
       render 'new'

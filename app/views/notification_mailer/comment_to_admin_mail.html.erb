@@ -1,0 +1,7 @@
+<h1>質問が届いています！</h1>
+
+<p>質問者: <%= @comment.user.name %></p>
+
+<p><%= link_to "詳細画面へ移動", @comment.question %></p>
+
+<p>内容: <%= simple_format(h(@comment.content), {}, sanitize: false, wrapper_tag: "div") %></p>

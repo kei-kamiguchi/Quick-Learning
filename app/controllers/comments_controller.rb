@@ -9,8 +9,13 @@ class CommentsController < ApplicationController
     @comment.admin_id = current_admin.id if admin_signed_in?
     respond_to do |format|
       if @comment.save
-        @question.update(reply: true, checked_by_user: false) if admin_signed_in?
-        @question.update(reply: false) if user_signed_in?
+        if admin_signed_in?
+          @question.update(reply: true, checked_by_user: false, checker: @comment.admin.name)
+          NotificationMailer.comment_to_user_mail(@comment).deliver
+        else
+          @question.update(reply: false)
+          NotificationMailer.comment_to_admin_mail(@comment).deliver
+        end
         format.js { render :index }
       else
         format.html { redirect_to question_path(@question), alert: 'コメントが投稿できませんでした。' }

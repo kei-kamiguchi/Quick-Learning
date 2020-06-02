@@ -1,0 +1,8 @@
+<h1>質問が届いています！</h1>
+
+<p>質問者: <%= @question.user.name %></p>
+
+<p><%= link_to "詳細画面へ移動", @question %></p>
+
+<h4>題名: <%= @question.title %></h4>
+<p>内容: <%= simple_format(h(@question.content), {}, sanitize: false, wrapper_tag: "div") %></p>
