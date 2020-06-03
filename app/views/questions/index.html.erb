@@ -15,13 +15,13 @@
         </tr>
       </thead>
       <tbody>
-        <% @questions.each do |question| %>
+        <% @questions.includes(:user).each do |question| %>
         <tr>
           <% if user_signed_in? %>
           <th><%= link_to question.title, question_path(question), class: "question-title" %></th>
-          <% elsif question.checker == "" %>
+          <% elsif question.checked_by_admin == false %>
           <th><%= link_to question.title, question_path(question), class: "unchecked-question-title" %></th>
-          <% elsif question.reply == false %>
+          <% elsif question.reply == false && question.checked_by_admin == true %>
           <th><%= link_to question.title, question_path(question), class: "unreplied-question-title" %></th>
           <% else %>
           <th><%= link_to question.title, question_path(question), class: "question-title" %></th>
@@ -33,11 +33,9 @@
         <tr>
           <td>質問者：<%= question.user.name %></td>
         </tr>
-        <% if question.checker.present? %>
         <tr>
           <td>確認者：<%= question.checker %></td>
         </tr>
-        <% end %>
         <tr>
           <td>part：<%= question.part.title %></td>
         </tr>
