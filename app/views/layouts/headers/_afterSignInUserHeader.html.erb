@@ -47,11 +47,11 @@
   <label id="header-close" for="openSidebarMenu"></label>
   <div id="sidebarMenu">
     <ul class="sidebarMenuInner dropdwn">
-      <% subjects.where(category_id: user_choosed_category.id).each do |subject| %>
+      <% subjects.where(category_id: user_choosed_category.id).rank(:row_order).each do |subject| %>
       <li><%= subject.title %>
         <% if subject.parts.present? %>
         <ul class="dropdwn_menu">
-          <% subject.parts.each do |part| %>
+          <% subject.parts.rank(:row_order).each do |part| %>
           <li><%= link_to part.title, part_path(part.id) %></li>
           <% end %>
         </ul>
