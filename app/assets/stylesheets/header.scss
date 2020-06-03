@@ -50,12 +50,7 @@
     transition: transform 250ms ease-in-out;
     overflow: scroll;
     padding-bottom: 65px;
-    // 背面で画面がスクロールされるのを防ぐ
     overscroll-behavior: none;
-    // スクロールバーを非表示にしている
-    #sidebarMenu::-webkit-scrollbar {
-      display: none;
-    }
     .sidebarMenuInner{
       background: linear-gradient(180deg, #008080 0%, #00CCCC 100%);
       width: 250px;
@@ -92,16 +87,29 @@
         margin-bottom: 65px;
         background: linear-gradient(180deg, #008080	 0%, #00CCCC 100%);
         opacity: 0.98;
-        a {
+        li {
           padding: 0;
+          margin: 0;
+        }
+        a {
+          padding: 20px;
+          display: block;
+          width: 500px;
           color: #fff;
           text-transform: uppercase;
           font-weight: bold;
           cursor: pointer;
           text-decoration: none;
         }
+        a:hover {
+          color: #008080;
+        }
       }
     }
+  }
+  // スクロールバー非表示
+  #sidebarMenu::-webkit-scrollbar {
+    display: none;
   }
   // .sidebarMenuInner li span{
   //   display: block;
