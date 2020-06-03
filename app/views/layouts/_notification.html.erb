@@ -21,7 +21,7 @@
   <% if Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).where(reply: false).present? %>
   <h4 class="dropdown-header">新たなコメントが届いています！</h4>
   <div class="dropdown-divider"></div>
-  <% Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).where(reply: false).each do |question| %>
+  <% Question.includes(part: [subject: :project]).where(projects: {id: admin_project.id}).where(reply: false).each do |question| %>
   <p><%= question.updated_at.to_s(:datetime_jp) %></p>
   <p><%= question.user.name %></p>
   <%= link_to question.title, question_path(question), class: "dropdown-item" %>

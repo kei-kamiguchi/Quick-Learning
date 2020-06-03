@@ -19,7 +19,7 @@
     <% end %>
   </div>
   <div class="header-nav">
-    <% if Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).where(checked_by_admin: false).or(Question.joins(part: [subject: :project]).where(projects: {id: admin_project.id}).where(reply: false)).present? %>
+    <% if Question.includes(:user, part: [subject: :project]).where(projects: {id: admin_project.id}).where(checked_by_admin: false).or(Question.includes(:user, part: [subject: :project]).where(projects: {id: admin_project.id}).where(reply: false)).present? %>
     <%= render partial: 'layouts/notification' %>
     <% end %>
   <%= link_to "マイページ", current_admin %>
@@ -59,7 +59,7 @@
 <label id="header-close" for="openSidebarMenu"></label>
 <div id="sidebarMenu">
   <ul class="sidebarMenuInner dropdwn">
-    <% subjects.where(category_id: admin_choosed_category.id).each do |subject| %>
+    <% subjects.where(category_id: admin_choosed_category.id).rank(:row_order).each do |subject| %>
     <li><%= subject.title %>
       <% if subject.parts.present? %>
       <ul class="dropdwn_menu">

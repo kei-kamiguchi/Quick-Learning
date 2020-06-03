@@ -4,7 +4,7 @@ class TestsController < ApplicationController
   before_action :set_project, only: [:index, :create]
 
   def index
-    @subjects = Subject.includes(:tests).where(project_id: admin_project.id).rank(:row_order)
+    @subjects = Subject.where(project_id: admin_project.id).rank(:row_order)
     @test = Test.new
   end
 

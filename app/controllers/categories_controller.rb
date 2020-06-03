@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
 
   def index
     @category = Category.new
-    @categories = Category.includes(subjects: :parts).where(project_id: admin_project.id)
+    @categories = Category.where(project_id: admin_project.id)
   end
 
   def create

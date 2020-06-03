@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   before_action :set_part, only: [:create, :new]
 
   def index
-    @search = Question.includes(part: [subject: :project]).where(projects: {id: params[:project_id]}).ransack(params[:q])
+    @search = Question.includes(:user, part: [subject: :project]).where(projects: {id: params[:project_id]}).ransack(params[:q])
     @questions = @search.result.order(created_at: :desc)
   end
 

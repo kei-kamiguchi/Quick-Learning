@@ -38,6 +38,7 @@
     pointer-events: none;
     color: #333333
   }
+  // ドロップダウンメニュー
   #sidebarMenu {
     z-index: 200000;
     height: 100%;
@@ -48,43 +49,65 @@
     transform: translateX(-250px);
     transition: transform 250ms ease-in-out;
     overflow: scroll;
-    overscroll-behavior: none;
     padding-bottom: 65px;
+    // 背面で画面がスクロールされるのを防ぐ
+    overscroll-behavior: none;
+    // スクロールバーを非表示にしている
+    #sidebarMenu::-webkit-scrollbar {
+      display: none;
+    }
+    .sidebarMenuInner{
+      background: linear-gradient(180deg, #008080 0%, #00CCCC 100%);
+      width: 250px;
+      margin:0;
+      padding:0;
+      li {
+        width: 250px;
+        height: 100%;
+        list-style: none;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding: 20px;
+        cursor: pointer;
+        word-break: break-all;
+        border: 5px solid rgba(255, 255, 255, 0.10);
+        // 起点を揃えている
+        display: flex;
+        display: -webkit-flex;
+        overflow: hidden;
+      }
+      li:hover{
+        background: #FFFFFF;
+        opacity: 0.98;
+        color: #008080;
+      }
+      .dropdwn_menu{
+        padding: 0;
+        width: 50%;
+        display: none;
+        position: absolute;
+        margin-left: 225px;
+        margin-top: -25px;
+        margin-bottom: 65px;
+        background: linear-gradient(180deg, #008080	 0%, #00CCCC 100%);
+        opacity: 0.98;
+        a {
+          padding: 0;
+          color: #fff;
+          text-transform: uppercase;
+          font-weight: bold;
+          cursor: pointer;
+          text-decoration: none;
+        }
+      }
+    }
   }
-  // スクロールバーを非表示にしている
-  #sidebarMenu::-webkit-scrollbar {
-    display: none;
-  }
-  .sidebarMenuInner{
-    background: linear-gradient(180deg, #008080 0%, #00CCCC 100%);
-    width: 250px;
-    margin:0;
-    padding:0;
-  }
-  .sidebarMenuInner li{
-    width: 250px;
-    height: 100px;
-    list-style: none;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding: 20px;
-    cursor: pointer;
-    word-break: break-all;
-    border: 5px solid rgba(255, 255, 255, 0.10);
-  }
-  .sidebarMenuInner li span{
-    display: block;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.50);
-  }
-  .sidebarMenuInner li a{
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
-  }
+  // .sidebarMenuInner li span{
+  //   display: block;
+  //   font-size: 14px;
+  //   color: rgba(255, 255, 255, 0.50);
+  // }
   input[type="checkbox"]:checked ~ #sidebarMenu {
     transform: translateX(0);
   }
@@ -152,35 +175,7 @@
     transform: rotate(-135deg);
     margin-top: -9px;
   }
-  // ここからドロップダウンメニュー
-  li:hover{
-    background: #FFFFFF;
-    opacity: 0.98;
-    color: #008080;
-  }
-  li a{
-    display: block;
-    padding: 20px;
-    margin: 0;
-  }
-  li a:hover{
-    color: #008080;
-  }
-  .dropdwn_menu{
-    padding: 0;
-    width: 50%;
-    display: none;
-    position: absolute;
-    margin-left: 225px;
-    margin-top: -49px;
-    margin-bottom: 65px;
-    background: linear-gradient(180deg, #008080	 0%, #00CCCC 100%);
-    opacity: 0.98;
-    li {
-      padding: 0;
-      height: 100px
-    }
-  }
+  // 以下プルダウンメニュー
   #header-close{
     display: none;
     position: fixed;
