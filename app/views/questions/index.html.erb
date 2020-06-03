@@ -19,7 +19,7 @@
         <tr>
           <% if user_signed_in? %>
           <th><%= link_to question.title, question_path(question), class: "question-title" %></th>
-          <% elsif question.checked_by_admin == false %>
+          <% elsif question.checker == "" %>
           <th><%= link_to question.title, question_path(question), class: "unchecked-question-title" %></th>
           <% elsif question.reply == false %>
           <th><%= link_to question.title, question_path(question), class: "unreplied-question-title" %></th>

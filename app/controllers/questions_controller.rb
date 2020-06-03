@@ -24,7 +24,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    if admin_signed_in? && @question.checked_by_admin == false
+    if admin_signed_in? && @question.checked_by_admin == false || admin_signed_in? && @question.checker = ""
       @question.update(checked_by_admin: true, checker: current_admin.name)
     end
     if user_signed_in? && @question.checked_by_user == false

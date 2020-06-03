@@ -19,7 +19,7 @@
     <% end %>
   </div>
   <div class="header-nav">
-    <% if Question.includes(:user, part: [subject: :project]).where(projects: {id: admin_project.id}).where(checked_by_admin: false).or(Question.includes(:user, part: [subject: :project]).where(projects: {id: admin_project.id}).where(reply: false)).present? %>
+    <% if Question.includes(:user, part: [subject: :project]).where(projects: {id: admin_project.id}).where(checked_by_admin: false).or(Question.includes(:user, part: [subject: :project]).where(projects: {id: admin_project.id}).where(checked_by_admin: true, checker: "")).present? %>
     <%= render partial: 'layouts/notification' %>
     <% end %>
   <%= link_to "マイページ", current_admin %>

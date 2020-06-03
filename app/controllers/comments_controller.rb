@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
           @question.update(reply: true, checked_by_user: false, checker: @comment.admin.name)
           NotificationMailer.comment_to_user_mail(@comment).deliver
         else
-          @question.update(reply: false)
+          @question.update(reply: false, checked_by_user: true, checker: "")
           NotificationMailer.comment_to_admin_mail(@comment).deliver
         end
         format.js { render :index }
