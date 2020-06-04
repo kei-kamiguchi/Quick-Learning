@@ -49,6 +49,7 @@ class TestsController < ApplicationController
   def toggle_active
     @test.toggle_active!
     if @test.active=="active"
+      NotificationMailer.test_entry_mail(@test).deliver
       flash[:notice] = "「#{@test.title}」をactiveにしました！"
     end
     redirect_back(fallback_location: root_path)

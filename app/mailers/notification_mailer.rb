@@ -17,4 +17,10 @@ class NotificationMailer < ApplicationMailer
     @admins = Project.find_by(id: question.part.subject.project_id).admin_participation_admins
     mail to: @admins.map(&:email).join(","), subject: "#{@question.user.name}から質問または返事が届いています！"
   end
+
+  def test_entry_mail(test)
+    @test = test
+    @users = @test.project.user_participation_users
+    mail to: @users.map(&:email).join(","), subject: "テストのURLが配布されました！"
+  end
 end
