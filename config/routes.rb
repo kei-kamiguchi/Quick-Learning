@@ -62,5 +62,5 @@ Rails.application.routes.draw do
   resources :backed_answer_papers do
     get :check, on: :collection
   end
-  resources :testings, only: [:index, :show, :create]
+  resources :testings, only: [:index, :show, :create, :new]
 end
