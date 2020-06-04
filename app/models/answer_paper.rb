@@ -3,7 +3,7 @@ class AnswerPaper < ApplicationRecord
   belongs_to :test_question, optional: true
 
   enum edit: { edit: 0, editing: 1 }
-  enum checked: { checked: 0, unchecked: 1 }
+  enum checked: { unchecked: 0, checked: 1 }
   validates :edit, :checked, presence: true
   validates :edit, inclusion: { in: AnswerPaper.edits.keys }
   validates :checked, inclusion: { in: AnswerPaper.checkeds.keys }
@@ -17,10 +17,10 @@ class AnswerPaper < ApplicationRecord
   end
 
   def toggle_checked!
-    if checked?
-      unchecked!
-    else
+    if unchecked?
       checked!
+    else
+      unchecked!
     end
   end
 

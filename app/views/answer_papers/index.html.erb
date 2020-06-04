@@ -5,20 +5,26 @@
       <tbody>
         <tr>
           <th colspan="2" class="test-title"><%= @test.title %></th>
-          <th class="text-right"><%= link_to "全員に返却", back_answer_papers_path(test: @test), method: :patch, class: "btn btn-info btn-sm checked-toggle-btn" %></th>
+          <th class="text-right">
+            <% unless @answer_papers.where(checked: "unchecked").present? %>
+            <%= link_to "全員に返却", back_answer_papers_path(test: @test), method: :patch, class: "btn btn-info btn-sm checked-toggle-btn" %><% end %>
+          </th>
         </tr>
         <% @answer_papers.each do |answer_paper| %>
         <% if answer_paper.backed == false %>
         <tr>
           <td class="icon text-right">
-            <% if answer_paper.checked == "unchecked" %>
+            <% if answer_paper.checked == "checked" %>
             <i class="fas fa-check checked-icon"></i>
             <% else %>
             <i class="fas fa-check unchecked-icon"></i>
             <% end %>
           </td>
           <td><%= link_to answer_paper.user.name, check_answer_papers_path(test: @test, user: answer_paper.user), class: "user-name" %></td>
-          <td class="text-right action"><%= link_to "返却", back_answer_papers_path(test: @test, user: answer_paper.user), method: :patch, class: "btn btn-info btn-sm checked-toggle-btn" %></td>
+          <td class="text-right action">
+            <% if answer_paper.checked == "checked" %><%= link_to "返却", back_answer_papers_path(test: @test, user: answer_paper.user), method: :patch, class: "btn btn-info btn-sm checked-toggle-btn" %>
+            <% end %>
+          </td>
         </tr>
         <% end %>
         <% end %>

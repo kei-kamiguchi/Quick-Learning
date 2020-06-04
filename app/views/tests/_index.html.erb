@@ -13,8 +13,8 @@
         <% if test.test_questions.present? %>
         <%= link_to test.active, test_toggle_active_path(test), method: :patch, class: "btn btn-outline-info btn-sm" %>
         <% end %>
-        <% if AnswerPaper.where(backed: false).present? %>
-        <%= link_to "answer", answer_papers_path(test: test), class: "btn btn-outline-info btn-sm" %>
+        <% if AnswerPaper.where(test_question_id: TestQuestion.where(test_id: test.id).last, backed: false).present? %>
+        <%= link_to "answer", answer_papers_path(test: test), class: "btn btn-outline-danger btn-sm" %>
         <% else %>
         <%= link_to 'index', test_test_questions_path(test), class: "btn btn-outline-info btn-sm" %>
         <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#modal<%= test.id %>">
