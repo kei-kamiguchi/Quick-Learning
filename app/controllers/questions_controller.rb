@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
     if user_signed_in?
       @search = Question.includes(part: [subject: :project]).where(projects: {id: user_project.id}).ransack(params[:q])
     else
-      @search = Question.includes(part: [subject: :project]).where(projects: {id: admin_project.id}).ransack(params[:q])
+      @search = Question.includes(part: [subject: :project]).where(projects: {id: admin_project.id}).where(solved: false).ransack(params[:q])
     end
     @questions = @search.result.order(created_at: :desc)
   end
@@ -43,7 +43,8 @@ class QuestionsController < ApplicationController
 
   def update
     if @question.update(question_params)
-      redirect_to question_path(@question), notice: '質問を編集しました！'
+      redirect_to self_questions_path, notice: '質問を解決にしました！' if @question.solved == true
+      redirect_to question_path(@question), notice: '質問を編集しました！' if @question.solved == false
     else
       render 'edit'
     end
@@ -65,6 +66,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :content, :part_id, :checked_by_admin, :checked_by_user, :checker, :reply, :project_id)
+    params.require(:question).permit(:title, :content, :part_id, :checked_by_admin, :checked_by_user, :checker, :reply, :project_id, :solved)
   end
 end

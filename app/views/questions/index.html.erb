@@ -11,7 +11,7 @@
     <table class="table">
       <thead>
         <tr>
-          <th class="sort-link"><%= sort_link(@search, :created_at) %><%= sort_link(@search, :reply, false, default_order: :asc) %></th>
+          <th colspan="2" class="sort-link"><%= sort_link(@search, :created_at) %><%= sort_link(@search, :reply, false, default_order: :asc) %></th>
         </tr>
       </thead>
       <tbody>
@@ -19,6 +19,11 @@
         <tr>
           <% if user_signed_in? %>
           <th><%= link_to question.title, question_path(question), class: "question-title" %></th>
+          <% if question.solved %>
+          <th class="solved-icon text-right"><p>解決済み</p></th>
+          <% else %>
+          <th class="unsolved-icon text-right"><p>未解決</p></th>
+          <% end %>
           <% elsif question.checked_by_admin == false %>
           <th><%= link_to question.title, question_path(question), class: "unchecked-question-title" %></th>
           <% elsif question.reply == false && question.checked_by_admin == true %>
@@ -28,16 +33,16 @@
           <% end %>
         </tr>
         <tr>
-          <td>更新：<%= question.updated_at.to_s(:datetime_jp) %></td>
+          <td colspan="2">更新：<%= question.updated_at.to_s(:datetime_jp) %></td>
         </tr>
         <tr>
-          <td>質問者：<%= question.user.name %></td>
+          <td colspan="2">質問者：<%= question.user.name %></td>
         </tr>
         <tr>
-          <td>確認者：<%= question.checker %></td>
+          <td colspan="2">確認者：<%= question.checker || "未確認" %></td>
         </tr>
         <tr>
-          <td>part：<%= question.part.title %></td>
+          <td colspan="2">part：<%= question.part.title %></td>
         </tr>
         <% end %>
       </tbody>

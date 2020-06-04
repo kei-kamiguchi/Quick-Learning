@@ -18,7 +18,7 @@
     <% end %>
   </div>
   <div class="header-nav">
-    <% if Question.joins(part: [subject: :project]).where(projects: {id: user_project.id}).where(user_id: current_user.id, checked_by_user: false).present? %>
+    <% if Question.joins(part: [subject: :project]).where(projects: {id: user_project.id}).where(user_id: current_user.id, checked_by_user: false, solved: false).present? %>
     <%= render partial: 'layouts/notification' %>
     <% end %>
     <% if user_project.tests.where(active: 1).present? %>

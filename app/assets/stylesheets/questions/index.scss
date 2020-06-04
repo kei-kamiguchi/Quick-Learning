@@ -52,7 +52,31 @@
   }
   a:hover {
     text-decoration: none;
-    background-color: #999999;
+    // background-color: #999999;
     color: #fff;
+  }
+  .solved-icon{
+    width: 110px;
+    p {
+      padding: 0;
+      margin:0;
+      border:1px solid #CCCCCC;
+      color: #CCCCCC;
+      text-align: center;
+      border-radius: 20px;
+      width: 100px;
+    }
+  }
+  .unsolved-icon{
+    width: 110px;
+    p {
+      padding: 0;
+      margin:0;
+      border:1px solid #17a2b8;
+      color: #17a2b8;
+      text-align: center;
+      border-radius: 20px;
+      width: 100px;
+    }
   }
 }

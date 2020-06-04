@@ -20,4 +20,9 @@
   <div id="comments-form">
     <%= render partial: 'comments/form', locals: { comment: @comment, question: @question } %>
   </div>
+  <% if user_signed_in? && !@question.solved? %>
+  <div class="action text-right">
+    <%= link_to 'この質問を解決済みにする', question_path(@question, params: { question: { solved: true} }), :method => :put, class: 'btn btn-outline-info btn-sm' %>
+  </div>
+  <% end %>
 </div>
