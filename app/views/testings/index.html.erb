@@ -3,12 +3,16 @@
     <h3 class="main-title">Test Active</h3>
     <table class="table table-hover">
       <tbody>
+        <% if user_signed_in? %>
         <% @tests.each do |test| %>
         <% if test.id.present? %>
         <tr>
           <td><%= link_to test.title, testings_path(test_id: test.id), method: :post, class: "test-title" %></td>
         </tr>
         <% end %>
+        <% end %>
+        <% else %>
+        <p>生徒のみ閲覧可能。</p>
         <% end %>
       </tbody>
     </table>

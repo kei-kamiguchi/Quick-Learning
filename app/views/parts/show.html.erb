@@ -14,7 +14,7 @@
         <tr>
           <th class="part-title"><%= @part.title %></th>
           <% if @achieved.present? %>
-          <th class="achieved-icon text-right"><p>履修済み</p></th>
+          <th class="achieved-icon text-right"><p>学習済み</p></th>
           <% else %>
           <th colspan="1"></th>
           <% end %>
@@ -34,13 +34,13 @@
           <td colspan="2" class="text-right">
             <% if user_signed_in? %>
             <% if @achieved.present? %>
-            <%= link_to '履修済みを取り消す', achieved_path(id: @achieved.id), method: :delete, class: 'btn btn-outline-info btn-sm mr-2' %>
+            <%= link_to '学習済みを取り消す', achieved_path(id: @achieved.id), method: :delete, class: 'btn btn-outline-info btn-sm mr-2' %>
             <% else %>
             <%= link_to 'このパートが終わったらクリック', achieveds_path(part_id: @part.id), method: :post, class: 'btn btn-outline-info btn-sm mr-2' %>
             <% end %>
             <%= link_to "質問する", new_part_question_path(@part), class: 'btn btn-outline-info btn-sm part-question' %>
             <% else %>
-            <%= link_to 'Edit', edit_part_path(@part), class: 'btn btn-info btn-block' %>
+            <%= link_to 'Edit', edit_part_path(@part), class: 'btn btn-outline-info btn-sm' %>
             <% end %>
           </td>
         </tr>

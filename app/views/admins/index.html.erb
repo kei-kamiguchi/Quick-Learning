@@ -12,7 +12,9 @@
             <% end %>
           </td>
           <td class="text-right">
+            <% unless admin == current_admin %>
             <%= link_to admin.admin, admin_toggle_admin_path(admin), method: :patch, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
+            <% end %>
             <%= link_to 'Destroy', admin_path(admin), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
           </td>
         </tr>

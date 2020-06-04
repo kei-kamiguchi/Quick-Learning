@@ -9,7 +9,7 @@
       <li class="list-group-item"><%= simple_format(h(@question.content), {}, sanitize: false, wrapper_tag: "div") %></li>
     </ul>
   </div>
-  <% if user_signed_in? %>
+  <% if user_signed_in? && current_user == @question.user %>
   <div class="action text-right">
     <%= link_to 'Edit', edit_question_path(@question), class: 'btn btn-outline-info btn-sm' %>
   </div>
@@ -17,10 +17,12 @@
   <div id="comments-area">
     <%= render partial: 'comments/index', locals: { question: @question, comments: @comments } %>
   </div>
+  <% if admin_signed_in? || @question.user == current_user %>
   <div id="comments-form">
     <%= render partial: 'comments/form', locals: { comment: @comment, question: @question } %>
   </div>
-  <% if user_signed_in? && !@question.solved? %>
+  <% end %>
+  <% if user_signed_in? && current_user == @question.user && !@question.solved? %>
   <div class="action text-right">
     <%= link_to 'この質問を解決済みにする', question_path(@question, params: { question: { solved: true} }), :method => :put, class: 'btn btn-outline-info btn-sm' %>
   </div>
