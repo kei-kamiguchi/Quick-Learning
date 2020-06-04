@@ -1,25 +1,46 @@
-<div class="questions-my_question_index">
+<div class="self_questions-index">
   <div class="container main-container">
-    <h3 class="main-title">My Questions</h3>
+    <h3 class="main-title">Question Index</h3>
     <div class="form">
       <%= search_form_for @search, url: self_questions_path do |f| %>
       <div class="form-group row">
-        <%= f.search_field :title_cont, placeholder: "search question", class: "form-control col-9" %><%= f.submit 'search', class: "btn btn-info btn-sm col-2 ml-1" %>
+        <%= f.search_field :title_cont, placeholder: "search question", class: "form-control col-9" %><%= f.submit 'search', class: "btn btn-info col-2 ml-1" %>
       </div>
       <% end %>
     </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="sort-link"><%= sort_link(@search, :created_at) %><%= sort_link(@search, :reply, false, default_order: :asc) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @questions.includes(:user).each do |question| %>
+        <tr>
+          <% if user_signed_in? %>
+          <th><%= link_to question.title, question_path(question), class: "question-title" %></th>
+          <% elsif question.checked_by_admin == false %>
+          <th><%= link_to question.title, question_path(question), class: "unchecked-question-title" %></th>
+          <% elsif question.reply == false && question.checked_by_admin == true %>
+          <th><%= link_to question.title, question_path(question), class: "unreplied-question-title" %></th>
+          <% else %>
+          <th><%= link_to question.title, question_path(question), class: "question-title" %></th>
+          <% end %>
+        </tr>
+        <tr>
+          <td>更新：<%= question.updated_at.to_s(:datetime_jp) %></td>
+        </tr>
+        <tr>
+          <td>質問者：<%= question.user.name %></td>
+        </tr>
+        <tr>
+          <td>確認者：<%= question.checker %></td>
+        </tr>
+        <tr>
+          <td>part：<%= question.part.title %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-  <% @questions.each do |question| %>
-  <div class="container user-question">
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item question-title"><%= link_to question.title, question, class: "question-link" %></li>
-      <li class="list-group-item part-title">part：<%= question.part.title %></li>
-      <li class="list-group-item"><%= simple_format(h(question.content), {}, sanitize: false, wrapper_tag: "div") %></li>
-    </ul>
-  </div>
-  <div class="action text-right">
-    <%= link_to 'Edit', edit_question_path(question), class: 'btn btn-outline-info btn-sm' %>
-    <%= link_to 'Destroy', question_path(question), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
-  </div>
-  <% end %>
 </div>

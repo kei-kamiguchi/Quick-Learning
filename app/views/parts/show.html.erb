@@ -1,41 +1,57 @@
 <div class="parts-show">
   <div class="container main-container animated fadeIn">
     <h3 class="main-title"><%= @part.subject.title %></h3>
-    <% if user_signed_in? %>
-    <h4 class="text-right">
-      <% if @achieved.present? %>
-      <%= link_to 'クリア！', achieved_path(id: @achieved.id), method: :delete, class: 'btn btn-outline-info btn-sm mr-2 achieved' %>
-      <% else %>
-      <%= link_to 'このパートが終わったらクリック！', achieveds_path(part_id: @part.id), method: :post, class: 'btn btn-outline-info btn-sm mr-2' %>
+    <div class="pagination-area">
+      <% if @part.previous.present? %>
+      <%= link_to "<<PREV", part_path(@part.previous), class: "btn pagination-btn btn-sm"%>
       <% end %>
-      <%= link_to "質問する", new_part_question_path(@part), class: 'btn btn-outline-info btn-sm part-question' %>
-    </h4>
-    <% end %>
+      <% if @part.next.present? %>
+      <%= link_to "NEXT>>",part_path(@part.next), class: "float-right btn pagination-btn btn-sm" %>
+      <% end %>
+    </div>
     <table class="table table-responsive">
       <thead class="thead-default">
         <tr>
           <th class="part-title"><%= @part.title %></th>
+          <% if @achieved.present? %>
+          <th class="achieved-icon text-right"><p>履修済み</p></th>
+          <% else %>
+          <th colspan="1"></th>
+          <% end %>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><%= @part.content.html_safe %></td>
+          <td colspan="2" class="text-right">
+            <% if user_signed_in? %>
+            <%= link_to "質問する", new_part_question_path(@part), class: 'btn btn-outline-info btn-sm part-question' %><% end %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2"><%= @part.content.html_safe %></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-right">
+            <% if user_signed_in? %>
+            <% if @achieved.present? %>
+            <%= link_to '履修済みを取り消す', achieved_path(id: @achieved.id), method: :delete, class: 'btn btn-outline-info btn-sm mr-2' %>
+            <% else %>
+            <%= link_to 'このパートが終わったらクリック', achieveds_path(part_id: @part.id), method: :post, class: 'btn btn-outline-info btn-sm mr-2' %>
+            <% end %>
+            <%= link_to "質問する", new_part_question_path(@part), class: 'btn btn-outline-info btn-sm part-question' %>
+            <% else %>
+            <%= link_to 'Edit', edit_part_path(@part), class: 'btn btn-info btn-block' %>
+            <% end %>
+          </td>
         </tr>
       </tbody>
     </table>
-    <% if admin_signed_in? %>
-    <div class="action text-right">
-      <%= link_to 'Edit', edit_part_path(@part), class: 'btn btn-info btn-block' %>
-    </div>
-    <% end %>
-    <% if user_signed_in? %>
-    <h4 class="action text-right">
-      <% if @achieved.present? %>
-      <%= link_to 'クリア！', achieved_path(id: @achieved.id), method: :delete, class: 'btn btn-outline-info btn-sm mr-2 achieved' %>
-      <% else %>
-      <%= link_to 'このパートが終わったらクリック！', achieveds_path(part_id: @part.id), method: :post, class: 'btn btn-outline-info btn-sm mr-2' %>
+    <div class="pagination-area">
+      <% if @part.previous.present? %>
+      <%= link_to "<<PREV", part_path(@part.previous), class: "btn pagination-btn btn-sm"%>
       <% end %>
-      <%= link_to "質問する", new_part_question_path(@part), class: 'btn btn-outline-info btn-sm part-question' %></h4>
+      <% if @part.next.present? %>
+      <%= link_to "NEXT>>",part_path(@part.next), class: "float-right btn pagination-btn btn-sm" %>
       <% end %>
     </div>
   </div>

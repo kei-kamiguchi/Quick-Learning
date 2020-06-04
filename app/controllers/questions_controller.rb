@@ -4,7 +4,11 @@ class QuestionsController < ApplicationController
   before_action :set_part, only: [:create, :new]
 
   def index
-    @search = Question.includes(:user, part: [subject: :project]).where(projects: {id: params[:project_id]}).ransack(params[:q])
+    if user_signed_in?
+      @search = Question.includes(part: [subject: :project]).where(projects: {id: user_project.id}).ransack(params[:q])
+    else
+      @search = Question.includes(part: [subject: :project]).where(projects: {id: admin_project.id}).ransack(params[:q])
+    end
     @questions = @search.result.order(created_at: :desc)
   end
 
@@ -61,6 +65,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :content, :part_id, :checked_by_admin, :checked_by_user, :checker, :reply)
+    params.require(:question).permit(:title, :content, :part_id, :checked_by_admin, :checked_by_user, :checker, :reply, :project_id)
   end
 end

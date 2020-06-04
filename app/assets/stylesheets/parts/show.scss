@@ -11,16 +11,34 @@
   }
   td {
     margin: 0;
-    width: 868px;
     vertical-align: middle;
     word-break: break-all;
+    border: none;
   }
-  .action {
-    margin-bottom: 10px;
+  .pagination-area {
+    margin-bottom: 15px;
+    .pagination-btn {
+      border:1px solid #BBBBBB;
+      border-radius: 5px;
+      color: #BBBBBB;
+      width: 100px;
+    }
+    .pagination-btn:hover {
+      border-color: #777777;
+      background-color: #777777;
+      color: #FFF;
+    }
   }
-  .achieved {
-    background-color: #F0F8FF;
-    border: #F0F8FF;
-    font-weight: bold;
+  .achieved-icon{
+    width: 150px;
+    p {
+      padding: 0;
+      margin:0;
+      border:1px solid #17a2b8;
+      color: #17a2b8;
+      text-align: center;
+      border-radius: 20px;
+      width: 130px;
+    }
   }
 }
