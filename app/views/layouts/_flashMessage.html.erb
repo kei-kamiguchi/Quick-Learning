@@ -1,16 +1,16 @@
 <% if notice %>
-<div class="alert alert-info">
+<div class="alert flash-alert alert-info alert-dismissible animated fadeInDown" role="alert">
   <%= notice %>
 </div>
 <% end %>
 <% if alert %>
-<div class="alert alert-danger">
+<div class="alert flash-alert alert-danger alert-dismissible animated fadeInDown" role="alert">
   <%= alert %>
 </div>
 <% end %>
 <% if devise_controller? %>
 <% if resource.errors.any? %>
-<div class="alert alert-danger">
+<div class="alert flash-alert alert-danger alert-dismissible animated fadeInDown" role="alert">
   <ul>
     <% resource.errors.full_messages.each do |message| %>
     <li><%= message %></li>
@@ -21,7 +21,7 @@
 <% end %>
 <% if @part %>
 <% if @part.errors.any? %>
-<div class="alert alert-danger">
+<div class="alert flash-alert alert-danger alert-dismissible animated fadeInDown" role="alert">
   <ul>
     <% @part.errors.full_messages.each do |message| %>
     <li><%= message %></li>
@@ -39,7 +39,7 @@
 ここがうまく機能しない！！
 <% if @comment %>
 <% if @comment.errors.any? %>
-<div class="alert alert-danger>
+<div class="alert flash-alert alert-danger alert-dismissible animated fadeInDown" role="alert">
   <ul>
     <% @comment.errors.full_messages.each do |message| %>
     <li><%= message %></li>
