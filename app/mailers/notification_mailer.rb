@@ -21,6 +21,7 @@ class NotificationMailer < ApplicationMailer
   def test_entry_mail(admin_project)
     @project = admin_project
     @users = @project.user_participation_users
+    @tests = @project.tests.where(active: 1)
     mail to: @users.map(&:email).join(","), subject: "テストのURLが配布されました！"
   end
 end

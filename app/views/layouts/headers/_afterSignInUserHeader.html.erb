@@ -21,9 +21,6 @@
     <% if Question.joins(part: [subject: :project]).where(projects: {id: user_project.id}).where(user_id: current_user.id, checked_by_user: false, solved: false).present? %>
     <%= render partial: 'layouts/notification' %>
     <% end %>
-    <% if user_project.tests.where(active: 1).present? %>
-    <%= link_to "テスト", testings_path, class: "btn btn-test" %>
-    <% end %>
     <%= link_to "マイページ", current_user %>
     <div class="dropdown">
       <button type="button" id="dropdown1"

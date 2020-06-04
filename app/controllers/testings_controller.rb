@@ -3,11 +3,12 @@ class TestingsController < ApplicationController
   skip_before_action :test_entry_exit, only: [:show]
 
   def index
-    @tests = Test.where(project_id: user_project.id, active: 1)
+    @tests = Test.where(id: params[:tests])
   end
 
   def new
     NotificationMailer.test_entry_mail(admin_project).deliver
+    admin_project.tests.update_all(active: 0)
     flash[:notice] = "テストを配布しました。"
     redirect_back(fallback_location: root_path)
   end
