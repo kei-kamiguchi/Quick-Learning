@@ -1,2 +1,2 @@
-server '176.34.13.129', user: 'app', roles: %w{app db web}
+server '18.181.38.189', user: 'app', roles: %w{app db web}
 set :ssh_options, keys: '/Users/kei/.ssh/id_rsa'
