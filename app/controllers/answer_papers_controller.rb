@@ -1,12 +1,12 @@
 class AnswerPapersController < ApplicationController
   skip_before_action :admin_login_required
   skip_before_action :test_entry_exit, only: [:create]
-  before_action :set_test, only: [:index, :check, :back]
+  before_action :set_test, only: [:index, :check]
 
   def index
-    @test_questions = TestQuestion.where(test_id: @test.id).rank(:row_order)
+    @test_questions = TestQuestion.where(test_id: @test.id)
     @test_question = @test_questions.last
-    @answer_papers = AnswerPaper.where(test_question_id: @test_question)
+    @answer_papers = AnswerPaper.where(test_question_id: @test_question).order(created_at: :asc)
   end
 
   def create
@@ -40,17 +40,6 @@ class AnswerPapersController < ApplicationController
         format.html { redirect_to check_answer_papers_path, alert: '投稿できませんでした。' }
       end
     end
-  end
-
-  def back
-    if params.has_key?(:user)
-      @user = User.find(params[:user])
-      @answer_paper = AnswerPaper.where(test_id: @test.id, user_id: @user.id)
-    else
-      @answer_paper = AnswerPaper.where(test_id: @test.id)
-    end
-    @answer_paper.update_all(backed: true)
-    redirect_to project_tests_path(admin_project)
   end
 
   def toggle_edit

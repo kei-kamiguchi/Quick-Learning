@@ -59,7 +59,7 @@ Rails.application.routes.draw do
     patch :toggle_checked
     patch :back, on: :collection
   end
-  resources :backed_answer_papers do
+  resources :backed_answer_papers, only: [:index, :new, :check] do
     get :check, on: :collection
   end
   resources :testings, only: [:index, :show, :create, :new]
