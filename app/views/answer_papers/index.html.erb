@@ -20,7 +20,7 @@
             <i class="fas fa-check unchecked-icon"></i>
             <% end %>
           </td>
-          <td><%= link_to answer_paper.user.name, check_answer_papers_path(test: @test, user: answer_paper.user), class: "user-name" %></td>
+          <td><%= link_to answer_paper.user.name, answer_paper, class: "user-name" %></td>
           <td class="text-right action">
             <% if answer_paper.checked == "checked" %><%= link_to "返却", new_backed_answer_paper_path(test: @test, user: answer_paper.user), class: "btn btn-info btn-sm checked-toggle-btn" %>
             <% end %>

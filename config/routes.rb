@@ -53,14 +53,10 @@ Rails.application.routes.draw do
   resources :admin_choice_categories, only: [:create, :destroy]
   resources :user_choice_categories, only: [:create, :destroy]
   resources :achieveds, only: [:create, :destroy]
-  resources :answer_papers do
-    get :check, on: :collection
+  resources :answer_papers, except: [:new, :destroy, :edit] do
     patch :toggle_edit
     patch :toggle_checked
-    patch :back, on: :collection
   end
-  resources :backed_answer_papers, only: [:index, :new, :check] do
-    get :check, on: :collection
-  end
+  resources :backed_answer_papers, only: [:index, :new, :show], param: :test_id
   resources :testings, only: [:index, :show, :create, :new]
 end

@@ -62,7 +62,9 @@ class ApplicationController < ActionController::Base
   end
 
   def test_entry_exit
-    Testing.where(user_id: current_user.id).destroy_all if current_user.testings.present?
+    if current_user.testings.present?
+      Testing.where(user_id: current_user.id).destroy_all
+    end
   end
 
   protected

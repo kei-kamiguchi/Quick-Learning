@@ -1,9 +1,7 @@
-<div class="tests-entry">
+<div class="answer_papers-check">
   <div class="container main-container">
-    <h3 class="main-title"><%= @test_title %></h3>
-    <%= form_with model: @answer_papers, url: answer_paper_path, method: :put, local: true do |form| %>
-    <% @specific_answer_papers.each_with_index do |answer_paper, n|%>
-    <%= fields_for 'answer_papers[]', answer_paper do |field| %>
+    <h3 class="main-title"><%= @test.title %></h3>
+    <% @answer_papers.each_with_index do |answer_paper, n|%>
     <% if answer_paper.title.present? %>
     <div class="test-question-title">
       <h5>問題<%= n+1 %>.　<%= answer_paper.title %></h5>
@@ -13,22 +11,17 @@
       <%= simple_format(h(answer_paper.content), {}, sanitize: false, wrapper_tag: "div") %>
     </div>
     <div class="test-question-content">
-      <%= simple_format(h(answer_paper.correct_answer), {}, sanitize: false, wrapper_tag: "div") %>
-    </div>
-    <div class="test-question-content">
+      <p class="text-advice">あなたの答え</p>
       <%= simple_format(h(answer_paper.answer), {}, sanitize: false, wrapper_tag: "div") %>
     </div>
     <div class="test-question-content">
-      <%= simple_format(h(answer_paper.advice), {}, sanitize: false, wrapper_tag: "div") %>
+      <p class="text-advice">正解</p>
+      <%= simple_format(h(answer_paper.correct_answer), {}, sanitize: false, wrapper_tag: "div") %>
     </div>
-    <div class="form-group form-answer">
-      <%= field.text_area :memo, class: "form-control" %>
-    </div>
-    <% end %>
-    <% end %>
-    <div class="action">
-      <%= form.submit nil, class: 'btn btn-info btn-block' %>
+    <div id="advice<%= answer_paper.id %>_area" class="test-question-content">
+      <%= render partial: 'answer_papers/advice', locals: { answer_paper: answer_paper } %>
     </div>
     <% end %>
+    <%= link_to @answer_papers.last.checked, answer_paper_toggle_checked_path(@answer_papers.last, test: @test), method: :patch, class: "btn btn-info btn-block btn-sm checked-toggle-btn" %>
   </div>
 </div>

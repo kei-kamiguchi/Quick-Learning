@@ -17,7 +17,7 @@ class BackedAnswerPapersController < ApplicationController
     redirect_to project_tests_path(admin_project)
   end
 
-  def check
+  def show
     @test = AnswerPaper.find_by(test_id: params[:test_id])
     @answer_papers = AnswerPaper.where(test_id: params[:test_id], user_id: current_user.id)
   end
