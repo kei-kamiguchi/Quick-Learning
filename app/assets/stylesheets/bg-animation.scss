@@ -10,7 +10,7 @@
 
 .bgImage {
   position: absolute;
-  background-image: image-url(book03.jpg);
+  background-image: image-url("book03.jpg");
   background-size: cover;
   background-position: top;
   -webkit-filter: grayscale(70%); /* Safari 6.0 - 9.0 */
