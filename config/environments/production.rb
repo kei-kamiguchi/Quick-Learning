@@ -21,6 +21,7 @@ Rails.application.configure do
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   # config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  # 以下で本番環境でもpublic下の画像を読み込めるようになる（unicornの再起動が必要？）
   config.public_file_server.enabled = true
 
   # Compress JavaScripts and CSS.
@@ -92,15 +93,17 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  config.action_mailer.default_url_options = { host: '54.168.106.1' }
-  ActionMailer::Base.delivery_method = :smtp
-  ActionMailer::Base.smtp_settings = {
-    user_name: ENV['SENDGRID_USERNAME'],
-    password: ENV['SENDGRID_PASSWORD'],
-    domain: "heroku.com",
-    address: "smtp.SendGrid.net",
-    port: 587,
-    authentication: :plain,
-    enable_starttls_auto: true
-  }
+  config.action_mailer.default_url_options = { host: 'quick-learning.net' }
+  config.action_mailer.delivery_method = :ses
+  # config.action_mailer.default_url_options = { host: 'guarded-caverns-14017.herokuapp.com' }
+  # ActionMailer::Base.delivery_method = :smtp
+  # ActionMailer::Base.smtp_settings = {
+  #   user_name: ENV['SENDGRID_USERNAME'],
+  #   password: ENV['SENDGRID_PASSWORD'],
+  #   domain: "heroku.com",
+  #   address: "smtp.SendGrid.net",
+  #   port: 587,
+  #   authentication: :plain,
+  #   enable_starttls_auto: true
+  # }
 end
