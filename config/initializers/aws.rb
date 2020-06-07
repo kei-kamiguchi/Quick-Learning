@@ -1,7 +1,4 @@
-ActionMailer::Base.add_delivery_method
-  :ses, AWS::SES::Base,
+ActionMailer::Base.add_delivery_method :ses, AWS::SES::Base,
   access_key_id: ENV['AWS_ACCESS_KEY_ID'],
   secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
-  region: 'us-east-1'
-
-config.action_mailer.delivery_method = :ses
+  server: 'email.us-east-1.amazonaws.com'
