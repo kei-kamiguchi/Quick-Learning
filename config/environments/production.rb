@@ -100,7 +100,7 @@ Rails.application.configure do
     user_name: ENV['SMTP_USERNAME'],
     password: ENV['SMTP_PASSWORD'],
     domain: "quick-learning.net",
-    address: "kei.kamiguchi517@gmail.com",
+    address: "email.us-east-1.amazonaws.com",
     port: 587,
     authentication: :plain,
     enable_starttls_auto: true
