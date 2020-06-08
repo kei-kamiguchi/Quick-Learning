@@ -70,16 +70,4 @@ Rails.application.configure do
     Bullet.console = true
     Bullet.rails_logger = true
   end
-  config.action_mailer.default_url_options = { host: 'quick-learning.net' }
-  # actionmailerの設定
-  ActionMailer::Base.delivery_method = :smtp
-  ActionMailer::Base.smtp_settings = {
-    user_name: ENV['SMTP_USERNAME'],
-    password: ENV['SMTP_PASSWORD'],
-    domain: "quick-learning.net",
-    address: "email.us-east-1.amazonaws.com",
-    port: 587,
-    authentication: :plain,
-    enable_starttls_auto: true
-  }
 end
