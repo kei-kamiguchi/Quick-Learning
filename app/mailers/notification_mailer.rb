@@ -1,4 +1,5 @@
 class NotificationMailer < ApplicationMailer
+  default from: 'QuickLearning <noreply@quick-learning.net>'
 
   def comment_to_user_mail(comment)
     @comment = comment
