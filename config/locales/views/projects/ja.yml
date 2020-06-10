@@ -1,0 +1,8 @@
+ja:
+  projects:
+    index:
+      title: プロジェクト一覧
+      destroy-confirmation: このプロジェクトを削除します。よろしいですか？
+      status: 状態
+      active: 有効
+      edit_title: タイトルの編集

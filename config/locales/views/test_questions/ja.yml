@@ -1,0 +1,11 @@
+ja:
+  test_questions:
+    index:
+      title: 問題一覧
+      destroy_confirmation: この問題を削除します。よろしいですか？
+    new:
+      title: 問題の作成
+    show:
+      preview: 問題のプレビュー
+    edit:
+      edit: 問題の編集

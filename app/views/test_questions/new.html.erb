@@ -1,6 +1,6 @@
 <div class="test_questions-new">
   <div class="container main-container">
-    <h3 class="main-title">New TestQuestion</h3>
+    <h3 class="main-title"><%= t '.title' %></h3>
     <div class="form">
       <%= render partial:'form', locals: { test: @test, test_question: @test_question } %>
     </div>

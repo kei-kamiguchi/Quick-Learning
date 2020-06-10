@@ -1,0 +1,10 @@
+ja:
+  tests:
+    index:
+      title: テスト一覧
+      destroy_confirmation: 'このテストを削除します。よろしいですか？'
+      start_test_confirmation: 'テストを開始します。よろしいですか？'
+      start_test: 'テストを配布する'
+      test_questions: 問題一覧
+      answers: 回答一覧
+      edit_title: タイトルの編集

@@ -1,8 +1,8 @@
 <div class="test_questions-show">
   <div class="container main-container">
-      <h3 class="main-title">Show TestQuestion</h3>
+      <h3 class="main-title"><%= t '.preview' %></h3>
       <div class="test-question-title">
-        <h5>問題.　<%= @test_question.title %></h5>
+        <h5><%= t 'activerecord.models.question_test' %>.　<%= @test_question.title %></h5>
       </div>
       <div class="test-question-content">
         <%= simple_format(h(@test_question.content), {}, sanitize: false, wrapper_tag: "div") %>

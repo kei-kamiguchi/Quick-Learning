@@ -1,15 +1,15 @@
 <div class="admins-show">
   <div class="container main-container">
-    <h3 class="main-title">My Page</h3>
+    <h3 class="main-title"><%= t '.title' %></h3>
     <table class="table">
       <tbody>
         <tr>
-          <th><%= Admin.human_attribute_name(:email) %></th>
-          <td><%= @admin.email %></td>
-        </tr>
-        <tr>
           <th><%= Admin.human_attribute_name(:name) %></th>
           <td><%= @admin.name %></td>
+        </tr>
+        <tr>
+          <th><%= Admin.human_attribute_name(:email) %></th>
+          <td><%= @admin.email %></td>
         </tr>
       </tbody>
     </table>

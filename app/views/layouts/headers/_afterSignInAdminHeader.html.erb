@@ -22,32 +22,32 @@
     <% if Question.includes(:user, part: [subject: :project]).where(projects: {id: admin_project.id}).where(checked_by_admin: false, solved: false).or(Question.includes(:user, part: [subject: :project]).where(projects: {id: admin_project.id}).where(checked_by_admin: true, checker: "", solved: false)).present? %>
     <%= render partial: 'layouts/notification' %>
     <% end %>
-  <%= link_to "マイページ", current_admin %>
+  <%= link_to "#{t 'header.profile'}", current_admin %>
   <% if current_admin.admin == "true" %>
   <div class="dropdown">
     <button type="button" id="dropdown1"
-    class="btn"
+    class="btn mb-1"
     data-toggle="dropdown"
     aria-haspopup="true"
-    aria-expanded="false">ユーザー一覧</button>
+    aria-expanded="false"><%= t 'header.participants' %></button>
     <div class="dropdown-menu" aria-labelledby="dropdown1">
-      <%= link_to "社員一覧", admins_path, class: 'dropdown-item' %>
-      <%= link_to "生徒一覧", users_path, class: 'dropdown-item' %>
+      <%= link_to "#{t 'header.admin_index'}", admins_path, class: 'dropdown-item' %>
+      <%= link_to "#{t 'header.user_index'}", users_path, class: 'dropdown-item' %>
     </div>
   </div>
   <div class="dropdown">
     <button type="button" id="dropdown1"
-    class="btn"
+    class="btn mb-1"
     data-toggle="dropdown"
     aria-haspopup="true"
-    aria-expanded="false">招待する</button>
+    aria-expanded="false"><%= t 'header.invitation' %></button>
     <div class="dropdown-menu" aria-labelledby="dropdown1">
-      <%= link_to "社員を招待", new_admin_invitation_path, class: 'dropdown-item' %>
-      <%= link_to "生徒を招待", new_user_invitation_path, class: 'dropdown-item' %>
+      <%= link_to "#{t 'header.invite_admin'}", new_admin_invitation_path, class: 'dropdown-item' %>
+      <%= link_to "#{t 'header.invite_user'}", new_user_invitation_path, class: 'dropdown-item' %>
     </div>
   </div>
   <% end %>
-  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+  <%= link_to "#{t 'header.sign_out'}", destroy_admin_session_path, method: :delete %>
 </div>
 <% if admin_choosed_category.subjects.present? %>
 <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">

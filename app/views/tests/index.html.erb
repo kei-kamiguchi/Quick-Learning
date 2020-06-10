@@ -1,12 +1,12 @@
 <div class="tests-index">
   <div class="container main-container">
-    <h3 class="main-title">Test Index</h3>
+    <h3 class="main-title"><%= t '.title' %></h3>
     <div class="form">
       <%= render partial:'tests/form', locals: { test: @test, project: @project } %>
     </div>
     <% if Test.where(active: 1).present? %>
     <div class="text-right">
-      <%= link_to "テストを配布する", new_testing_path, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm mb-2" %>
+      <%= link_to "#{t '.start_test'}", new_testing_path, data: { confirm: "#{t '.start_test_confirmation'}" }, class: "btn btn-danger btn-sm mb-2" %>
     </div>
     <% end %>
     <%= render partial: 'tests/index' %>

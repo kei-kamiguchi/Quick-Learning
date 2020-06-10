@@ -1,7 +1,7 @@
 <div class="questions-edit">
   <%= form_with(model: @question, local: true) do |form| %>
   <div class="container main-container">
-    <h3 class="main-title">Editing Question</h3>
+    <h3 class="main-title"><%= t '.title' %></h3>
     <div class="form">
 
       <div class="form-group">
@@ -15,8 +15,7 @@
     </div>
   </div>
   <div class="action text-right">
-    <%= form.submit nil, class: 'btn btn-outline-info btn-sm' %>
-    <%= link_to 'Destroy', question_path(@question), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-info btn-sm remove-active' %>
+    <%= form.submit nil, class: 'btn btn-info btn-block' %>
   </div>
   <% end %>
 </div>

@@ -11,20 +11,20 @@
       <td><%= link_to test.title, test_path(test), class: "test-title" %></td>
       <td class="text-right">
         <% if test.test_questions.present? %>
-        <%= link_to test.active, test_toggle_active_path(test), method: :patch, class: "btn btn-outline-info btn-sm" %>
+        <%= link_to test.active_i18n, test_toggle_active_path(test), method: :patch, class: "btn btn-outline-info btn-sm" %>
         <% end %>
         <% if AnswerPaper.where(test_question_id: TestQuestion.where(test_id: test.id).last, backed: false).present? %>
-        <%= link_to "answer", answer_papers_path(test: test), class: "btn btn-outline-danger btn-sm" %>
+        <%= link_to "#{t '.answers'}", answer_papers_path(test: test), class: "btn btn-outline-danger btn-sm" %>
         <% else %>
-        <%= link_to 'index', test_test_questions_path(test), class: "btn btn-outline-info btn-sm" %>
+        <%= link_to "#{t '.test_questions'}", test_test_questions_path(test), class: "btn btn-outline-info btn-sm" %>
         <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#modal<%= test.id %>">
-          Edit
+        <%= t 'attributes.edit' %>
         </button>
         <div class="modal fade" id="modal<%= test.id %>" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="label1">Modal title</h5>
+                <h5 class="modal-title" id="label1"><%= t '.edit_title' %></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -35,16 +35,14 @@
                   <%= form.text_field :title, placeholder: "input title", class: "form-control" %>
                   <%= form.select :subject_id, Subject.where(project_id: @project.id).map { |subject| [subject.title, subject.id] }, {}, class: "form-control mt-1" %>
                   <%= form.submit nil, class: "btn btn-info btn-sm mt-1"  %>
+                  <button type="button" class="btn btn-info btn-sm mt-1" data-dismiss="modal"><%= t 'attributes.close' %></button>
                 </div>
               </div>
-              <div class="modal-footer">
                 <% end %>
-                <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">閉じる</button>
-              </div>
             </div>
           </div>
         </div>
-        <%= link_to 'Destroy', test_path(test), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
+        <%= link_to "#{t 'attributes.destroy'}", test_path(test), method: :delete, data: { confirm: "#{t '.destroy_confirmation'}" }, class: "btn btn-outline-info btn-sm" %>
         <% end %>
       </td>
     </tr>

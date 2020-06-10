@@ -7,6 +7,13 @@
     overflow-y:scroll;
     background-color: #FFF;
   }
+  .thead-light {
+    th {
+      color: #888888;
+      padding: 0 10px;
+      margin: 0;
+    }
+  }
   td {
     padding: 0 10px;
     margin: 0;

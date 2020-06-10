@@ -1,0 +1,6 @@
+ja:
+  subjects:
+    index:
+      title: テーマ一覧
+      destroy-confirmation: このテーマを削除します。よろしいですか？
+      edit_title: タイトルの編集

@@ -3,10 +3,10 @@
     <h3 class="main-title"><%= @part.subject.title %></h3>
     <div class="pagination-area">
       <% if @part.previous.present? %>
-      <%= link_to "<<PREV", part_path(@part.previous), class: "btn pagination-btn btn-sm"%>
+      <%= link_to "#{t '.prev'}", part_path(@part.previous), class: "btn pagination-btn btn-sm"%>
       <% end %>
       <% if @part.next.present? %>
-      <%= link_to "NEXT>>",part_path(@part.next), class: "float-right btn pagination-btn btn-sm" %>
+      <%= link_to "#{t '.next'}",part_path(@part.next), class: "float-right btn pagination-btn btn-sm" %>
       <% end %>
     </div>
     <table class="table table-responsive">
@@ -14,7 +14,7 @@
         <tr>
           <th class="part-title"><%= @part.title %></th>
           <% if @achieved.present? %>
-          <th class="achieved-icon text-right"><p>学習済み</p></th>
+          <th class="achieved-icon text-right"><p><%= t '.achieved' %></p></th>
           <% else %>
           <th colspan="1"></th>
           <% end %>
@@ -24,7 +24,10 @@
         <tr>
           <td colspan="2" class="text-right">
             <% if user_signed_in? %>
-            <%= link_to "質問する", new_part_question_path(@part), class: 'btn btn-outline-info btn-sm part-question' %><% end %>
+            <%= link_to "#{t '.ask_a_question'}", new_part_question_path(@part), class: 'btn btn-outline-info btn-sm part-question' %>
+            <% else %>
+            <%= link_to "#{t 'attributes.edit'}", edit_part_path(@part), class: 'btn btn-outline-info btn-sm' %>
+            <% end %>
           </td>
         </tr>
         <tr>
@@ -34,13 +37,13 @@
           <td colspan="2" class="text-right">
             <% if user_signed_in? %>
             <% if @achieved.present? %>
-            <%= link_to '学習済みを取り消す', achieved_path(id: @achieved.id), method: :delete, class: 'btn btn-outline-info btn-sm mr-2' %>
+            <%= link_to "#{t '.finished_part'}", achieved_path(id: @achieved.id), method: :delete, class: 'btn btn-outline-info btn-sm mr-2' %>
             <% else %>
-            <%= link_to 'このパートが終わったらクリック', achieveds_path(part_id: @part.id), method: :post, class: 'btn btn-outline-info btn-sm mr-2' %>
+            <%= link_to "#{t '.unfinished_part'}", achieveds_path(part_id: @part.id), method: :post, class: 'btn btn-outline-info btn-sm mr-2' %>
             <% end %>
-            <%= link_to "質問する", new_part_question_path(@part), class: 'btn btn-outline-info btn-sm part-question' %>
+            <%= link_to "#{t '.ask_a_question'}", new_part_question_path(@part), class: 'btn btn-outline-info btn-sm part-question' %>
             <% else %>
-            <%= link_to 'Edit', edit_part_path(@part), class: 'btn btn-outline-info btn-sm' %>
+            <%= link_to "#{t 'attributes.edit'}", edit_part_path(@part), class: 'btn btn-outline-info btn-sm' %>
             <% end %>
           </td>
         </tr>
@@ -48,10 +51,10 @@
     </table>
     <div class="pagination-area">
       <% if @part.previous.present? %>
-      <%= link_to "<<PREV", part_path(@part.previous), class: "btn pagination-btn btn-sm"%>
+      <%= link_to "#{t '.prev'}", part_path(@part.previous), class: "btn pagination-btn btn-sm"%>
       <% end %>
       <% if @part.next.present? %>
-      <%= link_to "NEXT>>",part_path(@part.next), class: "float-right btn pagination-btn btn-sm" %>
+      <%= link_to "#{t '.next'}", part_path(@part.next), class: "float-right btn pagination-btn btn-sm" %>
       <% end %>
     </div>
   </div>

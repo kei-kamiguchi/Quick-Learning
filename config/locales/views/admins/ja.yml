@@ -1,0 +1,24 @@
+ja:
+  enums:
+    admin:
+      admin:
+        true: 権限を無効にする
+        false: 権限を有効にする
+  admins:
+    index:
+      title: 社員一覧
+      has_authority: 有効
+    show:
+      title: マイページ
+    sessions:
+      new:
+        sign_in: ログイン
+        guest_user_sign_in: ゲストログイン（閲覧用）
+    passwords:
+      new:
+        title: パスワードの再設定
+        description: 再設定用の案内を受け取るメールアドレスを入力してください。
+        send: 送信する
+      edit:
+        title: パスワードの再設定
+        change: 変更する

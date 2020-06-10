@@ -4,7 +4,7 @@
     <% @test_questions.each_with_index do |test_question, n|%>
     <% if test_question.title.present? %>
     <div class="test-question-title">
-      <h5>問題<%= n+1 %>.　<%= test_question.title %></h5>
+      <h5><%= t '.question' %><%= n+1 %>.　<%= test_question.title %></h5>
     </div>
     <% end %>
     <div class="test-question-content">

@@ -1,0 +1,16 @@
+ja:
+  parts:
+    index:
+      title: 項目一覧
+      destroy-confirmation: このパートを削除します。よろしいですか？
+    show:
+      achieved: 学習済み
+      ask_a_question: 質問する
+      finished_part: 学習済みを取り消す
+      unfinished_part: このパートが終わったらクリック
+      next: 次のページ
+      prev: 前のページ
+    edit:
+      title: 項目の編集
+    new:
+      title: 項目の作成

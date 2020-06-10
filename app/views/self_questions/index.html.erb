@@ -1,10 +1,10 @@
 <div class="self_questions-index">
   <div class="container main-container">
-    <h3 class="main-title">Self Question Index</h3>
+    <h3 class="main-title"><%= t '.title' %></h3>
     <div class="form">
       <%= search_form_for @search, url: self_questions_path do |f| %>
       <div class="form-group row">
-        <%= f.search_field :title_cont, placeholder: "search question", class: "form-control col-9" %><%= f.submit 'search', class: "btn btn-info col-2 ml-1" %>
+        <%= f.search_field :title_cont, placeholder: "タイトルから質問を検索", class: "form-control col-9" %><%= f.submit nil, class: "btn btn-info col-2 ml-1" %>
       </div>
       <% end %>
     </div>
@@ -19,22 +19,22 @@
         <tr>
           <th><%= link_to question.title, question_path(question), class: "question-title" %></th>
           <% if question.solved %>
-          <th class="solved-icon text-right"><p>解決済み</p></th>
+          <th class="solved-icon text-right"><p><%= t '.solved' %></p></th>
           <% else %>
-          <th class="unsolved-icon text-right"><p>未解決</p></th>
+          <th class="unsolved-icon text-right"><p><%= t '.unsolved' %></p></th>
           <% end %>
         </tr>
         <tr>
-          <td colspan="2">更新：<%= question.updated_at.to_s(:datetime_jp) %></td>
+          <td colspan="2"><%= Question.human_attribute_name(:updated_at) %>：<%= question.updated_at.to_s(:datetime_jp) %></td>
         </tr>
         <tr>
-          <td colspan="2">質問者：<%= question.user.name %></td>
+          <td colspan="2"><%= Question.human_attribute_name(:user) %>：<%= question.user.name %></td>
         </tr>
         <tr>
-          <td colspan="2">確認者：<%= question.checker %></td>
+          <td colspan="2"><%= Question.human_attribute_name(:checker) %>：<%= question.checker %></td>
         </tr>
         <tr>
-          <td colspan="2">part：<%= question.part.title %></td>
+          <td colspan="2"><%= Question.human_attribute_name(:part) %>：<%= question.part.title %></td>
         </tr>
         <% end %>
       </tbody>

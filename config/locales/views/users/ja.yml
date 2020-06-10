@@ -1,0 +1,19 @@
+ja:
+  users:
+    index:
+      title: 生徒一覧
+      destroy_confirmation: この生徒を削除します。よろしいですか？
+    show:
+      backed_answer_papers_index: テスト一覧に切り替える
+    sessions:
+      new:
+        sign_in: ログイン
+        guest_user_sign_in: ゲストログイン（閲覧用）
+    passwords:
+      new:
+        title: パスワードの再設定
+        description: 再設定用の案内を受け取るメールアドレスを入力してください。
+        send: 送信する
+      edit:
+        title: パスワードの再設定
+        change: 変更する

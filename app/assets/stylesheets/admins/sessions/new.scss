@@ -5,4 +5,15 @@
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  .title {
+    font-size: 4rem;
+  }
+  .forgot_your_password_link {
+    color: #008080;
+    float: right;
+    text-decoration: none;
+  }
+  .forgot_your_password_link:hover {
+    color: #BBBBBB;
+  }
 }

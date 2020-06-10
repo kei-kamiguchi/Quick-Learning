@@ -1,0 +1,19 @@
+ja:
+  questions:
+    index:
+      title: すべての質問
+      destroy-confirmation: この質問を削除します。よろしいですか？
+      solved: 解決済み
+      unsolved: 未解決
+      unchecked: 未確認
+    new:
+      title: 質問する
+    show:
+      user: 質問者
+      checker: 確認者
+      destroy-confirmation: この質問を削除します。よろしいですか？
+      reply: 返信する
+      solved: この質問を解決済みにする
+      solved-confirmation: この質問を解決済みにします。よろしいですか？
+    edit:
+      title: 質問の編集

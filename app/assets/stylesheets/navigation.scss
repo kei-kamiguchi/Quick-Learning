@@ -3,7 +3,18 @@
   padding-top: 140px;
   margin-bottom: -100px;
   a {
-    color: #333333;
+    color: #555555;
+    font-weight: bold;
+  }
+  a:hover{
+    background: #555555;
+    color: #fff;
+    opacity: 0.98;
+  }
+  a.active{
+    background: #555555;
+    color: #fff;
+    opacity: 0.98;
   }
   .row {
     border: 1px solid #AAAAAA;
@@ -15,15 +26,5 @@
     opacity: 0.7;
     padding: 0;
     text-decoration: none;
-  }
-  a:hover{
-    background: #555555;
-    color: #fff;
-    opacity: 0.98;
-  }
-  a.active{
-    background: #555555;
-    color: #fff;
-    opacity: 0.98;
   }
 }

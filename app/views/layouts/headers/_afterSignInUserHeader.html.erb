@@ -21,19 +21,19 @@
     <% if Question.joins(part: [subject: :project]).where(projects: {id: user_project.id}).where(user_id: current_user.id, checked_by_user: false, solved: false).present? %>
     <%= render partial: 'layouts/notification' %>
     <% end %>
-    <%= link_to "マイページ", current_user %>
+    <%= link_to "#{t 'header.profile'}", current_user %>
     <div class="dropdown">
       <button type="button" id="dropdown1"
       class="btn"
       data-toggle="dropdown"
       aria-haspopup="true"
-      aria-expanded="false">質問</button>
+      aria-expanded="false"><%= t 'header.question' %></button>
       <div class="dropdown-menu" aria-labelledby="dropdown1">
-        <%= link_to "自分の質問", self_questions_path, class: 'dropdown-item' %>
-        <%= link_to "みんなの質問", questions_path(project_id: user_project.id), class: 'dropdown-item' %>
+        <%= link_to "#{t 'header.my_questions'}", self_questions_path, class: 'dropdown-item' %>
+        <%= link_to "#{t 'header.questions_all'}", questions_path(project_id: user_project.id), class: 'dropdown-item' %>
       </div>
     </div>
-    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+    <%= link_to "#{t 'header.sign_out'}", destroy_user_session_path, method: :delete %>
   </div>
   <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
   <label for="openSidebarMenu" class="sidebarIconToggle">

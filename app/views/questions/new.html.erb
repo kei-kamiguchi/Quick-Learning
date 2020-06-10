@@ -1,6 +1,6 @@
 <div class="questions-new">
   <div class="container main-container">
-    <h3 class="main-title">New Question</h3>
+    <h3 class="main-title"><%= t '.title' %></h3>
     <div class="form">
       <%= render partial:'form', locals: { part: @part, question: @question } %>
     </div>

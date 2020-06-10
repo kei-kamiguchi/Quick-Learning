@@ -1,14 +1,15 @@
 <div class="projects-index">
   <div class="container main-container">
-    <h3 class="main-title">Project Index</h3>
+    <h3 class="main-title"><%= t '.title' %></h3>
     <div class="form">
       <%= render 'form', project: @project %>
     </div>
     <table class="table table-hover">
       <thead class="thead-light">
         <tr>
-          <th>Title</th>
-          <th colspan="2"></th>
+          <th><%= Project.human_attribute_name(:title) %></th>
+          <th><%= t '.status' %></th>
+          <th colspan="1"></th>
         </tr>
       </thead>
       <tbody>
@@ -16,18 +17,18 @@
         <tr>
           <td><%= link_to project.title, admin_participations_path(project_id: project.id), method: :post, class: "project-title" %></td>
           <td>
-            <% if admin_project == project %>active
+            <% if admin_project == project %><%= t '.active' %>
             <% end %>
           </td>
           <td class="text-right">
             <button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#modal<%= project.id %>">
-              Edit
+              <%= t 'attributes.edit' %>
             </button>
             <div class="modal fade" id="modal<%= project.id %>" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="label1">Modal title</h5>
+                    <h5 class="modal-title" id="label1"><%= t '.edit_title' %></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -35,18 +36,16 @@
                   <div class="modal-body">
                     <%= form_with(model: project, url: project_path(project), method: :put, local: true) do |form| %>
                     <div class="form-group">
-                      <%= form.text_field :title, placeholder: "input title", class: "form-control" %>
+                      <%= form.text_field :title, class: "form-control" %>
                       <%= form.submit nil, class: "btn btn-info btn-sm mt-1"  %>
+                      <button type="button" class="btn btn-info btn-sm mt-1" data-dismiss="modal"><%= t 'attributes.close' %></button>
                     </div>
                   </div>
-                  <div class="modal-footer">
                     <% end %>
-                    <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">閉じる</button>
-                  </div>
                 </div>
               </div>
             </div>
-            <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-info btn-sm" %>
+            <%= link_to "#{t 'attributes.destroy'}", project, method: :delete, data: { confirm: "#{t '.destroy-confirmation'}" }, class: "btn btn-outline-info btn-sm" %>
           </td>
         </tr>
         <% end %>

@@ -7,6 +7,13 @@
     overflow-y:scroll;
     background-color: #FFF;
   }
+  .thead-light {
+    th {
+      color: #888888;
+      padding: 0 10px;
+      margin: 0;
+    }
+  }
   td {
     padding: 0 10px;
     margin: 0;
@@ -18,7 +25,7 @@
     word-break: break-all;
     display: block;
     color: #777777;
-    padding: 10px;
+    padding: 10px 0;
   }
   a:hover {
     text-decoration: none;

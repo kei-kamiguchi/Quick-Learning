@@ -1,0 +1,8 @@
+ja:
+  self_questions:
+    index:
+      title: 自分の質問
+      destroy-confirmation: 'この質問を削除します。よろしいですか？'
+      solved: 解決済み
+      unsolved: 未解決
+      checker: 確認者

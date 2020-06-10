@@ -81,6 +81,7 @@ gem 'faker'
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
 gem 'enum_help'
+gem 'rails-i18n', '~> 5.1'
 # sort
 gem 'ransack'
 gem 'ranked-model'

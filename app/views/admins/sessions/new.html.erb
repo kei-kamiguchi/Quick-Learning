@@ -2,22 +2,23 @@
 <%= render partial: 'layouts/bgAnimation' %>
 
 <div class="admins-sessions-new">
-  <h1 class="page-title">Sign in</h1>
+  <h1 class="title">Quick Learning</h1>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
   <div class="form-group">
     <br />
-    <%= f.email_field :email, autocomplete: "email", placeholder: "email", class: "form-control"%>
+    <%= f.email_field :email, autocomplete: "email", placeholder: "メールアドレス", class: "form-control"%>
   </div>
 
   <div class="form-group">
     <br />
-    <%= f.password_field :password, autocomplete: "current-password", placeholder: "password", class: "form-control" %>
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign in", class: 'btn btn-login btn-sm' %>
-    <%= link_to 'ゲストログイン（閲覧用）', admins_guest_sign_in_path, method: :post, class: 'btn btn-login btn-sm' %>
+    <%= f.submit "#{t '.sign_in'}", class: 'btn btn-login btn-sm' %>
+    <%= link_to "#{t '.guest_user_sign_in'}", admins_guest_sign_in_path, method: :post, class: 'btn btn-login btn-sm' %>
+    <%= render "users/shared/links" %>
   </div>
   <% end %>
 </div>

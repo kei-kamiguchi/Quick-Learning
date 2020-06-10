@@ -1,0 +1,7 @@
+ja:
+  categories:
+    index:
+      title: カテゴリ一覧
+      edit_title: タイトルの編集
+      destroy-confirmation: このカテゴリを削除します。よろしいですか？
+      active: 有効
