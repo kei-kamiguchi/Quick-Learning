@@ -1,0 +1,7 @@
+ja:
+  testings:
+    index:
+      title: テスト一覧
+      show_only_user: 生徒のみ閲覧可能。
+    show:
+      answer: 答え

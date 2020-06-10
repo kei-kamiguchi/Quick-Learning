@@ -1,0 +1,19 @@
+ja:
+  enums:
+    answer_paper:
+      checked:
+        checked: 確認済みを取り消す
+        unchecked: 確認済みにする
+  answer_papers:
+    index:
+      title: 解答用紙一覧
+      all_papers_back: 全員に返却
+      paper_back: 返却する
+      all_papers_back_confirmation: 全ての解答用紙を返却します。よろしいですか？
+      paper_back_confirmation: 解答用紙を返却します。よろしいですか？
+    show:
+      test_question: 問題
+      answer: 生徒の答え
+      current_answer: 正解
+      edit_advise: コメント編集
+      advise: コメント

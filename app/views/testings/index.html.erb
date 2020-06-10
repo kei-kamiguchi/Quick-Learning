@@ -1,6 +1,6 @@
 <div class="testings-index">
   <div class="container main-container">
-    <h3 class="main-title">Test Active</h3>
+    <h3 class="main-title"><%= t '.title' %></h3>
     <table class="table table-hover">
       <tbody>
         <% if user_signed_in? %>
@@ -12,7 +12,7 @@
         <% end %>
         <% end %>
         <% else %>
-        <p>生徒のみ閲覧可能。</p>
+        <p><%= t '.show_only_user' %></p>
         <% end %>
       </tbody>
     </table>

@@ -1,13 +1,13 @@
 <div class="answer_papers-index">
   <div class="container main-container">
-    <h3 class="main-title">UserAnswer Index</h3>
+    <h3 class="main-title"><%= t '.title' %></h3>
     <table class="table table-hover">
       <tbody>
         <tr>
           <th colspan="2" class="test-title"><%= @test.title %></th>
           <th class="text-right">
             <% unless @answer_papers.where(checked: "unchecked").present? %>
-            <%= link_to "全員に返却", new_backed_answer_paper_path(test: @test), class: "btn btn-info btn-sm checked-toggle-btn" %><% end %>
+            <%= link_to "#{t '.all_papers_back'}", new_backed_answer_paper_path(test: @test), data: { confirm: "#{t '.all_papers_back_confirmation'}" }, class: "btn btn-info btn-sm checked-toggle-btn" %><% end %>
           </th>
         </tr>
         <% @answer_papers.each do |answer_paper| %>
@@ -22,7 +22,7 @@
           </td>
           <td><%= link_to answer_paper.user.name, answer_paper, class: "user-name" %></td>
           <td class="text-right action">
-            <% if answer_paper.checked == "checked" %><%= link_to "返却", new_backed_answer_paper_path(test: @test, user: answer_paper.user), class: "btn btn-info btn-sm checked-toggle-btn" %>
+            <% if answer_paper.checked == "checked" %><%= link_to "#{t '.paper_back'}", new_backed_answer_paper_path(test: @test, user: answer_paper.user), data: { confirm: "#{t '.paper_back_confirmation'}" }, class: "btn btn-info btn-sm checked-toggle-btn mr-1" %>
             <% end %>
           </td>
         </tr>

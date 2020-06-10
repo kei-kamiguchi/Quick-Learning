@@ -1,12 +1,12 @@
 <% if answer_paper.edit == "edit" %>
 <% if answer_paper.advice.present? %>
 <div class="test-question-content">
-  <p class="text-advice">アドバイス</p>
+  <p class="text-advice"><%= t 'answer_papers.show.advise' %></p>
   <%= simple_format(h(answer_paper.advice), {}, sanitize: false, wrapper_tag: "div") %>
 </div>
 <% end %>
 <div class="action text-right">
-  <%= link_to answer_paper.edit, answer_paper_toggle_edit_path(answer_paper), method: :patch, remote: true, class: "btn btn-outline-info btn-sm" %>
+  <%= link_to "#{t 'answer_papers.show.edit_advise'}", answer_paper_toggle_edit_path(answer_paper), method: :patch, remote: true, class: "btn btn-outline-info btn-sm" %>
 </div>
 <% else %>
 <div class="test-question-content">
