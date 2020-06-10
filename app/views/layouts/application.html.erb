@@ -33,7 +33,7 @@
     <% end %>
   <% end %>
   <% if user_signed_in? %>
-    <% if request.path.exclude?("testings") %>
+    <% if user_participation? && request.path.exclude?("testings") %>
       <%= render partial: 'layouts/headers/afterSignInUserHeader', locals: {subjects: user_project.subjects.includes(:parts) } %>
     <% else %>
       <%= render partial: 'layouts/headers/noHeaderNav' %>
