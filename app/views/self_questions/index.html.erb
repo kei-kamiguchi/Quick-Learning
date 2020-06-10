@@ -31,7 +31,7 @@
           <td colspan="2"><%= Question.human_attribute_name(:user) %>：<%= question.user.name %></td>
         </tr>
         <tr>
-          <td colspan="2"><%= Question.human_attribute_name(:checker) %>：<%= question.checker %></td>
+          <td colspan="2"><%= Question.human_attribute_name(:checker) %>：<%= question.checker || "#{t '.unchecked'}" %></td>
         </tr>
         <tr>
           <td colspan="2"><%= Question.human_attribute_name(:part) %>：<%= question.part.title %></td>
